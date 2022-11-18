@@ -64,6 +64,40 @@ int fight( enemy_t p1, enemy_t p2 )
 
 }
 
+int tri_fight( enemy_t p1, enemy_t p2, enemy_t p3 )
+{
+   // Always p1 vs. p2/p3
+   while (1)
+   {
+      if ( p2.hp > 0.0 )
+      {
+         p2.hp -= damage( p1, p2 );
+         if ( p2.hp <= 0.0 )
+         {
+            p2.hp = 0.0;
+            if ( p3.hp == 0.0 ) return 0;
+         }
+      }
+      else
+      { 
+         p3.hp -= damage( p1, p3 ); 
+         if ( p3.hp <= 0.0 ) {
+            p3.hp = 0.0;
+            if ( p2.hp == 0.0 ) return 0;
+         }
+      }
+
+      p1.hp -= damage( p2, p1 );
+      p1.hp -= damage( p3, p1 );
+      if ( p1.hp <= 0.0 )
+      {
+         return 1;
+      }
+
+   }
+
+}
+
 char *rstring( int resistance )
 {
   switch( resistance )
@@ -94,32 +128,49 @@ void print_stats( void )
 
 void main( void )
 {
-   enemy_t player1, player2;
-   int p1, p2;
+   enemy_t player1, player2, player3;
+   int p1, p2, p3;
    int max_types = sizeof( enemies ) / sizeof( enemy_t );
    int winner;
    int wins[2]={0,0};
+   bool tri;
 
    print_stats();
 
    seed();
 
+   if ( getSRand() > 0.7 ) tri = true;
+
    p1 = getRand( max_types );
    p2 = getRand( max_types );
+   p3 = getRand( max_types );
 
-   printf( "%s vs. %s\n", enemies[p1].name, enemies[p2].name );
+   if ( !tri ) printf( "%s vs. %s\n", enemies[p1].name, enemies[p2].name );
+   else printf( "%s vs. %s/%s\n", enemies[p1].name, enemies[p2].name, enemies[p3].name );
 
    for ( int i = 0 ; i < MAX_ITERS ; i++ )
    {
       player1 = enemies[p1];
       player2 = enemies[p2];
+      player3 = enemies[p3];
 
-      winner = fight( player1, player2 );
+      if ( !tri ) winner = fight( player1, player2 );
+      else winner = tri_fight( player1, player2, player3 );
 
       wins[winner]++;
    }
 
-   printf("Wins: %s (%s) %d | %s (%s) %d\n", player1.name, rstring(player1.resistance), wins[0], 
-            player2.name, rstring(player2.resistance), wins[1]);
+   if ( !tri )
+   {
+      printf("Wins: %s (%s) %d | %s (%s) %d\n", player1.name, rstring(player1.resistance), wins[0], 
+               player2.name, rstring(player2.resistance), wins[1]);
+   }
+   else
+   {
+      printf("Wins: %s (%s) %d | %s (%s) / %s (%s) %d\n", player1.name, rstring(player1.resistance), wins[0], 
+               player2.name, rstring(player2.resistance), 
+               player3.name, rstring(player3.resistance), wins[1]);
+   }
+
    return;
 }
