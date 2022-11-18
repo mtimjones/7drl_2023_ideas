@@ -25,7 +25,7 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 - [ ] Implemnet redocking behavior.
 
 ## UI Concept
-`
+```
            1         2         3         4         5         6         7         8         9         1
   1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
  1+----------------------------------------------------------------+---------------------------------+
@@ -63,4 +63,4 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 33|                                                                |   (m)ine                        |
 34|                                                                |   (d)ock        (r)ecycle       |
 35+----------------------------------------------------------------+---------------------------------+
-`
+```
