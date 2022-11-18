@@ -6,12 +6,12 @@
 // Assume d10
 enemy_t enemies[] = 
 {
-  { "Drone", 3,  2, Energy,  3.0 },
-  { "Tank" , 7,  5, Kinetic, 5.0 },
+  { "Drone", 3,  2, Energy,  7.0 },
+  { "Tank" , 6,  5, Kinetic, 5.0 },
   { "Raven", 2,  6, Plasma,  3.0 },
-  { "Monk",  4,  1, Energy,  2.0 },
-  { "Scout", 2,  3, Kinetic, 3.0 },
-  { "Krone", 9,  4, Plasma,  5.0 },
+  { "Monk",  4,  2, Energy,  7.0 },
+  { "Scout", 2,  3, Kinetic, 9.0 },
+  { "Krone", 7,  4, Plasma,  5.0 },
 };
 
 float damage( enemy_t attacker, enemy_t attackee )
@@ -62,6 +62,34 @@ int fight( enemy_t p1, enemy_t p2 )
 
 }
 
+char *rstring( int resistance )
+{
+  switch( resistance )
+  {
+    case 0: return "Energy"; break;
+    case 1: return "Plasma"; break;
+    case 2: return "Kinetic"; break;
+  }
+
+  return "Unknown";
+}
+
+#define stats( a, b, c ) ( ((float)a * 2.0 ) + ( (float)b * 1.5 ) + ( c * 1.0) )
+
+void print_stats( void )
+{
+   int max_types = sizeof( enemies ) / sizeof( enemy_t );
+
+   for ( int i = 0 ; i < max_types ; i++ )
+   {
+      printf("%9s %2d/%2d/%3.2f = %f\n", enemies[i].name,
+                enemies[i].attack, enemies[i].armor, enemies[i].hp,
+                stats( enemies[i].attack, enemies[i].armor, enemies[i].hp ) );
+   }
+
+   return;
+}
+
 void main( void )
 {
    enemy_t player1, player2;
@@ -69,6 +97,8 @@ void main( void )
    int max_types = sizeof( enemies ) / sizeof( enemy_t );
    int winner;
    int wins[2]={0,0};
+
+   print_stats();
 
    seed();
 
@@ -87,6 +117,7 @@ void main( void )
       wins[winner]++;
    }
 
-   printf("Wins: %s %d | %s %d\n", player1.name, wins[0], player2.name, wins[1]);
+   printf("Wins: %s (%s) %d | %s (%s) %d\n", player1.name, rstring(player1.resistance), wins[0], 
+            player2.name, rstring(player2.resistance), wins[1]);
    return;
 }
