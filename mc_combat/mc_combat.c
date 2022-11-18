@@ -13,7 +13,7 @@ enemy_t enemies[] =
   { "Scout", 2,  3, Kinetic, 3.0 }
 };
 
-float damage( int attacker, int attackee )
+float damage( enemy_t attacker, enemy_t attackee )
 {
    float damage = 0.0;
    float potential;
@@ -23,20 +23,15 @@ float damage( int attacker, int attackee )
         {  1, -1,  0 }   // Kinetic
       };
 
-//printf("player1 attack %d player 2 armor %d\n", enemies[attacker].attack, enemies[attackee].armor);
-
-   potential = ( ( 1.0 / (float)( enemies[attacker].attack + enemies[attackee].armor ) ) * 
-                (float)enemies[attacker].attack );
-
-//printf("potential %f\n", potential);
+   potential = ( ( 1.0 / (float)( attacker.attack + attackee.armor ) ) * (float)attacker.attack );
 
    if ( getSRand() < potential )
    {
       // Hit!  Compute damage.
-      damage = (float)enemies[attacker].attack * getSRand();
+      damage = (float)attacker.attack * getSRand();
 
       // Add in status effects.
-      damage += (float)resist[enemies[attacker].resistance][enemies[attackee].resistance];
+      damage += (float)resist[attacker.resistance][attackee.resistance];
 
       if ( damage < 0.0 ) damage = 0.0;
    }
@@ -44,26 +39,21 @@ float damage( int attacker, int attackee )
    return damage;
 }
 
-int fight( int player1, int player2 )
+int fight( enemy_t p1, enemy_t p2 )
 {
-   enemy_t p1, p2;
-
-   p1 = enemies[player1];
-   p2 = enemies[player2];
-
    while (1)
    {
-      p2.hp -= damage( player1, player2 );
+      p2.hp -= damage( p1, p2 );
       if ( p2.hp <= 0.0 )
       {
-         return player1;
+         return 0;
       }
       else
       {
-         p1.hp -= damage( player2, player1 );
+         p1.hp -= damage( p2, p1 );
          if ( p1.hp <= 0.0 )
          {
-            return player2;
+            return 1;
          }
       }
 
@@ -73,28 +63,29 @@ int fight( int player1, int player2 )
 
 void main( void )
 {
-   int player1, player2, winner;
+   enemy_t player1, player2;
+   int p1, p2;
    int max_types = sizeof( enemies ) / sizeof( enemy_t );
+   int winner;
    int wins[2]={0,0};
 
    seed();
 
-   player1 = getRand( max_types );
-   do
-   {
-      player2 = getRand( max_types );
-   } while ( player2 == player1 );
+   p1 = getRand( max_types );
+   p2 = getRand( max_types );
 
-   printf( "%s vs. %s\n", enemies[player1].name, enemies[player2].name );
+   printf( "%s vs. %s\n", enemies[p1].name, enemies[p2].name );
 
    for ( int i = 0 ; i < MAX_ITERS ; i++ )
    {
+      player1 = enemies[p1];
+      player2 = enemies[p2];
+
       winner = fight( player1, player2 );
 
-      if ( winner == player1 ) wins[0]++;
-      else wins[1]++;
+      wins[winner]++;
    }
 
-   printf("Wins: %s %d | %s %d\n", enemies[player1].name, wins[0], enemies[player2].name, wins[1]);
+   printf("Wins: %s %d | %s %d\n", player1.name, wins[0], player2.name, wins[1]);
    return;
 }
