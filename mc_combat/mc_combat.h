@@ -7,6 +7,7 @@ typedef enum
    Energy,
    Plasma,
    Kinetic,
+   Player
 } resistance_t;
 
 typedef struct 

@@ -8,20 +8,22 @@ enemy_t enemies[] =
 {
   { "Drone", 3,  2, Energy,  7.0 },
   { "Tank" , 6,  5, Kinetic, 5.0 },
-  { "Raven", 2,  6, Plasma,  3.0 },
+  { "Raven", 2,  8, Plasma,  3.0 },
   { "Monk",  4,  2, Energy,  7.0 },
   { "Scout", 2,  3, Kinetic, 9.0 },
   { "Krone", 7,  4, Plasma,  5.0 },
+  { "Borg",  8,  3, Player,  8.0 },
 };
 
 float damage( enemy_t attacker, enemy_t attackee )
 {
    float damage = 0.0;
    float potential;
-   const int resist[3][3] = 
-      { {  0,  1, -1 },  // Energy
-        { -1,  0,  1 },  // Plasma
-        {  1, -1,  0 }   // Kinetic
+   const int resist[4][4] = 
+      { {  0,  1, -1, -1 },  // Energy
+        { -1,  0,  1, -1 },  // Plasma
+        {  1, -1,  0, -1 },  // Kinetic
+        {  1,  1,  1,  0 }   // Player
       };
 
    potential = ( ( 1.0 / (float)( attacker.attack + attackee.armor ) ) * (float)attacker.attack );
