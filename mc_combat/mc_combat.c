@@ -2,11 +2,6 @@
 
 #define MAX_ITERS   1000000
 
-int resist[3][3] = 
-{ {  0,  1, -1 },  // Energy
-  { -1,  0,  1 },  // Plasma
-  {  1, -1,  0 }   // Kinetic
-};
 
 // Assume d10
 enemy_t enemies[] = 
@@ -18,37 +13,36 @@ enemy_t enemies[] =
   { "Scout", 2,  3, Kinetic, 3.0 }
 };
 
-#if 0
-float damage( int damage, int armor )
+float damage( int attacker, int attackee )
 {
-   float potential = ( damage - armor );
-
-   if ( potential > 0.0 )
-   {
-      potential *= ( 0.5 * ( getSRand() / 2.0 ) );
-   }
-   else
-   {
-      potential = 0.0;
-   }
-
-   return potential;
-}
-#else
-float damage( int attack, int armor )
-{
-   float potential = ( ( 1.0 / (float)( attack + armor ) ) * (float)attack );
    float damage = 0.0;
+   float potential;
+   const int resist[3][3] = 
+      { {  0,  1, -1 },  // Energy
+        { -1,  0,  1 },  // Plasma
+        {  1, -1,  0 }   // Kinetic
+      };
+
+//printf("player1 attack %d player 2 armor %d\n", enemies[attacker].attack, enemies[attackee].armor);
+
+   potential = ( ( 1.0 / (float)( enemies[attacker].attack + enemies[attackee].armor ) ) * 
+                (float)enemies[attacker].attack );
+
+//printf("potential %f\n", potential);
 
    if ( getSRand() < potential )
    {
       // Hit!  Compute damage.
-      damage = (float)attack * getSRand();
+      damage = (float)enemies[attacker].attack * getSRand();
+
+      // Add in status effects.
+      damage += (float)resist[enemies[attacker].resistance][enemies[attackee].resistance];
+
+      if ( damage < 0.0 ) damage = 0.0;
    }
 
    return damage;
 }
-#endif
 
 int fight( int player1, int player2 )
 {
@@ -59,15 +53,14 @@ int fight( int player1, int player2 )
 
    while (1)
    {
-      p2.hp -= damage( p1.attack, p2.armor );
-
+      p2.hp -= damage( player1, player2 );
       if ( p2.hp <= 0.0 )
       {
          return player1;
       }
       else
       {
-         p1.hp -= damage( p2.attack, p1.armor );
+         p1.hp -= damage( player2, player1 );
          if ( p1.hp <= 0.0 )
          {
             return player2;
