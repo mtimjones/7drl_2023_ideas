@@ -22,7 +22,7 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 - [ ] Mouse-over context development.
 - [ ] Mouse select/deselect of drone.
 - [ ] Implement scavenging drone behavior
-- [ ] Implemnet redocking behavior.
+- [ ] Implement redocking behavior.
 
 ## UI Concept
 ```
