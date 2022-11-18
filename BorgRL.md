@@ -13,7 +13,7 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 - Randomly scavenged implants (power-ups).
 
 ## Development Plan
-- [X] Experiment with drone attribute balancing (monte carlo simulation).
+- [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
 - [ ] Reuse prior 7drl map UI.
 - [ ] Use CES for scheduling.
 - [ ] Implement basic UI.
