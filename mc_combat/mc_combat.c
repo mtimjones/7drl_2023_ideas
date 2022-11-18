@@ -6,11 +6,12 @@
 // Assume d10
 enemy_t enemies[] = 
 {
-  { "Drone", 5,  2, Energy,  4.0 },
-  { "Tank" , 7,  5, Kinetic, 7.0 },
+  { "Drone", 3,  2, Energy,  3.0 },
+  { "Tank" , 7,  5, Kinetic, 5.0 },
   { "Raven", 2,  6, Plasma,  3.0 },
   { "Monk",  4,  1, Energy,  2.0 },
-  { "Scout", 2,  3, Kinetic, 3.0 }
+  { "Scout", 2,  3, Kinetic, 3.0 },
+  { "Krone", 9,  4, Plasma,  5.0 },
 };
 
 float damage( enemy_t attacker, enemy_t attackee )
