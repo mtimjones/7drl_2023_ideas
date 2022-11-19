@@ -86,6 +86,7 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 - Left-select an enemy drone and press (k)ill to send all combat drones to attack that enemy drone.
 - Left-select an enemy wreck and press (s)cavange to send all scavenger drones to scavenge the wreck.
 - Left-select a planet and press (m)ine to send all mining drones to mine the planet.
+- Arrow keys are used to move the Borg.
 
 ## Drones
 
