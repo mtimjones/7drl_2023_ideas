@@ -86,6 +86,6 @@ Combat occurs in phases.  Each entity attacks in turn with entities that are kil
 
 | &nbsp; | Kinetic | Plasma | Energy |
 | ------- | ------- | ------- | ------- |
-| Kinetic | 0 | 0 | 0 |
-| Plasma | 0 | 0 | 0 |
-| Energy | 0 | 0 | 0 |
+| Kinetic | 0 | +1 | -1 |
+| Plasma | -1 | 0 | +1 |
+| Energy | +1 | -1 | 0 |
