@@ -102,3 +102,18 @@ Combat occurs in phases.  Each entity attacks in turn with entities that are kil
 | Kinetic | +1 | -1 | 0 |
 
 In other words, Energy weapons are +1 against Plasma weapons.  Kinetic weapons are -1 effective against Plasma weapons.  Like weapons have no advantage or disadvantage.
+
+## Progression System
+
+xp2lvlup =( 15 * level ) + ( 9 * ( level-1 ) )
+
+| Level | xp2NextLvl |
+| :-: | --: |
+| 1 | 15 |
+| 2 | 39 |
+| 3 | 72 |
+| 4 | 87 |
+| 5 | 111 |
+| 6 | 135 |
+| 7 | 159 |
+| 8 | 183 |
