@@ -75,9 +75,17 @@ The Drone window (upper right) shows the Borg and its contents (drones and their
 The context window shows context for the item under the passive mouse cursor.  Below this is the log, which contains a scrolling log of information.
 
 ### Actions Window
-The actions window shows the keys used to play the game.
+The actions window shows the key-bindings used to play the game.
 
 ## Controls
+The player uses the mouse and/or keyboard.  Below are some examples of mouse and/or keyboard play.
+- Left-select an enemy drone in the Drone window and a target in space to undock and begin operation (attack, mine, scavange).
+- Left-select a drone in space and then Left-Select the Dock button to return a drone to the Borg.
+- Left-select a drone in space and then press (d)ock to return a drone to the Borg.
+- Left-select an enemy drone and press (a)ssimilate to try to hack that drone.
+- Left-select an enemy drone and press (k)ill to send all combat drones to attack that enemy drone.
+- Left-select an enemy wreck and press (s)cavange to send all scavenger drones to scavenge the wreck.
+- Left-select a planet and press (m)ine to send all mining drones to mine the planet.
 
 ## Drones
 
