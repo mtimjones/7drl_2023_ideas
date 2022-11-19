@@ -90,4 +90,4 @@ Combat occurs in phases.  Each entity attacks in turn with entities that are kil
 | Plasma | -1 | 0 | +1 |
 | Kinetic | +1 | -1 | 0 |
 
-In other words, Energy weapons are +1 against Plasma weapons.  Kinetic weapons are -1 effective against Plasma weapons.
+In other words, Energy weapons are +1 against Plasma weapons.  Kinetic weapons are -1 effective against Plasma weapons.  Like weapons have no advantage or disadvantage.
