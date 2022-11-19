@@ -64,3 +64,17 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 34|                                                                |   (d)ock        (r)ecycle       |
 35+----------------------------------------------------------------+---------------------------------+
 ```
+
+### Map Windows
+The Map (upper left) shows the map of the portion of the sector the Borg (@) is in.  It can consist of gas clouds (#), planets (P), wrecks (%), enemies (D) and your drones (S).  Gas clouds hide objects, so the Borg must explore to optionally discover what's hidden.
+
+## Drone Window
+The Drone window (upper right) shows the Borg and its contents (drones and their stats).  Below the drone window is the Stats window which shows the current implants and resources.
+
+## Context/Log Window
+The context window shows context for the item under the passive mouse cursor.  Below this is the log, which contains a scrolling log of information.
+
+## Actions Window
+The actions window shows the keys used to play the game.
+
+# Controls
