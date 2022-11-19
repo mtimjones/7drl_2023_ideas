@@ -2,7 +2,7 @@
 
 This documents the design for the 2023 7DRL.
 
-BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors, fighting enemies, scavanging resources, mining planets and converting these resources into upgrades for its evolving fleet of assimilated drones.
+BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors, fighting enemies, scavanging resources, mining planets and converting these resources into upgrades for its evolving fleet of assimilated drones.  The player explores each sector, jumping to the next at the sector's end.  In the last sector is a boss fight and the end-game.
 
 ## Features
 - Procedurally generated sectors
@@ -68,13 +68,23 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 ### Map Windows
 The Map (upper left) shows the map of the portion of the sector the Borg (@) is in.  It can consist of gas clouds (#), planets (P), wrecks (%), enemies (D) and your drones (S).  Gas clouds hide objects, so the Borg must explore to optionally discover what's hidden.
 
-## Drone Window
+### Drone Window
 The Drone window (upper right) shows the Borg and its contents (drones and their stats).  Below the drone window is the Stats window which shows the current implants and resources.
 
-## Context/Log Window
+### Context/Log Window
 The context window shows context for the item under the passive mouse cursor.  Below this is the log, which contains a scrolling log of information.
 
-## Actions Window
+### Actions Window
 The actions window shows the keys used to play the game.
 
-# Controls
+## Controls
+
+## Drones
+
+## Combat
+Combat occurs in phases.  Each entity attacks in turn with entities that are killed becoming wrecks.  Combat drones can have status effects (Kinetic, Plasma, Energy) which also are resistence.  In a rock paper scissors style, weapons have the following effects on combat.
+
+| Kinetic | Plasma | Energy
+Kinetic | |
+Plasma | |
+Energy | |
