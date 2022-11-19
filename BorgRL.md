@@ -84,7 +84,7 @@ The actions window shows the keys used to play the game.
 ## Combat
 Combat occurs in phases.  Each entity attacks in turn with entities that are killed becoming wrecks.  Combat drones can have status effects (Kinetic, Plasma, Energy) which also are resistence.  In a rock paper scissors style, weapons have the following effects on combat.
 
-| Kinetic | Plasma | Energy
-Kinetic | |
-Plasma | |
-Energy | |
+&nbsp;| Kinetic | Plasma | Energy
+Kinetic | | |
+Plasma | | | 
+Energy | | |
