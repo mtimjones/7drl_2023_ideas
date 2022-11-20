@@ -34,9 +34,18 @@ float damage( enemy_t attacker, enemy_t attackee )
       damage = (float)attacker.attack * getSRand();
 
       // Add in status effects.
-      damage += (float)resist[attacker.resistance][attackee.resistance];
+      damage += (float)resist[attacker.resistence][attackee.resistence];
 
       if ( damage < 0.0 ) damage = 0.0;
+      else
+      {
+         //printf("%s hits %s for %f damage\n", attacker.name, attackee.name, damage);
+      }
+
+   }
+   else
+   {
+      //printf("%s misses.\n", attacker.name);
    }
 
    return damage;
@@ -98,9 +107,9 @@ int tri_fight( enemy_t p1, enemy_t p2, enemy_t p3 )
 
 }
 
-char *rstring( int resistance )
+char *rstring( int resistence )
 {
-  switch( resistance )
+  switch( resistence )
   {
     case 0: return "Energy"; break;
     case 1: return "Plasma"; break;
@@ -118,7 +127,7 @@ void print_stats( void )
 
    for ( int i = 0 ; i < max_types ; i++ )
    {
-      printf("%9s %2d/%2d/%3.2f = %f\n", enemies[i].name,
+      printf("%9s (%7s) %3d/%3d/%5.2f = %f\n", enemies[i].name, rstring(enemies[i].resistence),
                 enemies[i].attack, enemies[i].armor, enemies[i].hp,
                 stats( enemies[i].attack, enemies[i].armor, enemies[i].hp ) );
    }
@@ -162,14 +171,14 @@ void main( void )
 
    if ( !tri )
    {
-      printf("Wins: %s (%s) %d | %s (%s) %d\n", player1.name, rstring(player1.resistance), wins[0], 
-               player2.name, rstring(player2.resistance), wins[1]);
+      printf("Wins: %s (%s) %d | %s (%s) %d\n", player1.name, rstring(player1.resistence), wins[0], 
+               player2.name, rstring(player2.resistence), wins[1]);
    }
    else
    {
-      printf("Wins: %s (%s) %d | %s (%s) / %s (%s) %d\n", player1.name, rstring(player1.resistance), wins[0], 
-               player2.name, rstring(player2.resistance), 
-               player3.name, rstring(player3.resistance), wins[1]);
+      printf("Wins: %s (%s) %d | %s (%s) / %s (%s) %d\n", player1.name, rstring(player1.resistence), wins[0], 
+               player2.name, rstring(player2.resistence), 
+               player3.name, rstring(player3.resistence), wins[1]);
    }
 
    return;

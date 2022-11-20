@@ -9,14 +9,14 @@ typedef enum
    Plasma,
    Kinetic,
    Player
-} resistance_t;
+} resistence_t;
 
 typedef struct 
 {
    char *name;
    int attack;
    int armor;
-   resistance_t resistance;
+   resistence_t resistence;
    float hp;
 } enemy_t;
 
