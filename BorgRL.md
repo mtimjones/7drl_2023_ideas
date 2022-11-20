@@ -12,18 +12,6 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 - Sector Exit Bosses.
 - Randomly scavenged implants (power-ups).
 
-## Development Plan
-- [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
-- [ ] Reuse prior 7drl map UI.
-- [ ] Use CES for scheduling.
-- [ ] Implement basic UI.
-- [ ] Create random wrecks.
-- [ ] Create scavenger drone type.
-- [ ] Mouse-over context development.
-- [ ] Mouse select/deselect of drone.
-- [ ] Implement scavenging drone behavior
-- [ ] Implement redocking behavior.
-
 ## UI Concept
 ```
            1         2         3         4         5         6         7         8         9         1
@@ -124,6 +112,37 @@ xp2lvlup = 0.04 * (level^3) + 0.8 * (level^2) + 2*level
 | 9 | 112 |
 | 10 | 140 |
 
+## Combat System
+Each entity takes turns attacking.
+
+A hit is calculated by:
+
+```
+potential = ( 1.0 / ( attacker.attack + attackee.armor ) ) * attacker.attack
+if ( random() < potential) Hit!
+```
+
+If a hit succeeds, damage uses the following calculation:
+
+```
+damage = attacker.attack * random()
+```
+
+## Development Plan
+- [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
+- [ ] Reuse prior 7drl map UI.
+- [ ] Implement CES for entity scheduling.
+- [ ] Implement basic UI.
+- [ ] Create object for entities in space (with individual/random behavior).
+- [ ] Create random wrecks (no behavior).
+- [ ] Create scavenger drone type (scavange behavior).
+- [ ] Mouse-over context development.
+- [ ] Mouse select/deselect of drone.
+- [ ] Implement scavenging drone behavior
+- [ ] Implement redocking behavior.
+
+Stretch Goals
+- [ ] Create orbit behavior for drones (around enemies, planets, wrecks).
 
 
 [^1]: https://pavcreations.com/level-systems-and-character-growth-in-rpg-games/
