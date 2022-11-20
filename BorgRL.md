@@ -53,7 +53,7 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 35+----------------------------------------------------------------+---------------------------------+
 ```
 
-### Map Windows
+### Map Window
 The Map (upper left) shows the map of the portion of the sector the Borg (@) is in.  It can consist of gas clouds (#), planets (P), wrecks (%), enemies (D) and your drones (S).  Gas clouds hide objects, so the Borg must explore to optionally discover what's hidden.
 
 ### Drone Window
