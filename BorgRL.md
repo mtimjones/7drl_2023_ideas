@@ -105,15 +105,25 @@ In other words, Energy weapons are +1 against Plasma weapons.  Kinetic weapons a
 
 ## Progression System
 
-xp2lvlup =( 15 * level ) + ( 9 * ( level-1 ) )
+The leveling system is based upon Disgea[^1], with a gentle progression of xp per level.
+
+```
+xp2lvlup = 0.04 * (level^3) + 0.8 * (level^2) + 2*level
+```
 
 | Level | xp2NextLvl |
 | :-: | --: |
-| 1 | 15 |
-| 2 | 39 |
-| 3 | 72 |
-| 4 | 87 |
-| 5 | 111 |
-| 6 | 135 |
-| 7 | 159 |
-| 8 | 183 |
+| 1 | 3 |
+| 2 | 8 |
+| 3 | 14 |
+| 4 | 23 |
+| 5 | 35 |
+| 6 | 49 |
+| 7 | 67 |
+| 8 | 88 |
+| 9 | 112 |
+| 10 | 140 |
+
+
+
+[^1]: https://pavcreations.com/level-systems-and-character-growth-in-rpg-games/
