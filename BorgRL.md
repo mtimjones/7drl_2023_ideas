@@ -82,6 +82,8 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 ## Drones
 
 ## Combat
+An enemy engages in combat when the Borg or one of its drones comes within a specific distance (note that gas clouds can hide enemies).
+
 Combat occurs in phases.  Each entity attacks in turn with entities that are killed becoming wrecks.  Combat drones can have status effects (Energy, Plasma, Kinetic) which also are resistence.  In a rock-paper-scissors style, weapons have the following effects on combat.
 
 | &nbsp; | Energy | Plasma | Kinetic |
@@ -91,6 +93,19 @@ Combat occurs in phases.  Each entity attacks in turn with entities that are kil
 | Kinetic | +1 | -1 | 0 |
 
 In other words, Energy weapons are +1 against Plasma weapons.  Kinetic weapons are -1 effective against Plasma weapons.  Like weapons have no advantage or disadvantage.
+
+A hit is calculated by:
+
+```
+potential = ( 1.0 / ( attacker.attack + attackee.armor ) ) * attacker.attack
+if ( random() < potential) Hit!
+```
+
+If a hit succeeds, damage uses the following calculation:
+
+```
+damage = attacker.attack * random()
+```
 
 ## Progression System
 
@@ -112,22 +127,6 @@ xp2lvlup = 0.04 * (level^3) + 0.8 * (level^2) + 2*level
 | 8 | 88 |
 | 9 | 112 |
 | 10 | 140 |
-
-## Combat System
-Each entity takes turns attacking.
-
-A hit is calculated by:
-
-```
-potential = ( 1.0 / ( attacker.attack + attackee.armor ) ) * attacker.attack
-if ( random() < potential) Hit!
-```
-
-If a hit succeeds, damage uses the following calculation:
-
-```
-damage = attacker.attack * random()
-```
 
 ## Development Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
