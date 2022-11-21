@@ -43,13 +43,13 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 25|                                                            ####|                                 |
 26|                                                         #######|  Time: ****    Resources: ****  |
 27+----------------------------------------------------------------+---------------------------------+
-28| Context: <mouse-over context info>                             | Actions:                        |
-29+----------------------------------------------------------------+   (h)elp        (p)ause         |
-30| Press 'h' for help.                                            |   (a)ssimilate  ( )step         |
-31|                                                                |   (k)ill        (h)eal          |
-32|                                                                |   (s)cavange                    |
-33|                                                                |   (m)ine                        |
-34|                                                                |   (d)ock        (r)ecycle       |
+28| Context: <mouse-over context info>                             | Actions: <Current Mode>         |
+29+----------------------------------------------------------------+---------------------------------+
+30| Press 'h' for help.                                            |  (h)elp    (p)ause    ( )step   |
+31|                                                                |  Mouse-Wheel Up/Dn - Chg Mode   |
+32|                                                                |                                 |
+33|                                                                |                                 |
+34|                                                                |                                 |
 35+----------------------------------------------------------------+---------------------------------+
 ```
 
@@ -64,6 +64,9 @@ The context window shows context for the item under the passive mouse cursor.  B
 
 ### Actions Window
 The actions window shows the key-bindings used to play the game.
+Some actions are controlled by the mode (which is changed by mouse wheel up/down).
+
+
 
 ## Controls
 The player uses the mouse and/or keyboard.  Below are some examples of mouse and/or keyboard play.
