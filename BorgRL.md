@@ -46,7 +46,7 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 28| Context: <mouse-over context info>                             | Actions:                        |
 29+----------------------------------------------------------------+   (h)elp        (p)ause         |
 30| Press 'h' for help.                                            |   (a)ssimilate  ( )step         |
-31|                                                                |   (k)ill                        |
+31|                                                                |   (k)ill        (h)eal          |
 32|                                                                |   (s)cavange                    |
 33|                                                                |   (m)ine                        |
 34|                                                                |   (d)ock        (r)ecycle       |
@@ -68,9 +68,10 @@ The actions window shows the key-bindings used to play the game.
 ## Controls
 The player uses the mouse and/or keyboard.  Below are some examples of mouse and/or keyboard play.
 - Left-click an entity in the Drone window and a target in space to undock and begin operation (attack, mine, scavange).
-- Left-click a drone in space and then Left-Select the Dock button to return a drone to the Borg.
+- Left-click a drone in space and then Left-click the Dock button to return a drone to the Borg.
 - Left-click a drone in space and then press (d)ock to return a drone to the Borg.
 - Left-click an enemy drone and press (a)ssimilate to try to hack that drone.
+- Left-click a docked drone and press (h)eal to heal the drone's damage.
 - Left-click a drone and press (r)ecycle to destroy and turn into resources.
 - Left-click an enemy drone and press (k)ill to send all combat drones to attack that enemy drone.
 - Left-click an enemy wreck and press (s)cavange to send all scavenger drones to scavenge the wreck.
