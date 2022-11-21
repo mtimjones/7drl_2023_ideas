@@ -143,6 +143,7 @@ damage = attacker.attack * random()
 
 Stretch Goals
 - [ ] Create orbit behavior for drones (around enemies, planets, wrecks).
+- [ ] Mini-game for hacking (assimilating) a drone in space.
 
 
 [^1]: https://pavcreations.com/level-systems-and-character-growth-in-rpg-games/
