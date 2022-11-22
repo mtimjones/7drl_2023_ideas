@@ -105,7 +105,7 @@ if ( random() < potential) Hit!
 If a hit succeeds, damage uses the following calculation:
 
 ```
-damage = attacker.attack * random()
+damage = attacker.attack * random() + resistance
 ```
 
 ## Progression System
