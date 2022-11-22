@@ -80,6 +80,7 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 - Arrow keys are used to move the Borg.
 
 ## Drones
+TBD
 
 ## Combat
 An enemy engages in combat when the Borg or one of its drones comes within a specific distance (note that gas clouds can hide enemies).
