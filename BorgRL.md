@@ -39,7 +39,7 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
 22|            D                                                   +---------------------------------+
 23|                                                                |  Attack: ***   Mining    : ***  |
 24|                                           P                  ##|  Armor : ***   Scavanging: ***  |
-25|                                                            ####|                                 |
+25|                                                            ####|         *** Paused ***          |
 26|                                                         #######|  Time: ****    Resources: ****  |
 27+----------------------------------------------------------------+---------------------------------+
 28| Context: <mouse-over context info>                             | Actions: <Current Mode>         |
