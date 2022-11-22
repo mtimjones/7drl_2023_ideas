@@ -142,6 +142,7 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 
 ## Prototype Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
+- [ ] Intro screen.
 - [ ] Reuse prior 7drl map UI.
 - [ ] Implement procedural map generation.
 - [ ] Implement CES for entity scheduling.
@@ -153,6 +154,7 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 - [ ] Mouse select/deselect of drone.
 - [ ] Implement scavenging drone behavior
 - [ ] Implement redocking behavior.
+- [ ] End-game screen (stats, etc.).
 
 Stretch Goals
 - [ ] Create orbit behavior for drones (around enemies, planets, wrecks).
