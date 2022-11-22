@@ -2,7 +2,7 @@
 
 This documents the design for the 2023 7DRL.
 
-BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors, fighting enemies, scavanging resources, mining planets and converting these resources into upgrades for its evolving fleet of assimilated drones.  The player explores each sector, jumping to the next at the sector's end.  In the last sector is a boss fight and the end-game.
+BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors, fighting enemies, scavanging resources, mining planets and converting these resources into upgrades for its evolving fleet of assimilated drones.  The player explores each sector, jumping to the next at the sector's end.  In the last sector is a boss fight and the end-game.  The player must optimize resources to heal drones, assimilate or kill enemies, and kill the final boss to win.  Drones have status effects, so a mix will be necessary to win.
 
 ## Features
 - Procedurally generated sectors
