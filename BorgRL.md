@@ -62,7 +62,7 @@ The context window shows context for the item under the passive mouse cursor.  B
 
 ### Actions Window
 The actions window shows the key-bindings used to play the game.
-Some actions are controlled by the mode (which is changed by mouse wheel up/down).
+Some actions are controlled by the mode (which is changed by mouse wheel up/down).  Mode can be {Assimilate, Attack, Mine, Scavange, Heal, Dock, Recycle}.
 
 ## Controls
 The player uses the mouse and/or keyboard.  Below are some examples of mouse and/or keyboard play.
