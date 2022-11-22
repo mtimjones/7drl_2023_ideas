@@ -56,7 +56,7 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
 40+--------------------------------------------------------------------------------------------------+
 ```
 ### Map Window
-The Map (upper left) shows the map of the portion of the sector the Borg (@) is in.  It can consist of gas clouds (#), planets (P), wrecks (%), enemies (D) and your drones (S).  Gas clouds hide objects, so the Borg must explore to optionally discover what's hidden.  Player drones are in bold to differentiate between enemy drones.
+The Map (upper left) shows the map of the portion of the sector the Borg (@) is in.  It can consist of gas clouds (#), planets (P), wrecks (%), enemies (D) and player drones.  Gas clouds hide enemies, and cannot be passed by the player.  Player drones are in bold to differentiate between enemy drones.
 
 ### Drone Window
 The Drone window (upper right) shows the Borg and its contents (drones and their stats).  Below the drone window is the Stats window which shows the current implants and resources.
