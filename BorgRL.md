@@ -42,14 +42,19 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
 25|                                                            ####|         *** Paused ***          |
 26|                                                         #######|  Time: ****    Resources: ****  |
 27+----------------------------------------------------------------+---------------------------------+
-28| Context: <mouse-over context info>                             | Actions: <Current Mode>         |
-29+----------------------------------------------------------------+---------------------------------+
-30| Press 'h' for help.                                            |  (h)elp    (p)ause    ( )step   |
-31|                                                                |  Mouse-Wheel Up/Dn - Chg Mode   |
-32|                                                                |                                 |
-33|                                                                |                                 |
-34|                                                                |                                 |
-35+----------------------------------------------------------------+---------------------------------+
+28|          |    (h)elp    |   (p)ause    |   ( )step    | (a)ssimilate |    (d)ock    |            |
+29| Actions: +---------------------------------------------------------------------------------------+
+30|          |    (k)ill    |  (r)ecycle   |   (m)ine     |  (s)cavange  |    (h)eal    |            |
+31+--------------------------------------------------------------------------------------------------+
+32| Context: <mouse-over context info>                                                               |
+33+--------------------------------------------------------------------------------------------------+
+34| Press 'h' for help.                                                                              |
+35|                                                                                                  |
+36|                                                                                                  |
+37|                                                                                                  |
+38|                                                                                                  |
+39|                                                                                                  |
+40+--------------------------------------------------------------------------------------------------+
 ```
 ### Map Window
 The Map (upper left) shows the map of the portion of the sector the Borg (@) is in.  It can consist of gas clouds (#), planets (P), wrecks (%), enemies (D) and your drones (S).  Gas clouds hide objects, so the Borg must explore to optionally discover what's hidden.  Player drones are in bold to differentiate between enemy drones.
@@ -61,18 +66,14 @@ The Drone window (upper right) shows the Borg and its contents (drones and their
 The context window shows context for the item under the passive mouse cursor.  Below this is the log, which contains a scrolling log of information.
 
 ### Actions Window
-The actions window shows the key-bindings used to play the game.
-Some actions are controlled by the mode (which is changed by mouse wheel up/down).  Mode can be {Assimilate, Attack, Mine, Scavange, Heal, Dock, Recycle}.
+The actions window shows the key-bindings used to play the game.  The user may use the key, or left-click the action.
 
 ## Controls
 The player uses the mouse and/or keyboard.  Below are some examples of mouse and/or keyboard play.
-- Left-click an entity in the Drone window and a target in space to undock and begin operation (attack, mine, scavange).
-- Left-click a drone in space and then Left-click the Dock button to return a drone to the Borg.
-- Left-click a drone in space and then press (d)ock to return a drone to the Borg.
-- Left-click an enemy drone and press (a)ssimilate to try to hack that drone.
-- Left-click a docked drone and press (h)eal to heal the drone's damage.
-- Left-click a drone and press (r)ecycle to destroy and turn into resources.
-- Left-click an enemy drone and press (k)ill to send all combat drones to attack that enemy drone.
+- Left-click an drone in the Drone window and then a target in space to undock and begin operation (attack, mine, scavange).
+- Left-click an enemy drone and (a)ssimilate to attempt to assimilate this enemy drone.
+- Left-click a drone in space and then Left-click the (d)ock button (or press 'd') to return a drone to the Borg.
+- Left-click a docked drone and press (h)eal or (r)ecycle to heal or destroy the drone.
 - Left-click an enemy wreck and press (s)cavange to send all scavenger drones to scavenge the wreck.
 - Left-click a planet and press (m)ine to send all mining drones to mine the planet.
 - (p)ause the game to perform actions, resume to re-enter real-time, spacebar to step.
@@ -128,14 +129,14 @@ xp2lvlup = 0.04 * (level^3) + 0.8 * (level^2) + 2*level
 | 9 | 112 |
 | 10 | 140 |
 
-## Resources
+## Economy
 The currency of the game are 'resources' which are mined from planets, scavenged from enemy wrecks. or salvaged from recycled drones.  These resources are used to heal drones (in the Borg), assimilate (hack) enemy drones, jump through the gate, or upgrade capabilities at academies.
 
 ## Implants
-Implants can be randomly found in enemy wrecks.  These increase the player stats (attack, armor, mining, scavenging).  These should be rare (one every two or three levels).
+Implants can be randomly found in enemy wrecks.  These increase the player stats (attack, armor, mining, scavenging).  These should be rare (one every two or three levels), but should encourage exploration and combat.
 
 ## Map Layout
-The map is laid out in FTL style where the player starts off on the left side and must reach the exit on the right side.  The map viewport is 64x25.  The entire sector map is 3 viewports deep (75) by 9 viewports wide (9*64).  The entire sector is loaded with gas clouds and then each viewport is loaded with entities (planets, wrecks, enemies).  No entities will exist in the first player viewport (middle row, first column).  THe last middle viewport will also have nothing but the exit gate.
+The map is laid out in FTL style where the player starts off on the left side and must reach the exit on the right side.  The map viewport is 64x25.  The entire sector map is 3 viewports deep (75) by 9 viewports wide (9x64).  The entire sector is loaded with gas clouds and then each viewport is loaded with entities (planets, wrecks, enemies).  No entities will exist in the first player viewport (middle row, first column).  THe last middle viewport will also have nothing but the exit gate.
 
 ## Prototype Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
@@ -154,6 +155,5 @@ The map is laid out in FTL style where the player starts off on the left side an
 Stretch Goals
 - [ ] Create orbit behavior for drones (around enemies, planets, wrecks).
 - [ ] Mini-game for hacking (assimilating) a drone in space.
-
 
 [^1]: https://pavcreations.com/level-systems-and-character-growth-in-rpg-games/
