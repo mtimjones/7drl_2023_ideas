@@ -21,7 +21,7 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
  4|                                                                | Drone     Docked      K   2   1 |
  5|                                                                | Scout     Docked      K   3   1 |
  6|                                                                | Miner     Docked      M   1   1 |
- 7|                       %                         ###            | Scav      Undocked    S   1   1 |
+ 7|                       %                         #####          | Scav      Undocked    S   1   1 |
  8|                                                ########        |                                 |
  9|                                                  ########      |                                 |
 10|                                                   ######       |                                 |
