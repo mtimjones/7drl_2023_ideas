@@ -11,6 +11,7 @@ BorgRL is a Borg Roguelike.  The player is the Borg and travels across N sectors
 - Random enemies, wrecks, planets, gas clouds, etc.
 - Sector Exit Bosses.
 - Randomly scavenged implants (power-ups).
+- Resource management
 
 ## UI Concept
 ```
@@ -65,8 +66,6 @@ The context window shows context for the item under the passive mouse cursor.  B
 ### Actions Window
 The actions window shows the key-bindings used to play the game.
 Some actions are controlled by the mode (which is changed by mouse wheel up/down).
-
-
 
 ## Controls
 The player uses the mouse and/or keyboard.  Below are some examples of mouse and/or keyboard play.
@@ -130,6 +129,12 @@ xp2lvlup = 0.04 * (level^3) + 0.8 * (level^2) + 2*level
 | 8 | 88 |
 | 9 | 112 |
 | 10 | 140 |
+
+## Resources
+The currency of the game are 'resources' which are mined from planets, scavenged from enemy wrecks. or salvaged from recycled drones.  These resources are used to heal drones (in the Borg), assimilate (hack) enemy drones, jump through the gate, or upgrade capabilities at academies.
+
+## Implants
+Implants can be randomly found in enemy wrecks.  These increase the player stats (attack, armor, mining, scavenging).  These should be rare (one every two or three levels).
 
 ## Development Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
