@@ -7,7 +7,6 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
 - Turn-based and real-time gameplay (user can pause)
 - Permadeath
 - Random enemies, wrecks, planets, gas clouds, etc.
-- Sector Exit Bosses.
 - Randomly scavenged implants (power-ups).
 - Resource management
 
@@ -137,6 +136,9 @@ Implants can be randomly found in enemy wrecks.  These increase the player stats
 
 ## Map Layout
 The map is laid out in FTL style where the player starts off on the left side and must reach the exit on the right side.  The map viewport is 64x25.  The entire sector map is 3 viewports deep (75) by 9 viewports wide (9x64).  The entire sector is loaded with gas clouds and then each viewport is loaded with entities (planets, wrecks, enemies).  No entities will exist in the first player viewport (middle row, first column).  THe last middle viewport will also have nothing but the exit gate.
+
+## Game Start
+The player begins with the Borg, a scavenger drone, a combat drone, and a small amount of resources.
 
 ## Prototype Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
