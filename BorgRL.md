@@ -159,5 +159,6 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 Stretch Goals
 - [ ] Create orbit behavior for drones (around enemies, planets, wrecks).
 - [ ] Mini-game for hacking (assimilating) a drone in space.
+- [ ] Create OnVerb methods (OnDock) to implement component behaviors.
 
 [^1]: https://pavcreations.com/level-systems-and-character-growth-in-rpg-games/
