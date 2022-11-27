@@ -150,6 +150,7 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 - [ ] Implement CES for entity scheduling.
 - [ ] Implement basic UI.
 - [ ] Create object for entities in space (with individual/random behavior).
+- [ ] Implement the FOV algorithm.
 - [ ] Create random wrecks (no behavior).
 - [ ] Create scavenger drone type (scavange behavior).
 - [ ] Mouse-over context development.
