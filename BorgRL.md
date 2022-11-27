@@ -131,6 +131,8 @@ xp2lvlup = 0.04 * (level^3) + 0.8 * (level^2) + 2*level
 ## Economy
 The currency of the game are 'resources' which are mined from planets, scavenged from enemy wrecks. or salvaged from recycled drones.  These resources are used to heal drones (in the Borg), assimilate (hack) enemy drones, or upgrade capabilities at academies.
 
+![My Image](my-image.jpg)
+
 ## Implants
 Implants can be randomly found in enemy wrecks.  These increase the player stats (attack, armor, mining, scavenging).  These should be rare (one every two or three levels), but should encourage exploration and combat.
 
