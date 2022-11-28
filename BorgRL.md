@@ -166,7 +166,7 @@ The currency of the game are 'resources' which are mined from planets, scavenged
 <img src="https://github.com/mtimjones/7drl_2023_ideas/blob/main/IMG_0001.jpg" width="600">
 
 ## Implants
-Implants can be randomly found in enemy wrecks.  These increase the player stats (attack, armor, mining, scavenging).  These should be rare (one every two or three levels), but should encourage exploration and combat.
+Implants can be randomly found in enemy wrecks or containers.  These increase the player stats (attack, armor, mining, scavenging).  These should be rare (one every two or three levels), but should encourage exploration and combat.
 
 ## Map Layout
 The map is laid out in FTL style where the player starts off on the left side and must reach the exit on the right side.  The map viewport is 64x25.  The entire sector map is 3 viewports deep (75) by 9 viewports wide (9x64).  The entire sector is loaded with gas clouds and then each viewport is loaded with entities (planets, wrecks, enemies).  No entities will exist in the first player viewport (middle row, first column).  THe last middle viewport will also have nothing but the exit gate.
