@@ -99,6 +99,16 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 | Hunter | Combat | Mid Armor, Mid Damage, Mid HP |
 | Minotaur | Combat | Mid Armor, High Damage, High HP |
 
+### Other Objects
+
+| Name | Icon | Notes |
+| :-- | :-: | :-- |
+| Borg | @ | Borg mothership |
+| Wrecks | % | Resources available for scavenging by Vagrants |
+| Containers | ? | Resources or implants available for scavenging by Vagrants |
+| Planets | P | Planets available for mining by Diggers |
+| Gas Clouds | # | Inaccessible regions (which can hide enemies) |
+
 ## Combat
 An enemy engages in combat when the Borg or one of its drones comes within a specific distance (note that gas clouds can hide enemies).
 
