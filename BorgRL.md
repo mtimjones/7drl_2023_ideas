@@ -83,7 +83,7 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 ### Player Drones
 
 | Name | Type | Armor | Damage | HP | Notes |
-| :-- | :-: | :-: | :-: | :-: |
+| :-- | :-: | :-: | :-: | :-: | :-- |
 | Scav | Scavenger | Mid | None | Low | Scavenges wrecks for resources, retrieves implants from containers |
 | Miner | Miner | Mid | None | Low | Mines planets for resources |
 | Scout | Combat | High | Low | Low  | |
