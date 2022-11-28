@@ -88,7 +88,8 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 | Digger | Miner | D | Mid | None | Low | Mines planets for resources |
 | Scout | Combat | S | High | Low | Low  | |
 | Raven | Combat | R | Mid | Mid | Mid | |
-| Tank | Combat | T | Mid | High | High | |
+| Kestral | Combat | K | Mid | High | High | |
+| Tank | Combat | T | High | High | High | |
 
 ### Enemy Drones
 | Name | Type | Stats |
