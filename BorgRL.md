@@ -85,7 +85,7 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 | Name | Type | Icon | Armor | Damage | HP | Notes |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-- |
 | Vagrant | Scavenger | V | Mid | None | Low | Scavenges wrecks for resources, retrieves implants from containers |
-| Miner | Miner | Mid | M | None | Low | Mines planets for resources |
+| Miner | Miner | M | Mid | None | Low | Mines planets for resources |
 | Scout | Combat | S | High | Low | Low  | |
 | Raven | Combat | R | Mid | Mid | Mid | |
 | Tank | Combat | T | Mid | High | High | |
