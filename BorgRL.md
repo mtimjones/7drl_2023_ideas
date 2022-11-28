@@ -92,12 +92,12 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 | Tank | Combat | T | High | High | High | |
 
 ### Enemy Drones
-| Name | Type | Stats |
-| :-- | :-: | :-- |
-| Gnat | Combat | Mid Armor, Low Damage Low HP |
-| Eagle | Combat | Low Armor, Mid Damage, Mid HP |
-| Hunter | Combat | Mid Armor, Mid Damage, Mid HP |
-| Minotaur | Combat | Mid Armor, High Damage, High HP |
+| Name | Type | Icon | Armor | Damage | HP | Notes |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-- |
+| Gnat | Combat | G | Mid | Low | Low | |
+| Eagle | Combat | E | Low | Mid | Mid | |
+| Hunter | Combat | H | Mid | Mid | Mid | |
+| Minotaur | Combat | M | Mid | High| High | |
 
 ### Other Objects
 
