@@ -3,9 +3,9 @@
 BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is the Borg and travels across N sectors, fighting enemies, scavanging resources, mining planets and converting these resources into upgrades for its evolving fleet of assimilated drones.  The player explores each sector, jumping to the next at the sector's end.  In the last sector is a boss fight and the end-game.  The player must optimize resources to heal drones, assimilate or kill enemies, and kill the final boss to win.  Drones have status effects, so a mix will be necessary to win.
 
 ## Features
-- Procedurally generated sectors
-- Turn-based and real-time gameplay (user can pause)
 - Permadeath
+- Procedurally generated sectors with random objects (enemies, planets, wrecks, gas clouds, etc.)
+- Turn-based and real-time gameplay (user can pause)
 - Random enemies, wrecks, containers, planets, gas clouds, etc.
 - Randomly scavenged implants (power-ups).
 - Tactical combat, strategic resource management
