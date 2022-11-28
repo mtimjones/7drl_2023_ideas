@@ -179,6 +179,7 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 
 ## Prototype Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
+- [ ] Experiment with wave-function-collapse for sector procedural generation.
 - [ ] Intro screen.
 - [ ] Reuse prior 7drl map UI.
 - [ ] Implement procedural map generation.
