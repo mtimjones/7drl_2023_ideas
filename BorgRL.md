@@ -140,6 +140,8 @@ If a hit succeeds, damage uses the following calculation:
 damage = attacker.attack * random() + resistance
 ```
 
+If a drone or the borg attacks a wreck or container, it yields no resources.
+
 ## Progression System
 
 The leveling system is based upon Disgea[^1], with a gentle progression of xp per level.
