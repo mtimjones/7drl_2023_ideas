@@ -85,7 +85,7 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 | Name | Type | Icon | Armor | Damage | HP | Notes |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-- |
 | Vagrant | Scavenger | V | Mid | None | Low | Scavenges wrecks for resources, retrieves implants from containers |
-| Miner | Miner | M | Mid | None | Low | Mines planets for resources |
+| Digger | Miner | D | Mid | None | Low | Mines planets for resources |
 | Scout | Combat | S | High | Low | Low  | |
 | Raven | Combat | R | Mid | Mid | Mid | |
 | Tank | Combat | T | Mid | High | High | |
@@ -96,6 +96,7 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 | Gnat | Combat | Mid Armor, Low Damage Low HP |
 | Eagle | Combat | Low Armor, Mid Damage, Mid HP |
 | Hunter | Combat | Mid Armor, Mid Damage, Mid HP |
+| Minotaur | Combat | Mid Armor, High Damage, High HP |
 
 ## Combat
 An enemy engages in combat when the Borg or one of its drones comes within a specific distance (note that gas clouds can hide enemies).
