@@ -108,6 +108,7 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 | Containers | ? | Resources or implants available for scavenging by Vagrants |
 | Planets | P | Planets available for mining by Diggers |
 | Gas Clouds | # | Inaccessible regions (which can hide enemies) |
+| Gate | > | Warp to next sector |
 
 ## Combat
 An enemy engages in combat when the Borg or one of its drones comes within a specific distance (note that gas clouds can hide enemies).
