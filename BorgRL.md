@@ -82,20 +82,20 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 
 ### Player Drones
 
-| Name | Stats |
-| :-- | :-- |
-| Scavenger / Scavenges wrecks for resources, retrieves implants from containers |
-| Miner | Mines planets for resources |
-| Scout | High Armor, Low Damage, Low HP |
-| Raven | Mid Armor, Mid Damage, Mid HP |
-| Tank | Mid Armor, High Damage, High HP |
+| Name | Type | Stats |
+| :-- | :-: | :-- |
+| Scav | Scavenger | Scavenges wrecks for resources, retrieves implants from containers |
+| Miner | Miner | Mines planets for resources |
+| Scout | Combat | High Armor, Low Damage, Low HP |
+| Raven | Combat | Mid Armor, Mid Damage, Mid HP |
+| Tank | Combat | Mid Armor, High Damage, High HP |
 
 ### Enemy Drones
-| Name | Stats |
-| :-- | :-- |
-| Gnat | Mid Armor, Low Damage Low HP |
-| Eagle | Low Armor, Mid Damage, Mid HP |
-| Hunter | Mid Armor, Mid Damage, Mid HP |
+| Name | Type | Stats |
+| :-- | :-: | :-- |
+| Gnat | Combat | Mid Armor, Low Damage Low HP |
+| Eagle | Combat | Low Armor, Mid Damage, Mid HP |
+| Hunter | Combat | Mid Armor, Mid Damage, Mid HP |
 
 ## Combat
 An enemy engages in combat when the Borg or one of its drones comes within a specific distance (note that gas clouds can hide enemies).
