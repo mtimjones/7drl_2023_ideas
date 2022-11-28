@@ -82,18 +82,21 @@ The player uses the mouse and/or keyboard.  Below are some examples of mouse and
 
 ### Player Drones
 
+Note that player drones are always in Bold.
+
 | Name | Type | Icon | Armor | Damage | HP | Notes |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-- |
 | Vagrant | Scavenger | V | Mid | None | Low | Scavenges wrecks for resources, retrieves implants from containers |
 | Digger | Miner | D | Mid | None | Low | Mines planets for resources |
+
+
+### Enemy (or Assimilated Player) Drones
+| Name | Type | Icon | Armor | Damage | HP | Notes |
+| :-- | :-: | :-: | :-: | :-: | :-: | :-- |
 | Scout | Combat | S | High | Low | Low  | |
 | Raven | Combat | R | Mid | Mid | Mid | |
 | Kestral | Combat | K | Mid | High | High | |
 | Tank | Combat | T | High | High | High | |
-
-### Enemy Drones
-| Name | Type | Icon | Armor | Damage | HP | Notes |
-| :-- | :-: | :-: | :-: | :-: | :-: | :-- |
 | Gnat | Combat | G | Mid | Low | Low | |
 | Eagle | Combat | E | Low | Mid | Mid | |
 | Hunter | Combat | H | Mid | Mid | Mid | |
