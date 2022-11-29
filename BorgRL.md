@@ -39,14 +39,14 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
 22|            R                                                   +---------------------------------+
 23|                                                              ##|  Attack: ***   Mining    : ***  |
 24|                                           P                ####|  Armor : ***   Scavanging: ***  |
-25|                                                          ######|         <<< Paused >>>          |
+25|                                                          ######|                Stealth   : ***  |
 26|                                                       #########|  Time: ****    Resources: ****  |
 27+----------------------------------------------------------------+---------------------------------+
 28|         |    (?)help   |   (p)ause    |   ( )step    | (a)ssimilate |    (d)ock    |             |
 29| Actions +--------------+--------------+--------------+--------------+--------------+-------------+
 30|         |    (k)ill    |  (r)ecycle   |   (m)ine     |  (s)cavange  |    (h)eal    |             |
 31+--------------------------------------------------------------------------------------------------+
-32| Context: <mouse-over context info>                                                               |
+32| Context: <mouse-over context info>                                  | <<< Paused >>>             |
 33+--------------------------------------------------------------------------------------------------+
 34| Press '?' for help.                                                                              |
 35|                                                                                                  |
@@ -99,12 +99,11 @@ Note that player drones are always in Bold.
 | Kestral | Combat | K | Mid | High | High | |
 | Tank | Combat | T | High | High | High | |
 | Gnat | Combat | G | Mid | Low | Low | Stealth, not visible until 10 units away |
-| Eagle | Combat | E | Low | Mid | Mid | |
+| Eagle | Combat | E | Low | Mid | Mid | Heals other drones in the vicinity |
 | Hunter | Combat | H | Mid | Mid | Mid | |
 | Minotaur | Combat | M | Mid | High| High | |
 
 ### Other Objects
-
 | Name | Icon | Notes |
 | :-- | :-: | :-- |
 | Borg | @ | Borg mothership |
