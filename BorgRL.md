@@ -199,5 +199,6 @@ Stretch Goals
 - [ ] Create orbit behavior for drones (around enemies, planets, wrecks).
 - [ ] Mini-game for hacking (assimilating) a drone in space.
 - [ ] Create OnVerb methods (OnDock, OnAttack, OnDeath, OnRecycle, etc.) to implement component behaviors.
+- [ ] Explore building a menu system (for upgrades, other selections).
 
 [^1]: https://pavcreations.com/level-systems-and-character-growth-in-rpg-games/
