@@ -201,8 +201,8 @@ Stretch Goals
 - [ ] Explore building a menu system (for upgrades, other selections).
 
 Ncurses Debugging
+debug.sh:
 ```
-debug.sh
 #!/bin/bash
 tmux splitw -h -p 50 "gdbserver :12345 ./borgrl"
 tmux selectp -t 0
