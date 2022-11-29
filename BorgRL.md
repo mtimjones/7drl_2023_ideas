@@ -200,4 +200,13 @@ Stretch Goals
 - [ ] Create OnVerb methods (OnDock, OnAttack, OnDeath, OnRecycle, etc.) to implement component behaviors.
 - [ ] Explore building a menu system (for upgrades, other selections).
 
+Ncurses Debugging
+```
+#!/bin/bash
+tmux splitw -h -p 50 "debserver :12345 ./borgrl"
+tmux selectp -t 0
+gdb -x debug.gdb
+target remote localhost:12345
+```
+
 [^1]: https://pavcreations.com/level-systems-and-character-growth-in-rpg-games/
