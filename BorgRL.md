@@ -98,7 +98,7 @@ Note that player drones are always in Bold.
 | Raven | Combat | R | Mid | Mid | Mid | |
 | Kestral | Combat | K | Mid | High | High | |
 | Tank | Combat | T | High | High | High | |
-| Gnat | Combat | G | Mid | Low | Low | |
+| Gnat | Combat | G | Mid | Low | Low | Stealth, not visible until 10 units away |
 | Eagle | Combat | E | Low | Mid | Mid | |
 | Hunter | Combat | H | Mid | Mid | Mid | |
 | Minotaur | Combat | M | Mid | High| High | |
