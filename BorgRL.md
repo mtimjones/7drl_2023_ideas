@@ -201,6 +201,7 @@ Stretch Goals
 - [ ] Explore building a menu system (for upgrades, other selections).
 
 Ncurses Debugging
+
 debug.sh:
 ```
 #!/bin/bash
