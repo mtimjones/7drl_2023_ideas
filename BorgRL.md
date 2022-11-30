@@ -21,7 +21,7 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
  4|                                                                | Drone       Docked        1   2 |
  5|                                                    #           | Scout       Docked        1   3 |
  6|                                                   ####         | Digger      Docked        1   1 |
- 7|                       %                         ######         | Vagrant     Undocked      1   1 |
+ 7|                       %                         ######      ~  | Vagrant     Undocked      1   1 |
  8|                                                ########        |                                 |
  9|                                                  ########      |                                 |
 10|                                                   ######       |                                 |
@@ -111,6 +111,7 @@ Note that player drones are always in Bold.
 | Containers | ? | Resources or implants available for scavenging by Vagrants |
 | Planets | P | Planets available for mining by Diggers |
 | Gas Clouds | # | Inaccessible regions (which can hide enemies) |
+| Beacons | ~ | Heal the Borg by one unit |
 | Gate | > | Warp to next sector |
 
 ## Combat
