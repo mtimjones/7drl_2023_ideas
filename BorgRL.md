@@ -4,7 +4,7 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
 
 ## Features
 - Permadeath
-- Procedurally generated sectors with random objects (enemies, planets, wrecks, gas clouds, etc.)
+- Procedurally generated sectors with random objects (enemies, planets, wrecks, gas clouds, academies, etc.)
 - Turn-based and real-time gameplay (user can pause)
 - Random enemies, wrecks, containers, planets, gas clouds, etc.
 - Randomly scavenged implants (power-ups).
