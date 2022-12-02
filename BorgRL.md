@@ -111,7 +111,7 @@ Note that player drones are always in Bold.
 | Containers | ? | Resources or implants available for scavenging by Vagrants |
 | Planets | P | Planets available for mining by Diggers |
 | Gas Clouds | # | Inaccessible regions (which can hide enemies) |
-| Academy | A | Buy upgrades for drones |
+| Academy | A | Buy upgrades for drones with resources |
 | Gate | > | Warp to next sector |
 
 ## Combat
