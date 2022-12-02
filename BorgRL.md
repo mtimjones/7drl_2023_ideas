@@ -17,7 +17,7 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
   1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
  1+----------------------------------------------------------------+---------------------------------+
  2|                                                                | Object....  State.....  Lvl  HP |
- 3|                                                            ~   | Borg        @             1   2 |
+ 3|                                                            A   | Borg        @             1   2 |
  4|                                                                | Drone       Docked        1   2 |
  5|                                                  ###           | Scout       Docked        1   3 |
  6|                                                #######         | Digger      Docked        1   1 |
@@ -111,7 +111,7 @@ Note that player drones are always in Bold.
 | Containers | ? | Resources or implants available for scavenging by Vagrants |
 | Planets | P | Planets available for mining by Diggers |
 | Gas Clouds | # | Inaccessible regions (which can hide enemies) |
-| Beacons | ~ | Heal the Borg by one unit |
+| Academy | A | Buy upgrades for drones |
 | Gate | > | Warp to next sector |
 
 ## Combat
@@ -204,6 +204,7 @@ Stretch Goals
 Ncurses Debugging
 
 debug.sh:
+Execute in tmux:
 ```
 #!/bin/bash
 tmux splitw -h -p 50 "gdbserver :12345 ./borgrl"
