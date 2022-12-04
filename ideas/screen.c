@@ -39,6 +39,18 @@ int main( int argc, char *argv[] )
    box( logwin, 0, 0 );
    mvwprintw( logwin, 0, 2, " Log " );
 
+   WINDOW *introwin = newwin( 9, 42, 10, 30 );
+   box( introwin, 0, 0 );
+   mvwprintw( introwin, 0, 2, " Intro " );
+   mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the" );
+   mvwprintw( introwin, 3, 2, "2023 7DRL.  You'll assimilate drones," );
+   mvwprintw( introwin, 4, 2, "scavange wrecks, mine planets, and" );
+   mvwprintw( introwin, 5, 2, "increase their stats to reach the end." );
+   mvwprintw( introwin, 6, 2, "Press any key to begin the game." );
+   wrefresh( introwin );
+
+   wgetch( introwin );
+
    wrefresh( mapwin );
    wrefresh( dronewin );
    wrefresh( statswin );
@@ -47,6 +59,8 @@ int main( int argc, char *argv[] )
    wrefresh( logwin );
 
    wgetch( mapwin );
+
+   delwin( introwin );
 
    endwin();
 }
