@@ -46,6 +46,7 @@ void win_update( )
    logwin = newwin( 6, 100, 34, 0 );
    box( logwin, 0, 0 );
    mvwprintw( logwin, 0, 2, " Log " );
+   add_message( "Press '?' for help." );
 
    refresh( );
 
@@ -81,6 +82,13 @@ void win_refresh( void )
    win_redisplay( dronewin );
    mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
    wrefresh( statswin );
+
+   for ( int i = 0 ; i < MAX_MESSAGES ; i++ )
+   {
+      mvwprintw( logwin, (i+1), 2, "%s", get_message( i ) );
+   }
+   wrefresh( logwin );
+
    wrefresh( stdscr );
 }
 
