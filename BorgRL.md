@@ -180,19 +180,19 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 ## Prototype Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
 - [ ] Experiment with wave-function-collapse for sector procedural generation.
-- [ ] Intro screen.
+- [X] Intro screen.
 - [ ] Reuse prior 7drl map UI.
 - [ ] Implement procedural map generation.
 - [ ] Implement CES for entity scheduling.
 - [ ] Implement basic UI.
 - [ ] Create object for entities in space (with individual/random behavior).
-- [ ] Implement the FOV algorithm.
 - [ ] Create random wrecks (no behavior).
 - [ ] Create scavenger drone type (scavange behavior).
 - [ ] Mouse-over context development.
 - [ ] Mouse select/deselect of drone.
 - [ ] Implement scavenging drone behavior
 - [ ] Implement redocking behavior.
+- [X] Implement the messaging API for logging.
 - [ ] End-game screen (stats, etc.).
 
 Stretch Goals
@@ -200,8 +200,9 @@ Stretch Goals
 - [ ] Mini-game for hacking (assimilating) a drone in space.
 - [ ] Create OnVerb methods (OnDock, OnAttack, OnDeath, OnRecycle, etc.) to implement component behaviors.
 - [ ] Explore building a menu system (for upgrades, other selections).
+- [ ] Implement the FOV algorithm.
 
-Ncurses Debugging
+## Ncurses Debugging
 
 debug.sh:
 Execute in tmux:
