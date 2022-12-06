@@ -201,6 +201,7 @@ Stretch Goals
 - [ ] Create OnVerb methods (OnDock, OnAttack, OnDeath, OnRecycle, etc.) to implement component behaviors.
 - [ ] Explore building a menu system (for upgrades, other selections).
 - [ ] Implement the FOV algorithm.
+- [ ] Implement a support drone which heals other drones.
 
 ## Ncurses Debugging
 
