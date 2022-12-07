@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
+#include <stdarg.h>
 #include <time.h>
 #include <sys/time.h>
 #include <ncurses.h>
@@ -25,7 +26,7 @@ void win_shutdown( );
 #define MAX_MSG_SIZE 70
 
 void init_msg_log( void );
-void add_message( char *msg );
+void add_message( char *fmt, ... );
 char *get_message( int pos );
 
 

@@ -13,6 +13,31 @@ void init_messages( void )
    return;
 }
 
+#if 1
+void add_message( char *fmt, ... )
+{
+   va_list args;
+   char line[90];
+
+   va_start( args, fmt );
+   vsprintf( line, fmt, args );
+   strcpy( messages[ write_ptr ], line );
+
+   int len = strlen( messages[ write_ptr ] );
+   while ( len < 90-2 )
+   {
+      messages[ write_ptr ][ len++ ] = ' ';
+   }
+   messages[ write_ptr ][ len ] = 0;
+
+   if ( ++write_ptr >= MAX_MESSAGES )
+   {
+      write_ptr = 0;
+   }
+
+   return;
+}
+#else
 void add_message( char *msg )
 {
    int i = 0;
@@ -36,6 +61,7 @@ void add_message( char *msg )
 
    return;
 }
+#endif
 
 char *get_message( int pos )
 {
