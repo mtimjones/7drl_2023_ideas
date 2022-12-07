@@ -2,8 +2,8 @@ INC=-I.
 CFLAGS=-std=c18
 LIB=-lncurses
 
-demo: main.c screen.c time.c messages.c headers.h
-	gcc $(CFLAGS) $(INC) -o demo screen.c main.c time.c messages.c $(LIB)
+demo: main.c screen.c time.c messages.c user_input.c game.c headers.h
+	gcc $(CFLAGS) $(INC) -o demo screen.c main.c time.c messages.c user_input.c game.c $(LIB)
 
 clean:
 	rm -f demo *.o

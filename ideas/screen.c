@@ -6,9 +6,14 @@ WINDOW *mapwin, *dronewin, *statswin, *actionswin, *contextwin, *logwin;
 
 void win_startup( )
 {
-   initscr();
-   noecho();
-   curs_set(0);
+   initscr( );
+   clear( );
+   noecho( );
+   curs_set( 0 );
+   nonl( );
+   cbreak( );
+
+   mousemask( ALL_MOUSE_EVENTS, NULL );
 
    return;
 }
@@ -109,5 +114,15 @@ void win_shutdown( )
    endwin();
 
    return;
+}
+
+int get_user_char( void )
+{
+//   int c = wgetch( stdscr );
+   int c = getch( );
+
+   if ( c != ERR ) return c;
+
+   return 0;
 }
 

@@ -1,7 +1,5 @@
 #include "headers.h"
 
-unsigned int GameRunning = 1;
-
 int main( int argc, char *argv[] )
 {
    srand( time( NULL ) );
@@ -10,17 +8,20 @@ int main( int argc, char *argv[] )
 
    win_update( );
 
-   while ( GameRunning )
+   start_game( );
+
+   while ( get_game_state( ) )
    {
       unsigned long long start = getTimestamp( );
 
       win_refresh( );
 
+      handle_user_input( );
+
       while( getTimestamp( ) < ( start + MS_PER_FRAME ) );
 
       increment_gametime( );
 
-      if ( win_wait( ) == 27 ) GameRunning = 0;
    }
 
    win_shutdown( );
