@@ -19,6 +19,14 @@ void handle_user_input( void )
       if ( getmouse( &event ) == OK )
       {
           add_message( "Mouse at %d, %d, %d", event.x, event.y, event.z );
+          if ( event.x >= 0 && event.x < 100 && event.y >=34 && event.y < 40 )
+          {
+              set_context( "Log window..." );
+          }
+          else
+          {
+              clear_context( );
+          }
       }
    }
    else

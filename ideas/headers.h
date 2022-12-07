@@ -27,6 +27,9 @@ void win_refresh( );
 char win_wait( );
 void win_shutdown( );
 int  get_user_char( );
+void get_mouse_pos( unsigned int *col, unsigned int *row );
+void set_context( char *line );
+void clear_context( void );
 
 //---------------------------------------------------------------
 // Messages API

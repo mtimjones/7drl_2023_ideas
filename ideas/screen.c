@@ -4,6 +4,8 @@ WINDOW *mapwin, *dronewin, *statswin, *actionswin, *contextwin, *logwin;
 
 #define win_redisplay( win ) { touchwin( win ); wrefresh( win ); }
 
+char context[ 100 ];
+
 void win_startup( )
 {
    initscr( );
@@ -14,7 +16,10 @@ void win_startup( )
    cbreak( );
    keypad( stdscr, TRUE );
 
-   mousemask( ALL_MOUSE_EVENTS, NULL );
+   mouseinterval(0);
+   printf("\033[?1003h\n");
+
+   mousemask( ALL_MOUSE_EVENTS | REPORT_MOUSE_POSITION, NULL );
 
    return;
 }
@@ -86,8 +91,12 @@ void win_refresh( void )
 {
    win_redisplay( mapwin );
    win_redisplay( dronewin );
+
    mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
    wrefresh( statswin );
+
+   mvwprintw( contextwin, 1, 1, "%s", context );
+   wrefresh( contextwin );
 
    for ( int i = 0 ; i < MAX_MESSAGES ; i++ )
    {
@@ -105,6 +114,9 @@ char win_wait( )
 
 void win_shutdown( )
 {
+   // Disable mouse events
+   printf("\033[?1003l\n");
+
    delwin( logwin );
    delwin( contextwin );
    delwin( actionswin );
@@ -117,13 +129,26 @@ void win_shutdown( )
    return;
 }
 
+void set_context( char *line )
+{
+   strcpy( context, line );
+}
+
+void clear_context( void )
+{
+   char line[90];
+   memset( line, ' ', sizeof( line ) );
+   line[89] = 0;
+   set_context( line );
+}
+
 int get_user_char( void )
 {
-//   int c = wgetch( stdscr );
-   int c = getch( );
+   int c = wgetch( stdscr );
 
    if ( c != ERR ) return c;
 
    return 0;
 }
+
 
