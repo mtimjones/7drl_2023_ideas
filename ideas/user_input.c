@@ -11,13 +11,14 @@ void handle_user_input( void )
    if ( c == 0 )
    {
       // No character received.
+      return;
    }
    else if ( c == KEY_MOUSE )
    {
       // Handle mouse event.
       if ( getmouse( &event ) == OK )
       {
-         exit(0);
+          add_message( "Mouse at %d, %d, %d", event.x, event.y, event.z );
       }
    }
    else

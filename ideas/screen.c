@@ -12,6 +12,7 @@ void win_startup( )
    curs_set( 0 );
    nonl( );
    cbreak( );
+   keypad( stdscr, TRUE );
 
    mousemask( ALL_MOUSE_EVENTS, NULL );
 
