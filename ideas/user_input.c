@@ -31,21 +31,21 @@ void handle_user_input( void )
                     event.y >= MAPWIN_ROW_START && 
                     event.y < (MAPWIN_ROW_START+MAPWIN_ROW_SIZE) )
           {
-              set_context( "Map window..." );
+              set_context( "Map window showing your surroundings." );
           }
           else if ( event.x >= INVWIN_COL_START && 
                     event.x < (INVWIN_COL_START+INVWIN_COL_SIZE) && 
                     event.y >= INVWIN_ROW_START && 
                     event.y < (INVWIN_ROW_START+INVWIN_ROW_SIZE) )
           {
-              set_context( "Inventory window..." );
+              set_context( "Inventory window showing drones and their attributes." );
           }
           else if ( event.x >= STATSWIN_COL_START && 
                     event.x < (STATSWIN_COL_START+STATSWIN_COL_SIZE) && 
                     event.y >= STATSWIN_ROW_START && 
                     event.y < (STATSWIN_ROW_START+STATSWIN_ROW_SIZE) )
           {
-              set_context( "Stats window..." );
+              set_context( "Stats window showing various game resources and Borg upgrades." );
           }
           else if ( event.x >= ACTIONSWIN_COL_START && 
                     event.x < (ACTIONSWIN_COL_START+ACTIONSWIN_COL_SIZE) && 

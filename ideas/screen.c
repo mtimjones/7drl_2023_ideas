@@ -4,7 +4,7 @@ WINDOW *mapwin, *invwin, *statswin, *actionswin, *contextwin, *logwin;
 
 #define win_redisplay( win ) { touchwin( win ); wrefresh( win ); }
 
-char context[ 100 ];
+char context[ CONTEXTWIN_COL_SIZE+1 ];
 
 void win_startup( )
 {
@@ -51,8 +51,8 @@ void win_update( )
                          ACTIONSWIN_ROW_START, ACTIONSWIN_COL_START );
    box( actionswin, 0, 0 );
    mvwprintw( actionswin, 0, 2, " Actions " );
-   mvwprintw( actionswin, 1, 2, "1" );
-   mvwprintw( actionswin, 2, 2, "2" );
+   mvwprintw( actionswin, 1, 6, "[...(?) help...]  [..(p) pause...]  [...( ) step...]  [.(a)ssimilate.]  [....(d)ock....]" );
+   mvwprintw( actionswin, 2, 6, "[....(k)ill....]  [..(r)ecycle...]  [....(m)ine....]  [..(s)cavenge..]  ]....(h)eal....]" );
 
    contextwin = newwin( CONTEXTWIN_ROW_SIZE, CONTEXTWIN_COL_SIZE, 
                          CONTEXTWIN_ROW_START, CONTEXTWIN_COL_START );
@@ -102,7 +102,7 @@ void win_refresh( void )
    mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
    wrefresh( statswin );
 
-   mvwprintw( contextwin, 1, 1, "%s", context );
+   mvwprintw( contextwin, 1, 2, "%s", context );
    wrefresh( contextwin );
 
    for ( int i = 0 ; i < MAX_MESSAGES ; i++ )
@@ -151,7 +151,7 @@ void clear_context( void )
 {
    char line[CONTEXTWIN_COL_SIZE];
    memset( line, ' ', sizeof( line ) );
-   line[CONTEXTWIN_COL_SIZE-1] = 0;
+   line[CONTEXTWIN_COL_SIZE-2] = 0;
    set_context( line );
 }
 
