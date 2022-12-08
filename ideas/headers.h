@@ -37,6 +37,31 @@ void clear_context( void );
 
 void handle_user_input( void );
 
+enum ActionState
+{
+   NoState = 0,
+   HealState,
+   KillState,
+   AssimilateState,
+   MineState,
+   ScavengeState,
+   DockState,
+   RecycleState,
+};
+
+enum ActionState get_action_state( void );
+
+enum PauseState
+{
+   RealTime,
+   Paused,
+};
+
+enum EventState
+{
+   ActionSelected = 0,
+};
+
 //---------------------------------------------------------------
 // Game API
 //---------------------------------------------------------------

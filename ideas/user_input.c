@@ -1,5 +1,7 @@
 #include "headers.h"
 
+static enum ActionState action_state = NoState;
+
 static void emit_help( )
 {
    init_msg_log( );
@@ -9,6 +11,11 @@ static void emit_help( )
    add_message( "to perform it's action (for example, select a combat drone and then an enemy on the map)." );
    add_message( "Make your way to the right side of the sector to escape to the next.  Good luck." );
 
+}
+
+enum ActionState get_action_state( void )
+{
+   return action_state;
 }
 
 void handle_user_input( void )
@@ -29,7 +36,10 @@ void handle_user_input( void )
       // Handle mouse event.
       if ( getmouse( &event ) == OK )
       {
+          // Temporary...
           add_message( "Mouse at %d, %d, %d", event.x, event.y, event.z );
+
+          // Check to see if the context needs to be updated (based upon mouse position).
           if ( event.x >= LOGWIN_COL_START && 
                event.x < (LOGWIN_COL_START+LOGWIN_COL_SIZE) && 
                event.y >= LOGWIN_ROW_START && 
@@ -67,8 +77,19 @@ void handle_user_input( void )
           }
           else
           {
+              // If the mouse position isn't in a contextual area, ignore it and clear context.
               clear_context( );
           }
+
+
+          // Handle mouse clicks
+          if ( event.bstate == BUTTON1_PRESSED )
+          {
+
+
+          }
+
+
       }
    }
    else
@@ -80,6 +101,10 @@ void handle_user_input( void )
             break;
          case '?':
             emit_help( );
+            break;
+         case 'h':
+            // Enter the heal state
+            action_state = HealState;
             break;
          default:
             break;

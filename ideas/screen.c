@@ -51,8 +51,6 @@ void win_update( )
                          ACTIONSWIN_ROW_START, ACTIONSWIN_COL_START );
    box( actionswin, 0, 0 );
    mvwprintw( actionswin, 0, 2, " Actions " );
-   mvwprintw( actionswin, 1, 6, "[...(?) help...]  [..(p) pause...]  [...( ) step...]  [.(a)ssimilate.]  [....(d)ock....]" );
-   mvwprintw( actionswin, 2, 6, "[....(k)ill....]  [..(r)ecycle...]  [....(m)ine....]  [..(s)cavenge..]  ]....(h)eal....]" );
 
    contextwin = newwin( CONTEXTWIN_ROW_SIZE, CONTEXTWIN_COL_SIZE, 
                          CONTEXTWIN_ROW_START, CONTEXTWIN_COL_START );
@@ -70,13 +68,6 @@ void win_update( )
    WINDOW *introwin = newwin( INTROWIN_ROW_SIZE, INTROWIN_COL_SIZE,
                                INTROWIN_ROW_START, INTROWIN_COL_START );
    box( introwin, 0, 0 );
-   mvwprintw( introwin, 0, 2, " Intro " );
-   mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the" );
-   mvwprintw( introwin, 3, 2, "2023 7DRL.  You'll assimilate drones," );
-   mvwprintw( introwin, 4, 2, "scavenge wrecks, mine planets, and" );
-   mvwprintw( introwin, 5, 2, "increase their stats to reach the end." );
-   mvwprintw( introwin, 6, 2, "Press any key to begin the game." );
-
    mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the 2023 7DRL." );
    mvwprintw( introwin, 3, 2, "As the Borg, you'll assimilate enemies or attack" );
    mvwprintw( introwin, 4, 2, "them as well as scavenge wrecks and mine planets" );
@@ -109,6 +100,21 @@ void win_refresh( void )
 
    mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
    wrefresh( statswin );
+
+   mvwprintw( actionswin, 1,  6, "[...(?) help...]  " );
+   mvwprintw( actionswin, 1, 24, "[..(p) pause...]  " );
+   mvwprintw( actionswin, 1, 42, "[...( ) step...]  " );
+   mvwprintw( actionswin, 1, 60, "[.(a)ssimilate.]  " );
+   mvwprintw( actionswin, 1, 78, "[....(d)ock....]  " );
+   mvwprintw( actionswin, 2,  6, "[....(k)ill....]  " );
+   mvwprintw( actionswin, 2, 24, "[..(r)ecycle...]  " );
+   mvwprintw( actionswin, 2, 42, "[....(m)ine....]  " );
+   mvwprintw( actionswin, 2, 60, "[..(s)cavenge..]  " );
+   if ( get_action_state( ) == HealState ) attron( A_STANDOUT );
+   mvwprintw( actionswin, 2, 78, "[....(h)eal....]" );
+   attron( A_NORMAL );
+   
+   wrefresh( actionswin );
 
    mvwprintw( contextwin, 1, 2, "%s", context );
    wrefresh( contextwin );
