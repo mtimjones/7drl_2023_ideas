@@ -79,10 +79,10 @@ int get_game_state( void );
 #define LOGWIN_COL_SIZE      100
 #define LOGWIN_ROW_SIZE        6
 
-#define INTROWIN_COL_START    30
-#define INTROWIN_ROW_START    10
-#define INTROWIN_COL_SIZE     42
-#define INTROWIN_ROW_SIZE      9
+#define INTROWIN_COL_START    24
+#define INTROWIN_ROW_START     9
+#define INTROWIN_COL_SIZE     54
+#define INTROWIN_ROW_SIZE     12
 
 //---------------------------------------------------------------
 // Messages API

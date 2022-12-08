@@ -73,9 +73,17 @@ void win_update( )
    mvwprintw( introwin, 0, 2, " Intro " );
    mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the" );
    mvwprintw( introwin, 3, 2, "2023 7DRL.  You'll assimilate drones," );
-   mvwprintw( introwin, 4, 2, "scavange wrecks, mine planets, and" );
+   mvwprintw( introwin, 4, 2, "scavenge wrecks, mine planets, and" );
    mvwprintw( introwin, 5, 2, "increase their stats to reach the end." );
    mvwprintw( introwin, 6, 2, "Press any key to begin the game." );
+
+   mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the 2023 7DRL." );
+   mvwprintw( introwin, 3, 2, "As the Borg, you'll assimilate enemies or attack" );
+   mvwprintw( introwin, 4, 2, "them as well as scavenge wrecks and mine planets" );
+   mvwprintw( introwin, 5, 2, "for resources (to upgrade your drones and their" );
+   mvwprintw( introwin, 6, 2, "abilities).  Manage your drones and resources" );
+   mvwprintw( introwin, 7, 2, "in order to reach the end and defeat the boss." );
+   mvwprintw( introwin, 9, 2, "Click the mouse to being the game." );
 
    wrefresh( mapwin );
    wrefresh( invwin );

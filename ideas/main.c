@@ -4,6 +4,8 @@ int main( int argc, char *argv[] )
 {
    srand( time( NULL ) );
 
+   init_msg_log( );
+
    win_startup( );
 
    win_update( );

@@ -4,7 +4,7 @@ static int write_ptr;
 
 char messages[ MAX_MESSAGES ][ MAX_MSG_SIZE ];
 
-void init_messages( void )
+void init_msg_log( void )
 {
    write_ptr = 0;
 

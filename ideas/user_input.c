@@ -1,5 +1,16 @@
 #include "headers.h"
 
+static void emit_help( )
+{
+   init_msg_log( );
+
+   add_message( "Move the Borg with the arrow keys.  Use the mouse to select actions (or press their key)." );
+   add_message( "Some actions require selecting a target.  You can also select a drone and then a target" );
+   add_message( "to perform it's action (for example, select a combat drone and then an enemy on the map)." );
+   add_message( "Make your way to the right side of the sector to escape to the next.  Good luck." );
+
+}
+
 void handle_user_input( void )
 {
    int c;
@@ -62,8 +73,17 @@ void handle_user_input( void )
    }
    else
    {
-      // Handle keyboard input.
-      if ( c == 'x' ) end_game( );
+      switch( c )
+      {
+         case 'x':
+            end_game( );
+            break;
+         case '?':
+            emit_help( );
+            break;
+         default:
+            break;
+      }
    }
 
    return;
