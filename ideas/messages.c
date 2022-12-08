@@ -13,18 +13,17 @@ void init_messages( void )
    return;
 }
 
-#if 1
 void add_message( char *fmt, ... )
 {
    va_list args;
-   char line[90];
+   char line[LOGWIN_COL_SIZE];
 
    va_start( args, fmt );
    vsprintf( line, fmt, args );
    strcpy( messages[ write_ptr ], line );
 
    int len = strlen( messages[ write_ptr ] );
-   while ( len < 90-2 )
+   while ( len < LOGWIN_COL_SIZE-3 )
    {
       messages[ write_ptr ][ len++ ] = ' ';
    }
@@ -37,31 +36,6 @@ void add_message( char *fmt, ... )
 
    return;
 }
-#else
-void add_message( char *msg )
-{
-   int i = 0;
-   size_t len = strlen( msg );
-
-   // Copy the message into the buffer with pad spaces
-   while ( i < ( MAX_MSG_SIZE - 1 ) )
-   {
-      if ( i < len ) messages[ write_ptr ][ i ] = msg[ i ];
-      else messages[ write_ptr ][ i ] = ' ';
-      i++;
-   }
-
-   // Null terminate
-   messages[ write_ptr ][ (MAX_MSG_SIZE - 1 ) ] = 0;
-
-   if ( ++write_ptr >= MAX_MESSAGES )
-   {
-      write_ptr = 0;
-   }
-
-   return;
-}
-#endif
 
 char *get_message( int pos )
 {

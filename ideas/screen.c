@@ -1,6 +1,6 @@
 #include "headers.h"
 
-WINDOW *mapwin, *dronewin, *statswin, *actionswin, *contextwin, *logwin;
+WINDOW *mapwin, *invwin, *statswin, *actionswin, *contextwin, *logwin;
 
 #define win_redisplay( win ) { touchwin( win ); wrefresh( win ); }
 
@@ -26,16 +26,19 @@ void win_startup( )
 
 void win_update( )
 {
-   mapwin = newwin( 27, 65, 0, 0 );
+   mapwin = newwin( MAPWIN_ROW_SIZE, MAPWIN_COL_SIZE, 
+                     MAPWIN_ROW_START, MAPWIN_COL_START );
    box( mapwin, 0, 0 );
    mvwprintw( mapwin, 0, 2, " Map " );
 
-   dronewin = newwin( 21, 35, 0, 65 );
-   box( dronewin, 0, 0 );
-   mvwprintw( dronewin, 0, 2, " Inventory " );
-   mvwprintw( dronewin, 1, 2, "Object....  State.....  Lvl  HP " );
+   invwin = newwin( INVWIN_ROW_SIZE, INVWIN_COL_SIZE,
+                       INVWIN_ROW_START, INVWIN_COL_START );
+   box( invwin, 0, 0 );
+   mvwprintw( invwin, 0, 2, " Inventory " );
+   mvwprintw( invwin, 1, 2, "Object....  State.....  Lvl  HP " );
 
-   statswin = newwin( 6, 35, 21, 65 );
+   statswin = newwin( STATSWIN_ROW_SIZE, STATSWIN_COL_SIZE,
+                       STATSWIN_ROW_START, STATSWIN_COL_START );
    box( statswin, 0, 0 );
    mvwprintw( statswin, 0, 2, " Stats " );
    mvwprintw( statswin, 1, 2, "Attack: *** " );
@@ -44,24 +47,28 @@ void win_update( )
    mvwprintw( statswin, 2, 17, "Scavenging: *** " );
    mvwprintw( statswin, 4, 17, "Resources : *** " );
 
-   actionswin = newwin( 4, 100, 27, 0 );
+   actionswin = newwin( ACTIONSWIN_ROW_SIZE, ACTIONSWIN_COL_SIZE, 
+                         ACTIONSWIN_ROW_START, ACTIONSWIN_COL_START );
    box( actionswin, 0, 0 );
    mvwprintw( actionswin, 0, 2, " Actions " );
    mvwprintw( actionswin, 1, 2, "1" );
    mvwprintw( actionswin, 2, 2, "2" );
 
-   contextwin = newwin( 3, 100, 31, 0 );
+   contextwin = newwin( CONTEXTWIN_ROW_SIZE, CONTEXTWIN_COL_SIZE, 
+                         CONTEXTWIN_ROW_START, CONTEXTWIN_COL_START );
    box( contextwin, 0, 0 );
    mvwprintw( contextwin, 0, 2, " Context " );
 
-   logwin = newwin( 6, 100, 34, 0 );
+   logwin = newwin( LOGWIN_ROW_SIZE, LOGWIN_COL_SIZE,
+                     LOGWIN_ROW_START, LOGWIN_COL_START );
    box( logwin, 0, 0 );
    mvwprintw( logwin, 0, 2, " Log " );
    add_message( "Press '?' for help." );
 
    refresh( );
 
-   WINDOW *introwin = newwin( 9, 42, 10, 30 );
+   WINDOW *introwin = newwin( INTROWIN_ROW_SIZE, INTROWIN_COL_SIZE,
+                               INTROWIN_ROW_START, INTROWIN_COL_START );
    box( introwin, 0, 0 );
    mvwprintw( introwin, 0, 2, " Intro " );
    mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the" );
@@ -71,7 +78,7 @@ void win_update( )
    mvwprintw( introwin, 6, 2, "Press any key to begin the game." );
 
    wrefresh( mapwin );
-   wrefresh( dronewin );
+   wrefresh( invwin );
    wrefresh( statswin );
    wrefresh( actionswin );
    wrefresh( contextwin );
@@ -90,7 +97,7 @@ void win_update( )
 void win_refresh( void )
 {
    win_redisplay( mapwin );
-   win_redisplay( dronewin );
+   win_redisplay( invwin );
 
    mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
    wrefresh( statswin );
@@ -121,7 +128,7 @@ void win_shutdown( )
    delwin( contextwin );
    delwin( actionswin );
    delwin( statswin );
-   delwin( dronewin );
+   delwin( invwin );
    delwin( mapwin );
 
    endwin();
@@ -131,14 +138,20 @@ void win_shutdown( )
 
 void set_context( char *line )
 {
-   strcpy( context, line );
+   strncpy( context, line, CONTEXTWIN_COL_SIZE-4 );
+   int len = strlen( context );
+   while ( len < CONTEXTWIN_COL_SIZE-4 )
+   {
+      context[len++] = ' ';
+   }
+   context[len] = 0;
 }
 
 void clear_context( void )
 {
-   char line[90];
+   char line[CONTEXTWIN_COL_SIZE];
    memset( line, ' ', sizeof( line ) );
-   line[89] = 0;
+   line[CONTEXTWIN_COL_SIZE-1] = 0;
    set_context( line );
 }
 
