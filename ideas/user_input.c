@@ -106,6 +106,9 @@ void handle_user_input( void )
             // Enter the heal state
             action_state = HealState;
             break;
+         case 27: // Esc
+            action_state = NoState;
+            break;
          default:
             break;
       }

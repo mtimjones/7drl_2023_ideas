@@ -110,9 +110,9 @@ void win_refresh( void )
    mvwprintw( actionswin, 2, 24, "[..(r)ecycle...]  " );
    mvwprintw( actionswin, 2, 42, "[....(m)ine....]  " );
    mvwprintw( actionswin, 2, 60, "[..(s)cavenge..]  " );
-   if ( get_action_state( ) == HealState ) attron( A_STANDOUT );
+   if ( get_action_state( ) == HealState ) wattron( actionswin, A_STANDOUT );
    mvwprintw( actionswin, 2, 78, "[....(h)eal....]" );
-   attron( A_NORMAL );
+   wattrset( actionswin, 0 );
    
    wrefresh( actionswin );
 
