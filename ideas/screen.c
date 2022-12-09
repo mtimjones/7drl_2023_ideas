@@ -51,6 +51,8 @@ void win_update( )
                          ACTIONSWIN_ROW_START, ACTIONSWIN_COL_START );
    box( actionswin, 0, 0 );
    mvwprintw( actionswin, 0, 2, " Actions " );
+   mvwprintw( actionswin, 1, 3, "p - pause/unpause | Select docked drone and [ h - heal / r - recycle / select object in map ]." );
+   mvwprintw( actionswin, 2, 3, "? - help          | Select enemy and [ a - assimilate ]. Select undocked drone and [ d - dock ]." );
 
    contextwin = newwin( CONTEXTWIN_ROW_SIZE, CONTEXTWIN_COL_SIZE, 
                          CONTEXTWIN_ROW_START, CONTEXTWIN_COL_START );
@@ -98,23 +100,20 @@ void win_refresh( void )
    win_redisplay( mapwin );
    win_redisplay( invwin );
 
-   mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
-   wrefresh( statswin );
+   if ( get_pause_state( ) )
+   {
+      wattron( statswin, A_STANDOUT );
+      mvwprintw( statswin, 3, 2, "Game paused." );
+      wattroff( statswin, A_STANDOUT );
+   }
+   else
+   {
+      mvwprintw( statswin, 3, 2, "            " );
+   }
 
-   mvwprintw( actionswin, 1,  6, "[...(?) help...]  " );
-   mvwprintw( actionswin, 1, 24, "[..(p) pause...]  " );
-   mvwprintw( actionswin, 1, 42, "[...( ) step...]  " );
-   mvwprintw( actionswin, 1, 60, "[.(a)ssimilate.]  " );
-   mvwprintw( actionswin, 1, 78, "[....(d)ock....]  " );
-   mvwprintw( actionswin, 2,  6, "[....(k)ill....]  " );
-   mvwprintw( actionswin, 2, 24, "[..(r)ecycle...]  " );
-   mvwprintw( actionswin, 2, 42, "[....(m)ine....]  " );
-   mvwprintw( actionswin, 2, 60, "[..(s)cavenge..]  " );
-   if ( get_action_state( ) == HealState ) wattron( actionswin, A_STANDOUT );
-   mvwprintw( actionswin, 2, 78, "[....(h)eal....]" );
-   wattrset( actionswin, 0 );
-   
-   wrefresh( actionswin );
+   mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
+
+   wrefresh( statswin );
 
    mvwprintw( contextwin, 1, 2, "%s", context );
    wrefresh( contextwin );
@@ -167,6 +166,24 @@ void clear_context( void )
    memset( line, ' ', sizeof( line ) );
    line[CONTEXTWIN_COL_SIZE-2] = 0;
    set_context( line );
+}
+
+void emit_help( void )
+{
+   WINDOW *helpwin = newwin( 10, 70, 10, 15 );
+   box( helpwin, 0, 0 );
+   mvwprintw( helpwin, 0, 2, " Help " );
+   mvwprintw( helpwin, 2, 2, "Make your way through each sector, escaping through the gate." );
+   mvwprintw( helpwin, 3, 2, "Fight, mine, scavange, heal, recycle, and upgrade your drones." );
+   mvwprintw( helpwin, 4, 2, "Move with the arrow keys. Select a drone from the map or inventory" );
+   mvwprintw( helpwin, 5, 2, "window and a target in the map window to begin.  Select an enemy" );
+   mvwprintw( helpwin, 6, 2, "and 'a' to assimilate.  Select a docked drone and 'h' to heal it" );
+   mvwprintw( helpwin, 7, 2, "or 'r' to recycle it for resources." );
+   nodelay( stdscr, FALSE );
+   wrefresh( helpwin);
+   win_wait( );
+   nodelay( stdscr, TRUE );
+   wrefresh( stdscr );
 }
 
 int get_user_char( void )

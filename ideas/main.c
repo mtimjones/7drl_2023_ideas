@@ -22,7 +22,12 @@ int main( int argc, char *argv[] )
 
       while( getTimestamp( ) < ( start + MS_PER_FRAME ) );
 
-      increment_gametime( );
+      if ( get_pause_state( ) == 0 )
+      {
+         increment_gametime( );
+
+         // Invoke systems
+      }
 
    }
 

@@ -1,22 +1,12 @@
 #include "headers.h"
 
-static enum ActionState action_state = NoState;
+//static enum ActionState action_state = NoState;
 
-static void emit_help( )
-{
-   init_msg_log( );
 
-   add_message( "Move the Borg with the arrow keys.  Use the mouse to select actions (or press their key)." );
-   add_message( "Some actions require selecting a target.  You can also select a drone and then a target" );
-   add_message( "to perform it's action (for example, select a combat drone and then an enemy on the map)." );
-   add_message( "Make your way to the right side of the sector to escape to the next.  Good luck." );
-
-}
-
-enum ActionState get_action_state( void )
-{
-   return action_state;
-}
+//enum ActionState get_action_state( void )
+//{
+//   return action_state;
+//}
 
 void handle_user_input( void )
 {
@@ -52,14 +42,14 @@ void handle_user_input( void )
                     event.y >= MAPWIN_ROW_START && 
                     event.y < (MAPWIN_ROW_START+MAPWIN_ROW_SIZE) )
           {
-              set_context( "Map window showing your surroundings." );
+              set_context( "Map window showing your surroundings and undocked drones." );
           }
           else if ( event.x >= INVWIN_COL_START && 
                     event.x < (INVWIN_COL_START+INVWIN_COL_SIZE) && 
                     event.y >= INVWIN_ROW_START && 
                     event.y < (INVWIN_ROW_START+INVWIN_ROW_SIZE) )
           {
-              set_context( "Inventory window showing drones and their attributes." );
+              set_context( "Inventory window showing docked drones and their attributes." );
           }
           else if ( event.x >= STATSWIN_COL_START && 
                     event.x < (STATSWIN_COL_START+STATSWIN_COL_SIZE) && 
@@ -103,11 +93,12 @@ void handle_user_input( void )
             emit_help( );
             break;
          case 'h':
-            // Enter the heal state
-            action_state = HealState;
+            // If no selected object, do nothing.
+            break;
+         case 'p':
+            pause_toggle( );
             break;
          case 27: // Esc
-            action_state = NoState;
             break;
          default:
             break;

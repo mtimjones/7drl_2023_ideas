@@ -30,6 +30,7 @@ int  get_user_char( );
 void get_mouse_pos( unsigned int *col, unsigned int *row );
 void set_context( char *line );
 void clear_context( void );
+void emit_help( );
 
 //---------------------------------------------------------------
 // User Input API
@@ -37,6 +38,7 @@ void clear_context( void );
 
 void handle_user_input( void );
 
+#if 0
 enum ActionState
 {
    NoState = 0,
@@ -61,6 +63,7 @@ enum EventState
 {
    ActionSelected = 0,
 };
+#endif
 
 //---------------------------------------------------------------
 // Game API
@@ -69,6 +72,8 @@ enum EventState
 void start_game( void );
 void end_game( void );
 int get_game_state( void );
+void pause_toggle( void );
+int get_pause_state( void );
 
 //---------------------------------------------------------------
 // Window constants
