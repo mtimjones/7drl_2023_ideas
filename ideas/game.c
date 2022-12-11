@@ -1,7 +1,7 @@
 #include "headers.h"
 
-int GameRunning = 0;
-int Paused = 0;
+static int GameRunning = 0;
+static int Paused = 0;
 
 void start_game( void )
 {

@@ -34,7 +34,7 @@ void win_update( )
    invwin = newwin( INVWIN_ROW_SIZE, INVWIN_COL_SIZE,
                        INVWIN_ROW_START, INVWIN_COL_START );
    box( invwin, 0, 0 );
-   mvwprintw( invwin, 0, 2, " Inventory " );
+   mvwprintw( invwin, 0, 2, " Inventory (dock) " );
    mvwprintw( invwin, 1, 2, "Object....  State.....  Lvl  HP " );
 
    statswin = newwin( STATSWIN_ROW_SIZE, STATSWIN_COL_SIZE,
@@ -70,6 +70,7 @@ void win_update( )
    WINDOW *introwin = newwin( INTROWIN_ROW_SIZE, INTROWIN_COL_SIZE,
                                INTROWIN_ROW_START, INTROWIN_COL_START );
    box( introwin, 0, 0 );
+   mvwprintw( introwin, 0, 2, " Introduction " );
    mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the 2023 7DRL." );
    mvwprintw( introwin, 3, 2, "As the Borg, you'll assimilate enemies or attack" );
    mvwprintw( introwin, 4, 2, "them as well as scavenge wrecks and mine planets" );
@@ -178,7 +179,7 @@ void emit_help( void )
    mvwprintw( helpwin, 4, 2, "Move with the arrow keys. Select a drone from the map or inventory" );
    mvwprintw( helpwin, 5, 2, "window and a target in the map window to begin.  Select an enemy" );
    mvwprintw( helpwin, 6, 2, "and 'a' to assimilate.  Select a docked drone and 'h' to heal it" );
-   mvwprintw( helpwin, 7, 2, "or 'r' to recycle it for resources." );
+   mvwprintw( helpwin, 7, 2, "or 'r' to recycle it for resources.  Press any key to continue." );
    nodelay( stdscr, FALSE );
    wrefresh( helpwin);
    win_wait( );

@@ -1,3 +1,10 @@
+//---------------------------------------------------------------------------
+// File: headers.h
+//
+//   Contains all symbols used in the application.
+//
+//---------------------------------------------------------------------------
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -38,33 +45,6 @@ void emit_help( );
 
 void handle_user_input( void );
 
-#if 0
-enum ActionState
-{
-   NoState = 0,
-   HealState,
-   KillState,
-   AssimilateState,
-   MineState,
-   ScavengeState,
-   DockState,
-   RecycleState,
-};
-
-enum ActionState get_action_state( void );
-
-enum PauseState
-{
-   RealTime,
-   Paused,
-};
-
-enum EventState
-{
-   ActionSelected = 0,
-};
-#endif
-
 //---------------------------------------------------------------
 // Game API
 //---------------------------------------------------------------
@@ -79,20 +59,20 @@ int get_pause_state( void );
 // Window constants
 //---------------------------------------------------------------
 
-#define MAPWIN_COL_START   0
-#define MAPWIN_ROW_START   0
-#define MAPWIN_COL_SIZE   65
-#define MAPWIN_ROW_SIZE   27
+#define MAPWIN_COL_START       0
+#define MAPWIN_ROW_START       0
+#define MAPWIN_COL_SIZE       65
+#define MAPWIN_ROW_SIZE       27
 
-#define INVWIN_COL_START  65
-#define INVWIN_ROW_START   0
-#define INVWIN_COL_SIZE   35
-#define INVWIN_ROW_SIZE   21
+#define INVWIN_COL_START      65
+#define INVWIN_ROW_START       0
+#define INVWIN_COL_SIZE       35
+#define INVWIN_ROW_SIZE       21
 
-#define STATSWIN_COL_START  65
-#define STATSWIN_ROW_START  21
-#define STATSWIN_COL_SIZE   35
-#define STATSWIN_ROW_SIZE    6
+#define STATSWIN_COL_START    65
+#define STATSWIN_ROW_START    21
+#define STATSWIN_COL_SIZE     35
+#define STATSWIN_ROW_SIZE      6
 
 #define ACTIONSWIN_COL_START   0
 #define ACTIONSWIN_ROW_START  27
@@ -119,7 +99,7 @@ int get_pause_state( void );
 //---------------------------------------------------------------
 
 #define MAX_MESSAGES 4
-#define MAX_MSG_SIZE LOGWIN_COL_SIZE
+#define MAX_MSG_SIZE LOGWIN_COL_SIZE-2
 
 void init_msg_log( void );
 void add_message( char *fmt, ... );
