@@ -10,6 +10,8 @@ int main( int argc, char *argv[] )
 
    win_update( );
 
+   init_map( );
+
    start_game( );
 
    // Game loop, runs at 10ms frames.

@@ -105,3 +105,9 @@ void init_msg_log( void );
 void add_message( char *fmt, ... );
 char *get_message( int pos );
 
+//---------------------------------------------------------------
+// MAP API
+//---------------------------------------------------------------
+
+void init_map( void );
+
