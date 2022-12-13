@@ -66,27 +66,27 @@ int get_pause_state( void );
 
 #define INVWIN_COL_START      65
 #define INVWIN_ROW_START       0
-#define INVWIN_COL_SIZE       35
+#define INVWIN_COL_SIZE       36
 #define INVWIN_ROW_SIZE       21
 
 #define STATSWIN_COL_START    65
 #define STATSWIN_ROW_START    21
-#define STATSWIN_COL_SIZE     35
+#define STATSWIN_COL_SIZE     36
 #define STATSWIN_ROW_SIZE      6
 
 #define ACTIONSWIN_COL_START   0
 #define ACTIONSWIN_ROW_START  27
-#define ACTIONSWIN_COL_SIZE  100
+#define ACTIONSWIN_COL_SIZE  101
 #define ACTIONSWIN_ROW_SIZE    4
 
 #define CONTEXTWIN_COL_START   0
 #define CONTEXTWIN_ROW_START  31
-#define CONTEXTWIN_COL_SIZE  100
+#define CONTEXTWIN_COL_SIZE  101
 #define CONTEXTWIN_ROW_SIZE    3
 
 #define LOGWIN_COL_START       0
 #define LOGWIN_ROW_START      34
-#define LOGWIN_COL_SIZE      100
+#define LOGWIN_COL_SIZE      101
 #define LOGWIN_ROW_SIZE        6
 
 #define INTROWIN_COL_START    24
@@ -106,8 +106,13 @@ void add_message( char *fmt, ... );
 char *get_message( int pos );
 
 //---------------------------------------------------------------
-// MAP API
+// Map API
 //---------------------------------------------------------------
 
 void init_map( void );
+
+#define COLOR_PLASMA    1
+#define COLOR_ENERGY    2
+#define COLOR_KINETIC   3
+#define COLOR_LABEL     4
 

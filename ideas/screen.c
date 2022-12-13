@@ -6,6 +6,20 @@ WINDOW *mapwin, *invwin, *statswin, *actionswin, *contextwin, *logwin;
 
 char context[ CONTEXTWIN_COL_SIZE+1 ];
 
+static void init_colors( void )
+{
+   if ( !has_colors( ) ) exit(-1);
+
+   start_color( );
+
+   init_pair( COLOR_ENERGY, COLOR_BLACK, COLOR_RED );
+   init_pair( COLOR_PLASMA, COLOR_BLACK, COLOR_BLUE );
+   init_pair( COLOR_KINETIC, COLOR_BLACK, COLOR_GREEN );
+   init_pair( COLOR_LABEL, COLOR_CYAN, COLOR_BLACK );
+
+   return;
+}
+
 void win_startup( )
 {
    initscr( );
@@ -15,6 +29,7 @@ void win_startup( )
    nonl( );
    cbreak( );
    keypad( stdscr, TRUE );
+   init_colors( );
 
    mouseinterval(0);
    printf("\033[?1003h\n");
@@ -29,18 +44,24 @@ void win_update( )
    mapwin = newwin( MAPWIN_ROW_SIZE, MAPWIN_COL_SIZE, 
                      MAPWIN_ROW_START, MAPWIN_COL_START );
    box( mapwin, 0, 0 );
+   wattron( mapwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( mapwin, 0, 2, " Map " );
+   wattroff( mapwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
 
    invwin = newwin( INVWIN_ROW_SIZE, INVWIN_COL_SIZE,
                        INVWIN_ROW_START, INVWIN_COL_START );
    box( invwin, 0, 0 );
+   wattron( invwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( invwin, 0, 2, " Inventory (dock) " );
-   mvwprintw( invwin, 1, 2, "Object....  State.....  Lvl  HP " );
+   wattroff( invwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
+   mvwprintw( invwin, 1, 2, "Object....  State.....  Lvl  NRG " );
 
    statswin = newwin( STATSWIN_ROW_SIZE, STATSWIN_COL_SIZE,
                        STATSWIN_ROW_START, STATSWIN_COL_START );
    box( statswin, 0, 0 );
+   wattron( statswin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( statswin, 0, 2, " Stats " );
+   wattroff( statswin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( statswin, 1, 2, "Attack: *** " );
    mvwprintw( statswin, 2, 2, "Armor : *** " );
    mvwprintw( statswin, 1, 17, "Mining    : *** " );
@@ -50,19 +71,25 @@ void win_update( )
    actionswin = newwin( ACTIONSWIN_ROW_SIZE, ACTIONSWIN_COL_SIZE, 
                          ACTIONSWIN_ROW_START, ACTIONSWIN_COL_START );
    box( actionswin, 0, 0 );
+   wattron( actionswin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( actionswin, 0, 2, " Actions " );
+   wattroff( actionswin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( actionswin, 1, 3, "p - pause/unpause | Select docked drone and [ h - heal / r - recycle / select object in map ]." );
    mvwprintw( actionswin, 2, 3, "? - help          | Select enemy and [ a - assimilate ]. Select undocked drone and [ d - dock ]." );
 
    contextwin = newwin( CONTEXTWIN_ROW_SIZE, CONTEXTWIN_COL_SIZE, 
                          CONTEXTWIN_ROW_START, CONTEXTWIN_COL_START );
    box( contextwin, 0, 0 );
+   wattron( contextwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( contextwin, 0, 2, " Context " );
+   wattroff( contextwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
 
    logwin = newwin( LOGWIN_ROW_SIZE, LOGWIN_COL_SIZE,
                      LOGWIN_ROW_START, LOGWIN_COL_START );
    box( logwin, 0, 0 );
+   wattron( logwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( logwin, 0, 2, " Log " );
+   wattroff( logwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    add_message( "Press '?' for help." );
 
    refresh( );
@@ -70,7 +97,9 @@ void win_update( )
    WINDOW *introwin = newwin( INTROWIN_ROW_SIZE, INTROWIN_COL_SIZE,
                                INTROWIN_ROW_START, INTROWIN_COL_START );
    box( introwin, 0, 0 );
+   wattron( introwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( introwin, 0, 2, " Introduction " );
+   wattroff( introwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( introwin, 2, 2, "Welcome to BorgRL, a submission to the 2023 7DRL." );
    mvwprintw( introwin, 3, 2, "As the Borg, you'll assimilate enemies or attack" );
    mvwprintw( introwin, 4, 2, "them as well as scavenge wrecks and mine planets" );
@@ -173,7 +202,9 @@ void emit_help( void )
 {
    WINDOW *helpwin = newwin( 10, 70, 10, 15 );
    box( helpwin, 0, 0 );
+   wattron( helpwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( helpwin, 0, 2, " Help " );
+   wattroff( helpwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( helpwin, 2, 2, "Make your way through each sector, escaping through the gate." );
    mvwprintw( helpwin, 3, 2, "Fight, mine, scavange, heal, recycle, and upgrade your drones." );
    mvwprintw( helpwin, 4, 2, "Move with the arrow keys. Select a drone from the map or inventory" );

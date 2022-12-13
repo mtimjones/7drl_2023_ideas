@@ -19,12 +19,6 @@ typedef struct
 
 typedef struct
 {
-   int col;
-   int row;
-} target_t;
-   
-typedef struct
-{
    char cell;
 } static_map_t;
 
@@ -38,6 +32,7 @@ typedef struct
 typedef struct
 {
    type_t type;
+
    union {
       static_map_t static_map;
       dynamic_map_t dynamic_map;
