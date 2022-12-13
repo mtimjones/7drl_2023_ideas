@@ -44,6 +44,8 @@ void emit_help( );
 //---------------------------------------------------------------
 
 void handle_user_input( void );
+int  get_mouse_posx( void );
+int  get_mouse_posy( void );
 
 //---------------------------------------------------------------
 // Game API

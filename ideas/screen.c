@@ -141,6 +141,8 @@ void win_refresh( void )
       mvwprintw( statswin, 3, 2, "            " );
    }
 
+   mvwprintw( statswin, 3, 17, "Mouse %3d, %3d", get_mouse_posx( ), get_mouse_posy( ) );
+
    mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
 
    wrefresh( statswin );
