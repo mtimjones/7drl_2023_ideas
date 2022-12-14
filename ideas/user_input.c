@@ -74,14 +74,14 @@ void handle_user_input( void )
                  event.y >= MAPWIN_ROW_START && 
                  event.y < (MAPWIN_ROW_START+MAPWIN_ROW_SIZE) )
             {
-               add_message( "Left Mouse click in mapwin at %d, %d", event.x, event.y );
+               map_button_press( event.x, event.y, event.bstate );
             } 
             else if ( event.x >= INVWIN_COL_START && 
                       event.x < (INVWIN_COL_START+INVWIN_COL_SIZE) && 
                       event.y >= INVWIN_ROW_START && 
                       event.y < (INVWIN_ROW_START+INVWIN_ROW_SIZE) )
             {
-               add_message( "Left Mouse click in invwin at %d, %d", event.x, event.y );
+               inv_button_press( event.x, event.y, event.bstate );
             }
          }
          else if ( event.bstate == BUTTON3_PRESSED )
@@ -93,14 +93,14 @@ void handle_user_input( void )
                  event.y >= MAPWIN_ROW_START && 
                  event.y < (MAPWIN_ROW_START+MAPWIN_ROW_SIZE) )
             {
-               add_message( "Right Mouse click in mapwin at %d, %d", event.x, event.y );
+               map_button_press( event.x, event.y, event.bstate );
             } 
             else if ( event.x >= INVWIN_COL_START && 
                       event.x < (INVWIN_COL_START+INVWIN_COL_SIZE) && 
                       event.y >= INVWIN_ROW_START && 
                       event.y < (INVWIN_ROW_START+INVWIN_ROW_SIZE) )
             {
-               add_message( "Right Mouse click in invwin at %d, %d", event.x, event.y );
+               inv_button_press( event.x, event.y, event.bstate );
             }
 
           }

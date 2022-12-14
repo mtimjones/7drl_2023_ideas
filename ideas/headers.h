@@ -118,3 +118,10 @@ void init_map( void );
 #define COLOR_KINETIC   3
 #define COLOR_LABEL     4
 
+//---------------------------------------------------------------
+// Select API
+//---------------------------------------------------------------
+
+void map_button_press( int col, int row, int state );
+void inv_button_press( int col, int row, int state );
+

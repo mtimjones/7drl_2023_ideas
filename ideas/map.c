@@ -3,11 +3,12 @@
 
 cell_t map[ MAP_MAX_NCOLS ][ MAP_MAX_NROWS ];
 
-
 void set_cell_static( int col, int row, char cell )
 {
    map[ col ][ row ].type = type_static;
    map[ col ][ row ].u.static_map.cell = cell;
+   map[ col ][ row ].location.col = col;
+   map[ col ][ row ].location.row = row;
 }
 
 void init_map( )

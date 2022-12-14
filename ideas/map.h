@@ -44,7 +44,7 @@ typedef struct
    bool passable;
    // bool visible; // Computed dynamically
 
-   // entity_id_t entity; // TBD, multiple...
+   // entity_id_t entity; // handled dynamically with a rendering order.
 
 } cell_t;
 
