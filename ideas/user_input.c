@@ -84,7 +84,7 @@ void handle_user_input( void )
                add_message( "Left Mouse click in invwin at %d, %d", event.x, event.y );
             }
          }
-         else if ( event.bstate == BUTTON2_PRESSED )
+         else if ( event.bstate == BUTTON3_PRESSED )
          {
             // Check to see if the button was pressed in the map or inventory windows.
 
