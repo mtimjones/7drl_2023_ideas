@@ -41,10 +41,9 @@ BorgRL is a Borg Roguelike (to be developed for the 2023 7DRL).  The player is t
 24|                                           P             #######|  Armor : ***   Scavanging: ***  |
 25|                                                       #########|                Stealth   : ***  |
 26|                                                     ###########|  Time: ****    Resources: ****  |
-27+----------------------------------------------------------------+---------------------------------+
-28|         |    (?)help   |   (p)ause    |   ( )step    | (a)ssimilate |    (d)ock    |             |
-29| Actions +--------------+--------------+--------------+--------------+--------------+-------------+
-30|         |    (k)ill    |  (r)ecycle   |   (m)ine     |  (s)cavange  |    (h)eal    |             |
+27+- Actions ------------------------------------------------------+---------------------------------+
+28|  p - pause/unpause | Select docked drone and [ h - heal / r - recycle / select object in map ].  |
+29|  ? - help          | Select enemy and [ a - assimilate ]. Select undocked drone and [ d - dock ].+
 31+--------------------------------------------------------------------------------------------------+
 32| Context: <mouse-over context info>                                  | <<< Paused >>>             |
 33+--------------------------------------------------------------------------------------------------+
@@ -162,6 +161,12 @@ xp2lvlup = 0.04 * (level^3) + 0.8 * (level^2) + 2*level
 | 8 | 88 |
 | 9 | 112 |
 | 10 | 140 |
+
+The drone capability of the Borg is based upon the following equation:
+
+```
+num_drones_supported = 3 + Level
+```
 
 ## Economy
 The currency of the game are 'resources' which are mined from planets, scavenged from enemy wrecks. or salvaged from recycled drones.  These resources are used to heal drones (in the Borg), assimilate (hack) enemy drones, or upgrade capabilities at academies.

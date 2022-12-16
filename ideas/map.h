@@ -1,4 +1,4 @@
-#include <headers.h>
+#include "headers.h"
 
 #define MAP_MAX_NCOLS   ( MAPWIN_COL_SIZE * 9 )
 #define MAP_MAX_NROWS   ( MAPWIN_ROW_SIZE * 3 )

@@ -1,9 +1,17 @@
-INC=-I.
-CFLAGS=-std=c18 -Wall -Werror -Wextra
-LIB=-lncurses
+# Makefile for 7drl 2023 ideas
 
-demo: main.c screen.c time.c messages.c user_input.c game.c map.c select.c headers.h
-	gcc $(CFLAGS) $(INC) -o demo screen.c main.c time.c messages.c user_input.c game.c map.c select.c $(LIB)
+CC=gcc
+CFLAGS=-std=c18 -Wall -Werror -Wextra
+LIBS= -lncurses -lm
+
+DEPS = headers.h map.h
+OBJS = main.o screen.o time.o messages.o user_input.o game.o map.o select.o
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+demo: $(OBJS)
+	$(CC) -g -o $@ $^ $(CFLAGS) $(LIBS)
 
 clean:
 	rm -f demo *.o

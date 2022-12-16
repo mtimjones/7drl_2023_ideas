@@ -1,5 +1,5 @@
-#include <headers.h>
-#include <map.h>
+#include "headers.h"
+#include "map.h"
 
 cell_t map[ MAP_MAX_NCOLS ][ MAP_MAX_NROWS ];
 
