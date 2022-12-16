@@ -71,27 +71,27 @@ int get_pause_state( void );
 
 #define INVWIN_COL_START      66
 #define INVWIN_ROW_START       0
-#define INVWIN_COL_SIZE       36
+#define INVWIN_COL_SIZE       40
 #define INVWIN_ROW_SIZE       21
 
 #define STATSWIN_COL_START    66
 #define STATSWIN_ROW_START    21
-#define STATSWIN_COL_SIZE     36
-#define STATSWIN_ROW_SIZE      6
+#define STATSWIN_COL_SIZE     40
+#define STATSWIN_ROW_SIZE      7
 
 #define ACTIONSWIN_COL_START   0
 #define ACTIONSWIN_ROW_START  28
-#define ACTIONSWIN_COL_SIZE  102
+#define ACTIONSWIN_COL_SIZE  106
 #define ACTIONSWIN_ROW_SIZE    4
 
 #define CONTEXTWIN_COL_START   0
 #define CONTEXTWIN_ROW_START  32
-#define CONTEXTWIN_COL_SIZE  102
+#define CONTEXTWIN_COL_SIZE  106
 #define CONTEXTWIN_ROW_SIZE    3
 
 #define LOGWIN_COL_START       0
 #define LOGWIN_ROW_START      35
-#define LOGWIN_COL_SIZE      102
+#define LOGWIN_COL_SIZE      106
 #define LOGWIN_ROW_SIZE        6
 
 #define INTROWIN_COL_START    24

@@ -54,7 +54,7 @@ void win_update( )
    wattron( invwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( invwin, 0, 2, " Inventory (dock) " );
    wattroff( invwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
-   mvwprintw( invwin, 1, 2, "Object....  State.....  Lvl  NRG " );
+   mvwprintw( invwin, 1, 2, "Object....  State.....  Sts Lvl  NRG " );
 
    statswin = newwin( STATSWIN_ROW_SIZE, STATSWIN_COL_SIZE,
                        STATSWIN_ROW_START, STATSWIN_COL_START );

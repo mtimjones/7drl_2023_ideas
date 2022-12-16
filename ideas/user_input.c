@@ -20,7 +20,8 @@ void handle_user_input( void )
       // Handle mouse event.
       if ( getmouse( &event ) == OK )
       {
-         mousex = event.x; mousey = event.y;
+         mousex = event.x; 
+         mousey = event.y;
 
          // Check to see if the context needs to be updated (based upon mouse position).
          if ( event.x >= LOGWIN_COL_START && 
