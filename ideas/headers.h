@@ -15,6 +15,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <ncurses.h>
+#include <assert.h>
 
 //---------------------------------------------------------------
 // Time API
@@ -65,32 +66,32 @@ int get_pause_state( void );
 
 #define MAPWIN_COL_START       0
 #define MAPWIN_ROW_START       0
-#define MAPWIN_COL_SIZE       65
-#define MAPWIN_ROW_SIZE       27
+#define MAPWIN_COL_SIZE       66
+#define MAPWIN_ROW_SIZE       28
 
-#define INVWIN_COL_START      65
+#define INVWIN_COL_START      66
 #define INVWIN_ROW_START       0
 #define INVWIN_COL_SIZE       36
 #define INVWIN_ROW_SIZE       21
 
-#define STATSWIN_COL_START    65
+#define STATSWIN_COL_START    66
 #define STATSWIN_ROW_START    21
 #define STATSWIN_COL_SIZE     36
 #define STATSWIN_ROW_SIZE      6
 
 #define ACTIONSWIN_COL_START   0
-#define ACTIONSWIN_ROW_START  27
-#define ACTIONSWIN_COL_SIZE  101
+#define ACTIONSWIN_ROW_START  28
+#define ACTIONSWIN_COL_SIZE  102
 #define ACTIONSWIN_ROW_SIZE    4
 
 #define CONTEXTWIN_COL_START   0
-#define CONTEXTWIN_ROW_START  31
-#define CONTEXTWIN_COL_SIZE  101
+#define CONTEXTWIN_ROW_START  32
+#define CONTEXTWIN_COL_SIZE  102
 #define CONTEXTWIN_ROW_SIZE    3
 
 #define LOGWIN_COL_START       0
-#define LOGWIN_ROW_START      34
-#define LOGWIN_COL_SIZE      101
+#define LOGWIN_ROW_START      35
+#define LOGWIN_COL_SIZE      102
 #define LOGWIN_ROW_SIZE        6
 
 #define INTROWIN_COL_START    24

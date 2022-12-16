@@ -13,9 +13,20 @@ void set_cell_static( int col, int row, char cell )
 
 char get_cell( int col, int row )
 {
-   (void)col;  (void)row;
-
-   return ' ';
+   if ( map[ col ][ row ].type == type_static )
+   {
+      return map[ col ][ row ].u.static_map.cell;
+   }
+   else if ( map[ col ][ row ].type == type_dynamic )
+   {
+      // TBD
+   }
+   else
+   {
+      assert( 0 );
+   }
+   
+   return '!';
 }
 
 void init_map( )
