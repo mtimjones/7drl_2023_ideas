@@ -5,6 +5,8 @@
 //
 //---------------------------------------------------------------------------
 
+#ifndef __HEADERS_H__
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -118,6 +120,8 @@ void init_map( void );
 #define COLOR_KINETIC   3
 #define COLOR_LABEL     4
 
+char get_cell( int col, int row );
+
 //---------------------------------------------------------------
 // Select API
 //---------------------------------------------------------------
@@ -125,3 +129,4 @@ void init_map( void );
 void map_button_press( int col, int row, int state );
 void inv_button_press( int col, int row, int state );
 
+#endif // __HEADERS_H__

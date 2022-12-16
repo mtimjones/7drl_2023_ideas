@@ -11,6 +11,13 @@ void set_cell_static( int col, int row, char cell )
    map[ col ][ row ].location.row = row;
 }
 
+char get_cell( int col, int row )
+{
+   (void)col;  (void)row;
+
+   return ' ';
+}
+
 void init_map( )
 {
    memset( map, 0, sizeof( map ) );
