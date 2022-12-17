@@ -120,6 +120,7 @@ void init_map( void );
 #define COLOR_ENERGY    2
 #define COLOR_KINETIC   3
 #define COLOR_LABEL     4
+#define COLOR_BORG      5
 
 char get_cell( int col, int row );
 

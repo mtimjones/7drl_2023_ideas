@@ -16,6 +16,7 @@ static void init_colors( void )
    init_pair( COLOR_PLASMA, COLOR_BLACK, COLOR_BLUE );
    init_pair( COLOR_KINETIC, COLOR_BLACK, COLOR_GREEN );
    init_pair( COLOR_LABEL, COLOR_CYAN, COLOR_BLACK );
+   init_pair( COLOR_BORG, COLOR_BLACK, COLOR_WHITE );
 
    return;
 }
@@ -214,7 +215,7 @@ void emit_help( void )
    mvwprintw( helpwin, 6, 2, "and 'a' to assimilate.  Select a docked drone and 'h' to heal it" );
    mvwprintw( helpwin, 7, 2, "or 'r' to recycle it for resources.  Press any key to continue." );
    nodelay( stdscr, FALSE );
-   wrefresh( helpwin);
+   wrefresh( helpwin );
    win_wait( );
    nodelay( stdscr, TRUE );
    wrefresh( stdscr );
