@@ -13,7 +13,13 @@ void set_cell_static( int col, int row, char cell )
 
 char get_cell( int col, int row )
 {
-   if ( map[ col ][ row ].type == type_static )
+   if ( col < 0 || row < 0 ||
+        col >= MAP_MAX_NCOLS || row >= MAP_MAX_NROWS )
+   {
+      // Void space (outside of the map).
+      return '~';
+   }
+   else if ( map[ col ][ row ].type == type_static )
    {
       return map[ col ][ row ].u.static_map.cell;
    }
@@ -23,7 +29,7 @@ char get_cell( int col, int row )
    }
    else
    {
-      assert( 0 );
+      assert(0);
    }
    
    return '!';
