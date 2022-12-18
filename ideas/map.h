@@ -1,8 +1,5 @@
 #include "headers.h"
 
-#define MAP_MAX_NCOLS   ( MAPWIN_COL_SIZE * 9 )
-#define MAP_MAX_NROWS   ( MAPWIN_ROW_SIZE * 3 )
-
 #define MAX_STATES 8
 
 typedef enum
@@ -10,12 +7,6 @@ typedef enum
    type_static,
    type_dynamic,
 } type_t;
-
-typedef struct
-{
-   int col;
-   int row;
-} location_t;
 
 typedef struct
 {

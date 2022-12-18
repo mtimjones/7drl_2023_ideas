@@ -4,8 +4,8 @@ CC=gcc
 CFLAGS=-std=c18 -Wall -Werror -Wextra
 LIBS= -lncurses -lm
 
-DEPS = headers.h map.h
-OBJS = main.o screen.o time.o messages.o user_input.o game.o map.o select.o
+DEPS = headers.h
+OBJS = main.o screen.o time.o messages.o user_input.o game.o map.o select.o player.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
