@@ -66,32 +66,32 @@ int get_pause_state( void );
 
 #define MAPWIN_COL_START       0
 #define MAPWIN_ROW_START       0
-#define MAPWIN_COL_SIZE       66
-#define MAPWIN_ROW_SIZE       28
+#define MAPWIN_COL_SIZE       67
+#define MAPWIN_ROW_SIZE       29
 
-#define INVWIN_COL_START      66
+#define INVWIN_COL_START      67
 #define INVWIN_ROW_START       0
 #define INVWIN_COL_SIZE       40
-#define INVWIN_ROW_SIZE       21
+#define INVWIN_ROW_SIZE       22
 
-#define STATSWIN_COL_START    66
-#define STATSWIN_ROW_START    21
+#define STATSWIN_COL_START    67
+#define STATSWIN_ROW_START    22
 #define STATSWIN_COL_SIZE     40
 #define STATSWIN_ROW_SIZE      7
 
 #define ACTIONSWIN_COL_START   0
-#define ACTIONSWIN_ROW_START  28
-#define ACTIONSWIN_COL_SIZE  106
+#define ACTIONSWIN_ROW_START  29
+#define ACTIONSWIN_COL_SIZE  107
 #define ACTIONSWIN_ROW_SIZE    4
 
 #define CONTEXTWIN_COL_START   0
-#define CONTEXTWIN_ROW_START  32
-#define CONTEXTWIN_COL_SIZE  106
+#define CONTEXTWIN_ROW_START  33
+#define CONTEXTWIN_COL_SIZE  107
 #define CONTEXTWIN_ROW_SIZE    3
 
 #define LOGWIN_COL_START       0
-#define LOGWIN_ROW_START      35
-#define LOGWIN_COL_SIZE      106
+#define LOGWIN_ROW_START      36
+#define LOGWIN_COL_SIZE      107
 #define LOGWIN_ROW_SIZE        6
 
 #define INTROWIN_COL_START    24
@@ -126,6 +126,10 @@ void init_map( void );
 #define COLOR_BORG      5
 
 char get_cell( int col, int row );
+
+void render_map( void );
+
+void player_move( int row, int col );
 
 #define MAX_STATES 8
 
@@ -180,10 +184,10 @@ void map_button_press( int col, int row, int state );
 void inv_button_press( int col, int row, int state );
 
 //---------------------------------------------------------------
-// Select API
+// Player API
 //---------------------------------------------------------------
 
-void player_init( void );
+void init_player( void );
 int get_player_col( void );
 int get_player_row( void );
 

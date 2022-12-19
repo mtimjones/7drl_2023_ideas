@@ -34,7 +34,7 @@ char get_cell( int col, int row )
    return '!';
 }
 
-void init_map( )
+void init_map( void )
 {
    memset( map, 0, sizeof( map ) );
 
@@ -46,4 +46,5 @@ void init_map( )
       }
    }
 }
+
 

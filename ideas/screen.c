@@ -67,7 +67,7 @@ void win_update( )
    mvwprintw( statswin, 2, 2, "Armor : *** " );
    mvwprintw( statswin, 1, 17, "Mining    : *** " );
    mvwprintw( statswin, 2, 17, "Scavenging: *** " );
-   mvwprintw( statswin, 4, 17, "Resources : *** " );
+   mvwprintw( statswin, 5, 17, "Resources : *** " );
 
    actionswin = newwin( ACTIONSWIN_ROW_SIZE, ACTIONSWIN_COL_SIZE, 
                          ACTIONSWIN_ROW_START, ACTIONSWIN_COL_START );
@@ -128,7 +128,10 @@ void win_update( )
 
 void win_refresh( void )
 {
+
+   render_map( );
    win_redisplay( mapwin );
+
    win_redisplay( invwin );
 
    if ( get_pause_state( ) )
@@ -142,9 +145,10 @@ void win_refresh( void )
       mvwprintw( statswin, 3, 2, "            " );
    }
 
-   mvwprintw( statswin, 3, 17, "Mouse %3d, %3d", get_mouse_posx( ), get_mouse_posy( ) );
+   mvwprintw( statswin, 3, 17, "Mouse  %3d, %3d", get_mouse_posx( ), get_mouse_posy( ) );
+   mvwprintw( statswin, 4, 17, "Player %3d, %3d", get_player_row( ), get_player_col( ) );
 
-   mvwprintw( statswin, 4, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
+   mvwprintw( statswin, 5, 2, "Time  : %4d ", ( get_gametime( ) / 100 ) );
 
    wrefresh( statswin );
 
@@ -230,4 +234,32 @@ int get_user_char( void )
    return 0;
 }
 
+void render_map ( void )
+{
+   int row, col;
+   const int map_col_midpoint = ( MAPWIN_COL_SIZE >> 1 );
+   const int map_row_midpoint = ( MAPWIN_ROW_SIZE >> 1 );
 
+   add_message( "map_col_midpoint %d\n", map_col_midpoint);
+   add_message( "map_row_midpoint %d\n", map_row_midpoint);
+   add_message( "map_col_player %d\n", get_player_col( ));
+   add_message( "map_row_player %d\n", get_player_row( ));
+
+   for ( int r = 0 ; r < MAPWIN_ROW_SIZE-2 ; r++ )
+   {
+      row = get_player_row( ) - map_row_midpoint + r;
+
+      for ( int c = 0 ; c < MAPWIN_COL_SIZE-2 ; c++ )
+      {
+         col = get_player_col( ) - map_col_midpoint + c;
+         mvwaddch( mapwin, row, col, get_cell( col, row ) );
+      }
+
+   }
+
+   // Render the entities that are visible in the current map.
+
+   mvwaddch( mapwin, map_row_midpoint+1, map_col_midpoint+1, '@' | A_BOLD );
+
+   return;
+}
