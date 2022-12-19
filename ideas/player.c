@@ -39,4 +39,6 @@ void player_move( int rowd, int cold )
    {
       player_loc.col = MAP_MAX_NCOLS - 1;
    }
+
+   return;
 }

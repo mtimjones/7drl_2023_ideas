@@ -11,11 +11,11 @@ int main( int argc, char *argv[] )
 
    win_startup( );
 
-   win_update( );
-
    init_map( );
 
    init_player( );
+
+   win_update( );
 
    start_game( );
 
