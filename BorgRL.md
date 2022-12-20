@@ -186,14 +186,14 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
 - [ ] Experiment with wave-function-collapse for sector procedural generation.
 - [X] Intro screen.
-- [ ] Reuse prior 7drl map UI.
+- [X] Reuse prior 7drl map UI.
 - [ ] Implement procedural map generation.
 - [ ] Implement CES for entity scheduling.
-- [ ] Implement basic UI.
+- [X] Implement basic UI.
 - [ ] Create object for entities in space (with individual/random behavior).
 - [ ] Create random wrecks (no behavior).
 - [ ] Create scavenger drone type (scavange behavior).
-- [ ] Mouse-over context development.
+- [X] Mouse-over context development.
 - [ ] Mouse select/deselect of drone.
 - [ ] Implement scavenging drone behavior
 - [ ] Implement redocking behavior.
