@@ -129,7 +129,7 @@ char get_cell( int col, int row );
 
 void render_map( void );
 
-void player_move( int row, int col );
+bool passable( int col, int row );
 
 #define MAX_STATES 8
 
@@ -146,6 +146,8 @@ typedef struct
 
 typedef struct
 {
+   int cur_delay;
+   int delay;
    int state;
    int max_state;
    int cells[ MAX_STATES ];
@@ -190,5 +192,6 @@ void inv_button_press( int col, int row, int state );
 void init_player( void );
 int get_player_col( void );
 int get_player_row( void );
+void player_move( int row, int col );
 
 #endif // __HEADERS_H__

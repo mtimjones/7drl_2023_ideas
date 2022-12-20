@@ -237,22 +237,22 @@ int get_user_char( void )
 void render_map ( void )
 {
    int row, col;
-   const int map_col_midpoint = ( MAPWIN_COL_SIZE >> 1 );
-   const int map_row_midpoint = ( MAPWIN_ROW_SIZE >> 1 );
+   const int map_col_midpoint = ( ( MAPWIN_COL_SIZE-2 ) >> 1 );
+   const int map_row_midpoint = ( ( MAPWIN_ROW_SIZE-2 ) >> 1 );
 
-   add_message( "map_col_midpoint %d\n", map_col_midpoint);
-   add_message( "map_row_midpoint %d\n", map_row_midpoint);
-   add_message( "map_col_player %d\n", get_player_col( ));
-   add_message( "map_row_player %d\n", get_player_row( ));
+   add_message( "map_col_midpoint %d\n", map_col_midpoint );
+   add_message( "map_row_midpoint %d\n", map_row_midpoint );
+   add_message( "map_col_player %d\n", get_player_col( ) );
+   add_message( "map_row_player %d\n", get_player_row( ) );
 
-   for ( int r = 0 ; r < MAPWIN_ROW_SIZE-2 ; r++ )
+   for ( int r = 0 ; r < ( MAPWIN_ROW_SIZE-2 ) ; r++ )
    {
       row = get_player_row( ) - map_row_midpoint + r;
 
-      for ( int c = 0 ; c < MAPWIN_COL_SIZE-2 ; c++ )
+      for ( int c = 0 ; c < ( MAPWIN_COL_SIZE-2 ) ; c++ )
       {
          col = get_player_col( ) - map_col_midpoint + c;
-         mvwaddch( mapwin, row, col, get_cell( col, row ) );
+         mvwaddch( mapwin, r+1, c+1, get_cell( col, row ) );
       }
 
    }

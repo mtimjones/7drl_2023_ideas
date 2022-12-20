@@ -4,8 +4,8 @@ location_t player_loc;
 
 void init_player( void )
 {
-   player_loc.col = MAP_MAX_NCOLS >> 1;
-   player_loc.row = MAP_MAX_NROWS >> 1;
+   player_loc.col = 0; // MAP_MAX_NCOLS / 9;
+   player_loc.row = 0; // MAP_MAX_NROWS >> 1;
 }
 
 int get_player_col( void )
@@ -20,6 +20,12 @@ int get_player_row( void )
 
 void player_move( int rowd, int cold )
 {
+
+   if ( ! passable( player_loc.col - cold, player_loc.row - rowd ) )
+   {
+      return;
+   }
+
    player_loc.row -= rowd;
    player_loc.col -= cold;
 
