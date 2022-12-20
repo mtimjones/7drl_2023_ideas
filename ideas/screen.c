@@ -240,11 +240,6 @@ void render_map ( void )
    const int map_col_midpoint = ( ( MAPWIN_COL_SIZE-2 ) >> 1 );
    const int map_row_midpoint = ( ( MAPWIN_ROW_SIZE-2 ) >> 1 );
 
-   add_message( "map_col_midpoint %d\n", map_col_midpoint );
-   add_message( "map_row_midpoint %d\n", map_row_midpoint );
-   add_message( "map_col_player %d\n", get_player_col( ) );
-   add_message( "map_row_player %d\n", get_player_row( ) );
-
    for ( int r = 0 ; r < ( MAPWIN_ROW_SIZE-2 ) ; r++ )
    {
       row = get_player_row( ) - map_row_midpoint + r;

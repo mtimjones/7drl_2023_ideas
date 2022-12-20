@@ -135,6 +135,7 @@ bool passable( int col, int row );
 
 typedef enum
 {
+   type_uninit,
    type_static,
    type_dynamic,
 } type_t;
@@ -194,4 +195,11 @@ int get_player_col( void );
 int get_player_row( void );
 void player_move( int row, int col );
 
+//---------------------------------------------------------------
+// Rand API
+//---------------------------------------------------------------
+
+#define getSRand( )     ( ( double ) rand( ) / ( double ) RAND_MAX )
+#define getRand( x )    ( int ) ( ( x ) * getSRand( ) )
+#define seedRand( )     ( srand( time( NULL ) ) )
 #endif // __HEADERS_H__
