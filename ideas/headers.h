@@ -21,7 +21,7 @@
 // Time API
 //---------------------------------------------------------------
 
-#define MS_PER_FRAME   10
+#define MS_PER_FRAME   20
 
 unsigned long long getTimestamp( void );
 void increment_gametime( void );

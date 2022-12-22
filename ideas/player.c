@@ -21,7 +21,7 @@ int get_player_row( void )
 void player_move( int rowd, int cold )
 {
 
-   if ( ! passable( player_loc.col - cold, player_loc.row - rowd ) )
+   if ( !passable( player_loc.col - cold, player_loc.row - rowd ) )
    {
       return;
    }
