@@ -169,7 +169,6 @@ void place_map_entry_exit( void )
    set_cell_dynamic( col+11, row, 6, "    > ", 30, false );
    set_cell_static(  col+12, row, ' ', false );
    set_cell_dynamic( col+13, row, 6, "     >", 30, false );
-   set_cell_static(  col+14, row, ' ', false );
    for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
 
    col = MAP_MAX_NCOLS - 20;
@@ -242,9 +241,11 @@ void init_map( void )
 
    int col = 10;
    int row = ( MAP_MAX_NROWS >> 1 ) - 2;
-   set_cell_dynamic( col,   row, 8, "Danger! ", 60, false );
-   set_cell_dynamic( col+1, row, 8, "anger!  ", 60, false );
-   set_cell_dynamic( col+2, row, 8, "nger!   ", 60, false );
+   set_cell_static( col, row, '[', false );
+   set_cell_dynamic( col+1, row, 8, "Danger! ", 20, false );
+   set_cell_dynamic( col+2, row, 8, "anger!  ", 20, false );
+   set_cell_dynamic( col+3, row, 8, "nger!   ", 20, false );
+   set_cell_static( col+4, row, ']', false );
 
 }
 
