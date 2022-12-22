@@ -4,8 +4,8 @@ location_t player_loc;
 
 void init_player( void )
 {
-   player_loc.col = 0; // MAP_MAX_NCOLS / 9;
-   player_loc.row = 0; // MAP_MAX_NROWS >> 1;
+   player_loc.col = 24;
+   player_loc.row = 43;
 }
 
 int get_player_col( void )

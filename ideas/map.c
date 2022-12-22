@@ -2,6 +2,14 @@
 
 cell_t map[ MAP_MAX_NCOLS ][ MAP_MAX_NROWS ];
 
+location_t deltas[4] = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+
+bool valid_map_location( int col, int row )
+{
+   if ( col < 0 || row < 0 || col >= MAP_MAX_NCOLS || row >= MAP_MAX_NROWS ) return false;
+   return true;
+}
+
 void set_cell_uninit( int col, int row )
 {
    map[ col ][ row ].type = type_uninit;
@@ -45,13 +53,13 @@ void set_cell_dynamic( int col, int row, int state_cnt, char *states, int delay,
 
 bool passable( int col, int row )
 {
+   if ( col < 0 || col > MAP_MAX_NCOLS-2 || row < 0 || row > MAP_MAX_NROWS-2 ) return false;
    return map[ col ][ row ].passable;
 }
 
 char get_cell( int col, int row )
 {
-   if ( col < 0 || row < 0 ||
-        col >= MAP_MAX_NCOLS  || row >= MAP_MAX_NROWS )
+   if ( !valid_map_location( col, row ) )
    {
       // Void space (outside of the map).
       return '~';
@@ -102,28 +110,117 @@ void place_wreck( int col, int row )
    return;
 }
 
-void init_map_assets( void )
+void place_gas_cloud( int col, int row )
 {
-   //int row, col;
-   int count = 0;
+   int c, r, l;
+   int num_rays = 20;
+   const int ray_len  = 80;
 
-   for ( int sector_row = 0 ; sector_row < MAP_MAX_NROWS ; sector_row += MAPWIN_ROW_SIZE )
+   do 
    {
-      for ( int sector_col = 0 ; sector_col < MAP_MAX_NCOLS ; sector_col += MAPWIN_COL_SIZE )
+      col += getRand( MAPWIN_COL_SIZE );
+      row += getRand( MAPWIN_ROW_SIZE );
+   } 
+   while ( !map[ col ][ row ].type == type_uninit );
+
+   while ( num_rays-- > 0 )
+   {
+      c = col; r = row;
+      l = ray_len;
+
+      while ( l > 0 )
       {
-         // Place wrecks
-         if ( getSRand( ) > 0.6 )
+         int delta = getRand( 4 );
+         int cd = deltas[delta].col;
+         int rd = deltas[delta].row;
+
+         if ( valid_map_location( c + cd, r + rd ) )
          {
-            place_wreck( sector_col, sector_row );
-            count++;
+            c += cd; r += rd;
+            set_cell_static( c, r, '#', false );
+            l--;
          }
 
       }
 
    }
+   
+   return;
+}
 
-   add_message("Added %d wrecks.", count);
+void place_map_entry_exit( void )
+{
+   int col = 10;
+   int row = ( MAP_MAX_NROWS >> 1 );
 
+   // Ensure that there's an open path to the star gate.
+   for ( int i = 0 ; i < 20 ; i++ ) set_cell_uninit( col+i, row );
+
+   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
+   set_cell_dynamic( col+1,  row, 4, "|/-\\", 50, false );
+   set_cell_dynamic( col+3,  row, 6, ">     ", 30, true );
+   set_cell_static(  col+4,  row, ' ', false );
+   set_cell_dynamic( col+5,  row, 6, " >    ", 30, false );
+   set_cell_static(  col+6,  row, ' ', false );
+   set_cell_dynamic( col+7,  row, 6, "  >   ", 30, false );
+   set_cell_static(  col+8,  row, ' ', false );
+   set_cell_dynamic( col+9,  row, 6, "   >  ", 30, false );
+   set_cell_static(  col+10, row, ' ', false );
+   set_cell_dynamic( col+11, row, 6, "    > ", 30, false );
+   set_cell_static(  col+12, row, ' ', false );
+   set_cell_dynamic( col+13, row, 6, "     >", 30, false );
+   set_cell_static(  col+14, row, ' ', false );
+   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
+
+   col = MAP_MAX_NCOLS - 20;
+   row = ( MAP_MAX_NROWS >> 1 );
+
+   // Ensure that there's an open path to the star gate.
+   for ( int i = 0 ; i < 20 ; i++ ) set_cell_uninit( col-i, row );
+
+   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
+   set_cell_dynamic( col,    row, 6, ">     ", 30, true );
+   set_cell_static(  col+1,  row, ' ', false );
+   set_cell_dynamic( col+2,  row, 6, " >    ", 30, false );
+   set_cell_static(  col+3,  row, ' ', false );
+   set_cell_dynamic( col+4,  row, 6, "  >   ", 30, false );
+   set_cell_static(  col+5,  row, ' ', false );
+   set_cell_dynamic( col+6,  row, 6, "   >  ", 30, false );
+   set_cell_static(  col+7,  row, ' ', false );
+   set_cell_dynamic( col+8,  row, 6, "    > ", 30, false );
+   set_cell_static(  col+9,  row, ' ', false );
+   set_cell_dynamic( col+10, row, 6, "     >", 30, false );
+   set_cell_static(  col+11, row, ' ', false );
+   set_cell_dynamic( col+12, row, 4, "|/-\\", 10, false );
+   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
+
+   return;
+}
+
+void init_map_assets( void )
+{
+   for ( int sector_row = 0 ; sector_row < MAP_SEC_NROWS ; sector_row++ )
+   {
+      for ( int sector_col = 0 ; sector_col < MAP_SEC_NCOLS ; sector_col++ )
+      {
+         // Don't place anything in the first an last col sector in the middle row sector
+         // Place wrecks
+         if ( !( ( sector_row == 1 ) && ( ( sector_col == 0 ) || ( sector_col == MAP_MAX_NCOLS-1 ) ) ) )
+         {
+            if ( getSRand( ) > 0.7 )
+            {
+               place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
+            }
+
+            place_gas_cloud( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
+         }
+      }
+
+   }
+
+   place_map_entry_exit( );
+
+   return;
 }
 
 void init_map( void )
@@ -140,14 +237,14 @@ void init_map( void )
 
    init_map_assets( );
 
-   set_cell_dynamic( 12, 12, 4, "|/-\\", 20, false );
-
    set_cell_dynamic( 10, 10, 4, "^>v<", 87, false );
+   set_cell_dynamic( 10, 12, 4, "O0o.", 74, false );
 
-   set_cell_dynamic( 14, 18, 5, ">    ", 30, false );
-   set_cell_dynamic( 16, 18, 5, " >   ", 30, false );
-   set_cell_dynamic( 18, 18, 5, "  >  ", 30, false );
-   set_cell_dynamic( 20, 18, 5, "   > ", 30, false );
-   set_cell_dynamic( 22, 18, 5, "    >", 30, false );
+   int col = 10;
+   int row = ( MAP_MAX_NROWS >> 1 ) - 2;
+   set_cell_dynamic( col,   row, 8, "Danger! ", 60, false );
+   set_cell_dynamic( col+1, row, 8, "anger!  ", 60, false );
+   set_cell_dynamic( col+2, row, 8, "nger!   ", 60, false );
+
 }
 

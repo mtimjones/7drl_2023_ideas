@@ -114,8 +114,10 @@ char *get_message( int pos );
 // Map API
 //---------------------------------------------------------------
 
-#define MAP_MAX_NCOLS ( MAPWIN_COL_SIZE * 9 )
-#define MAP_MAX_NROWS ( MAPWIN_ROW_SIZE * 3 )
+#define MAP_SEC_NCOLS ( 9 )
+#define MAP_SEC_NROWS ( 3 )
+#define MAP_MAX_NCOLS ( MAPWIN_COL_SIZE * MAP_SEC_NCOLS )
+#define MAP_MAX_NROWS ( MAPWIN_ROW_SIZE * MAP_SEC_NROWS )
 
 void init_map( void );
 
