@@ -182,6 +182,9 @@ The map is laid out in FTL style where the player starts off on the left side an
 ## Game Start
 The player begins with the Borg, a scavenger drone, a combat drone, and a small amount of resources.
 
+## End Game
+Fight a starbase that contains a variety of drones.
+
 ## Prototype Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
 - [ ] Experiment with wave-function-collapse for sector procedural generation.
