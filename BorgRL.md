@@ -183,12 +183,14 @@ The map is laid out in FTL style where the player starts off on the left side an
 The player begins with the Borg, a scavenger drone, a combat drone, and a small amount of resources.
 
 ## End Game
-Fight a starbase that contains a variety of drones.
+Fight a starbase that contains a variety of drones.  Once approached (Borg or drones) will emit numerous drones in waves to attack the Borg and its drones.  Surviving these waves results in a win.
 
 ## Prototype Plan
 - [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
 - [ ] Experiment with wave-function-collapse for sector procedural generation.
 - [X] Intro screen.
+- [X] Build a help screen.
+- [ ] Build a 'legend' pop-up to identify the objects in the Map.
 - [X] Reuse prior 7drl map UI.
 - [ ] Implement procedural map generation.
 - [ ] Implement CES for entity scheduling.
