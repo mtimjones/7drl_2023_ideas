@@ -1,4 +1,5 @@
 #include "headers.h"
+#include "ces.h"
 
 int main( int argc, char *argv[] )
 {
@@ -14,6 +15,8 @@ int main( int argc, char *argv[] )
    init_map( );
 
    init_player( );
+
+   init_entities( );
 
    win_update( );
 

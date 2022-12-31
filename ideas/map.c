@@ -97,6 +97,11 @@ char get_cell( int col, int row )
    return '!';
 }
 
+bool is_map_empty( int col, int row )
+{
+   return map[ col ][ row ].type == type_uninit;
+}
+
 static void place_wreck( int col, int row )
 {
    do 

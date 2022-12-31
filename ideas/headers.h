@@ -41,6 +41,9 @@ void get_mouse_pos( unsigned int *col, unsigned int *row );
 void set_context( char *line );
 void clear_context( void );
 void emit_help( );
+void render_map( void );
+
+typedef void (*render_callback)( int col, int row, char cell, int attr );
 
 //---------------------------------------------------------------
 // User Input API
@@ -131,11 +134,11 @@ void init_map( void );
 
 char get_cell( int col, int row );
 
-void render_map( void );
-
 bool passable( int col, int row );
 
 bool valid_map_location( int col, int row );
+
+bool is_map_empty( int col, int row );
 
 #define MAX_STATES 8
 
