@@ -17,6 +17,8 @@ static void init_colors( void )
    init_pair( COLOR_KINETIC, COLOR_BLACK, COLOR_GREEN );
    init_pair( COLOR_LABEL, COLOR_CYAN, COLOR_BLACK );
    init_pair( COLOR_BORG, COLOR_BLACK, COLOR_WHITE );
+   init_pair( COLOR_WRECK, COLOR_BLACK, COLOR_YELLOW );
+   init_pair( COLOR_PLANET, COLOR_BLACK, COLOR_MAGENTA );
 
    return;
 }
@@ -145,7 +147,7 @@ void win_refresh( void )
       mvwprintw( statswin, 3, 2, "            " );
    }
 
-   mvwprintw( statswin, 3, 17, "Mouse  %3d, %3d", get_mouse_posx( ), get_mouse_posy( ) );
+   mvwprintw( statswin, 3, 17, "Mouse  %3d, %3d", get_mouse_col( ), get_mouse_row( ) );
    mvwprintw( statswin, 4, 17, "Player %3d, %3d", get_player_col( ), get_player_row( ) );
 
    mvwprintw( statswin, 5, 2, "Time  : %4d ", ( get_gametime( ) / 50 ) );

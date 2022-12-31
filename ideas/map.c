@@ -6,16 +6,9 @@ location_t deltas[4] = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
 bool valid_map_location( int col, int row )
 {
-   if ( col < 0 || row < 0 || col >= MAP_MAX_NCOLS || row >= MAP_MAX_NROWS ) return false;
-   return true;
-}
+   bool not_valid = ( col < 0 || row < 0 || col >= MAP_MAX_NCOLS || row >= MAP_MAX_NROWS ) ;
 
-void set_cell_uninit( int col, int row )
-{
-   map[ col ][ row ].type = type_uninit;
-   map[ col ][ row ].location.col = col;
-   map[ col ][ row ].location.row = row;
-   map[ col ][ row ].passable = true;
+   return !not_valid;
 }
 
 void set_cell_passable( int col, int row, bool passable )
@@ -23,7 +16,15 @@ void set_cell_passable( int col, int row, bool passable )
    map[ col ][ row ].passable = passable;
 }
 
-void set_cell_static( int col, int row, char cell, bool passable )
+static void set_cell_uninit( int col, int row )
+{
+   map[ col ][ row ].type = type_uninit;
+   map[ col ][ row ].location.col = col;
+   map[ col ][ row ].location.row = row;
+   map[ col ][ row ].passable = true;
+}
+
+static void set_cell_static( int col, int row, char cell, bool passable )
 {
    map[ col ][ row ].type = type_static;
    map[ col ][ row ].location.col = col;
@@ -32,7 +33,7 @@ void set_cell_static( int col, int row, char cell, bool passable )
    map[ col ][ row ].passable = passable;
 }
 
-void set_cell_dynamic( int col, int row, int state_cnt, char *states, int delay, bool passable )
+static void set_cell_dynamic( int col, int row, int state_cnt, char *states, int delay, bool passable )
 {
    map[ col ][ row ].type = type_dynamic;
    map[ col ][ row ].location.col = col;
@@ -96,7 +97,7 @@ char get_cell( int col, int row )
    return '!';
 }
 
-void place_wreck( int col, int row )
+static void place_wreck( int col, int row )
 {
    do 
    {
@@ -110,7 +111,7 @@ void place_wreck( int col, int row )
    return;
 }
 
-void place_gas_cloud( int col, int row )
+static void place_gas_cloud( int col, int row )
 {
    int c, r, l;
    int num_rays = 20;
@@ -148,7 +149,7 @@ void place_gas_cloud( int col, int row )
    return;
 }
 
-void place_map_entry_exit( void )
+static void place_map_entry_exit( void )
 {
    int col = 10;
    int row = ( MAP_MAX_NROWS >> 1 );
@@ -196,7 +197,7 @@ void place_map_entry_exit( void )
    return;
 }
 
-void init_map_assets( void )
+static void init_map_assets( void )
 {
    for ( int sector_row = 0 ; sector_row < MAP_SEC_NROWS ; sector_row++ )
    {
@@ -241,11 +242,11 @@ void init_map( void )
 
    int col = 10;
    int row = ( MAP_MAX_NROWS >> 1 ) - 2;
-   set_cell_static( col, row, '[', false );
+   set_cell_static(  col, row, '[', false );
    set_cell_dynamic( col+1, row, 8, "Danger! ", 20, false );
    set_cell_dynamic( col+2, row, 8, "anger!  ", 20, false );
    set_cell_dynamic( col+3, row, 8, "nger!   ", 20, false );
-   set_cell_static( col+4, row, ']', false );
+   set_cell_static(  col+4, row, ']', false );
 
 }
 

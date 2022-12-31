@@ -1,6 +1,6 @@
 #include "headers.h"
 
-static int mousex, mousey;
+static int mouse_col, mouse_row;
 
 void handle_user_input( void )
 {
@@ -20,8 +20,8 @@ void handle_user_input( void )
       // Handle mouse event.
       if ( getmouse( &event ) == OK )
       {
-         mousex = event.x; 
-         mousey = event.y;
+         mouse_col = event.x; 
+         mouse_row = event.y;
 
          // Check to see if the context needs to be updated (based upon mouse position).
          if ( event.x >= LOGWIN_COL_START && 
@@ -145,13 +145,13 @@ void handle_user_input( void )
    return;
 }
 
-int get_mouse_posx( void )
+int get_mouse_col( void )
 {
-   return mousex;
+   return mouse_col;
 }
 
-int get_mouse_posy( void )
+int get_mouse_row( void )
 {
-   return mousey;
+   return mouse_row;
 }
 

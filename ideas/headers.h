@@ -47,8 +47,8 @@ void emit_help( );
 //---------------------------------------------------------------
 
 void handle_user_input( void );
-int  get_mouse_posx( void );
-int  get_mouse_posy( void );
+int  get_mouse_col( void );
+int  get_mouse_row( void );
 
 //---------------------------------------------------------------
 // Game API
@@ -126,12 +126,16 @@ void init_map( void );
 #define COLOR_KINETIC   3
 #define COLOR_LABEL     4
 #define COLOR_BORG      5
+#define COLOR_WRECK     6
+#define COLOR_PLANET    7
 
 char get_cell( int col, int row );
 
 void render_map( void );
 
 bool passable( int col, int row );
+
+bool valid_map_location( int col, int row );
 
 #define MAX_STATES 8
 
@@ -182,6 +186,12 @@ typedef struct
 } cell_t;
 
 //---------------------------------------------------------------
+// CES API
+//---------------------------------------------------------------
+
+int get_entity_at( int col, int row );
+
+//---------------------------------------------------------------
 // Select API
 //---------------------------------------------------------------
 
@@ -204,4 +214,6 @@ void player_move( int row, int col );
 #define getSRand( )     ( ( double ) rand( ) / ( double ) RAND_MAX )
 #define getRand( x )    ( int ) ( ( x ) * getSRand( ) )
 #define seedRand( )     ( srand( time( NULL ) ) )
+
 #endif // __HEADERS_H__
+
