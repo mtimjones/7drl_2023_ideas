@@ -74,11 +74,11 @@ void create_wreck_entity( int resources )
 
     world.resources[ entity ].value = resources;
 
-    world.location[ entity ].col = col;
-    world.location[ entity ].row = row;
+    world.location[ entity ].col = 0; //col;
+    world.location[ entity ].row = 0; //row;
 
     world.render[ entity ].cell = '%';
-    world.render[ entity ].color = COLOR_WRECK;
+    world.render[ entity ].attr = COLOR_PAIR( COLOR_WRECK );
 
     return;
 }
@@ -101,6 +101,7 @@ void create_player_entity( )
 
     world.health[ entity ].value =
 
+    world.render[ entity ].attr = COLOR_PAIR( COLOR_BORG ) | A_BOLD;
 
 
 #endif
@@ -115,6 +116,43 @@ void init_entities( void )
     }
 
     create_wreck_entity( 5 );
+
+    return;
+}
+
+void render_system( void  )
+{
+    int entity;
+    int mask = COMPONENT_LOCATION | COMPONENT_RENDER;
+    int scol, srow;
+
+    // Offset 0,0 of the map in full coordinates.
+    scol = get_player_col( ) - ( ( MAPWIN_COL_SIZE-2 ) >> 1 ) - 1;
+    srow = get_player_row( ) - ( ( MAPWIN_ROW_SIZE-2 ) >> 1 ) - 1;
+
+    add_message( "Player %d/%d, Scol = %d, Srow = %d", get_player_col(), get_player_row(), scol, srow );
+
+    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
+    {
+        // If this entity is renderable
+        if ( ( world.mask[ entity ] & mask ) == mask )
+        {
+add_message( "Entity %d loc %d/%d", entity, world.location[ entity ].col, world.location[entity].row);
+            // If this entity's location is in the current map view
+            if ( world.location[ entity ].col >= scol                   &&
+                 world.location[ entity ].col < scol+MAPWIN_COL_SIZE-2  &&
+                 world.location[ entity ].row >= srow                   &&
+                 world.location[ entity ].row < srow+MAPWIN_ROW_SIZE-2 )
+            {
+//                put_char( scol - world.location[ entity ].col,
+//                          srow - world.location[ entity ].row,
+                put_char( world.location[ entity ].col+scol,
+                          world.location[ entity ].row+srow,
+                          world.render[ entity ].cell,
+                          world.render[ entity ].attr );
+            }
+        }
+    }
 
     return;
 }

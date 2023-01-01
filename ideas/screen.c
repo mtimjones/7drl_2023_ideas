@@ -1,4 +1,5 @@
 #include "headers.h"
+#include "ces.h"
 
 WINDOW *mapwin, *invwin, *statswin, *actionswin, *contextwin, *logwin;
 
@@ -17,7 +18,7 @@ static void init_colors( void )
    init_pair( COLOR_KINETIC, COLOR_BLACK, COLOR_GREEN );
    init_pair( COLOR_LABEL, COLOR_CYAN, COLOR_BLACK );
    init_pair( COLOR_BORG, COLOR_BLACK, COLOR_WHITE );
-   init_pair( COLOR_WRECK, COLOR_BLACK, COLOR_YELLOW );
+   init_pair( COLOR_WRECK, COLOR_YELLOW, COLOR_BLACK );
    init_pair( COLOR_PLANET, COLOR_BLACK, COLOR_MAGENTA );
 
    return;
@@ -236,6 +237,11 @@ int get_user_char( void )
    return 0;
 }
 
+void put_char( int col, int row, char cell, unsigned int attr )
+{
+   mvwaddch( mapwin, row+1, col+1, cell | attr );
+}
+
 void render_map( void )
 {
    int row, col;
@@ -256,7 +262,7 @@ void render_map( void )
 
    }
 
-   // Render the entities that are visible in the current map.
+   render_system( ); 
 
    mvwaddch( mapwin, map_row_midpoint+1, map_col_midpoint+1, '@' | A_BOLD );
 

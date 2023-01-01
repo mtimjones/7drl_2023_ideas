@@ -41,6 +41,7 @@ void get_mouse_pos( unsigned int *col, unsigned int *row );
 void set_context( char *line );
 void clear_context( void );
 void emit_help( );
+void put_char( int col, int row, char cell, unsigned int attr );
 void render_map( void );
 
 typedef void (*render_callback)( int col, int row, char cell, int attr );

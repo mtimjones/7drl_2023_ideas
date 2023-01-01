@@ -53,7 +53,7 @@ typedef struct component_target
 typedef struct render
 {
    char cell;
-   int  color;
+   int  attr;
 } component_render_t;
 
 typedef enum
@@ -100,6 +100,7 @@ typedef struct World
 } World;
 
 void init_entities( );
+void render_system( );
 
 #endif // __COMPONENT_H__
 

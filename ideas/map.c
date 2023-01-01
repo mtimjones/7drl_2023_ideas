@@ -102,20 +102,6 @@ bool is_map_empty( int col, int row )
    return map[ col ][ row ].type == type_uninit;
 }
 
-static void place_wreck( int col, int row )
-{
-   do 
-   {
-      col += getRand( MAPWIN_COL_SIZE );
-      row += getRand( MAPWIN_ROW_SIZE );
-   } 
-   while ( !map[ col ][ row ].type == type_uninit );
-
-   set_cell_static( col, row, '%', false );
-
-   return;
-}
-
 static void place_gas_cloud( int col, int row )
 {
    int c, r, l;
@@ -212,11 +198,6 @@ static void init_map_assets( void )
          // Place wrecks
          if ( !( ( sector_row == 1 ) && ( ( sector_col == 0 ) || ( sector_col == MAP_MAX_NCOLS-1 ) ) ) )
          {
-            if ( getSRand( ) > 0.7 )
-            {
-               place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
-            }
-
             place_gas_cloud( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
          }
       }
