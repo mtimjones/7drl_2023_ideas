@@ -19,7 +19,7 @@ int get_entity_at( int col, int row )
         }
     }
 
-    return entity;
+    return NO_ENTITY;
 }
 
 int get_free_entity( void )
@@ -48,7 +48,7 @@ void find_empty_space( int col_sec, int row_sec, int *col, int *row )
         *col = col_sec * MAPWIN_COL_SIZE + getRand( MAPWIN_COL_SIZE );
         *row = row_sec * MAPWIN_ROW_SIZE * getRand( MAPWIN_ROW_SIZE );
 
-        if ( is_map_empty( *col, *row ) && get_entity_at( *col, *row ) == MAX_ENTITIES )
+        if ( is_map_empty( *col, *row ) && get_entity_at( *col, *row ) == NO_ENTITY )
         {
             break;
         }
@@ -57,13 +57,10 @@ void find_empty_space( int col_sec, int row_sec, int *col, int *row )
     return;
 }
 
-void create_wreck_entity( int resources )
+void create_wreck_entity( int col, int row, int resources )
 {
-    int col, row, entity;
+    int entity;
 
-    // Find an empty spot within this sector
-    find_empty_space( getRand( MAP_SEC_NCOLS ), getRand( MAP_SEC_NROWS ), &col, &row );
-    
     add_message(" Added wreck at %d, %d", col, row );
 
     entity = get_free_entity( );
@@ -74,8 +71,8 @@ void create_wreck_entity( int resources )
 
     world.resources[ entity ].value = resources;
 
-    world.location[ entity ].col = 0; //col;
-    world.location[ entity ].row = 0; //row;
+    world.location[ entity ].col = col;
+    world.location[ entity ].row = row;
 
     set_cell_entity( world.location[ entity ].col, world.location[ entity ].row, entity );
 
@@ -121,8 +118,6 @@ void init_entities( void )
     {
         destroy_entity( entity );
     }
-
-    create_wreck_entity( 5 );
 
     return;
 }

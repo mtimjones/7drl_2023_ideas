@@ -115,7 +115,21 @@ chtype get_cell( int col, int row )
 
 bool is_map_empty( int col, int row )
 {
-   return map[ col ][ row ].type == type_uninit;
+   return valid_map_location( col, row) && map[ col ][ row ].type == type_uninit;
+}
+
+static void place_wreck( int col, int row )
+{
+    do 
+    {
+       col += getRand( MAPWIN_COL_SIZE );
+       row += getRand( MAPWIN_ROW_SIZE );
+    } 
+    while ( !map[ col ][ row ].type == type_uninit );
+
+    create_wreck_entity( col, row, get_wreck_resources( get_level( ) ) );
+
+    return;
 }
 
 static void place_gas_cloud( int col, int row )
@@ -206,23 +220,42 @@ static void place_map_entry_exit( void )
 
 static void init_map_assets( void )
 {
-   for ( int sector_row = 0 ; sector_row < MAP_SEC_NROWS ; sector_row++ )
-   {
-      for ( int sector_col = 0 ; sector_col < MAP_SEC_NCOLS ; sector_col++ )
-      {
-         // Don't place anything in the first an last col sector in the middle row sector
-         // Place wrecks
-         if ( !( ( sector_row == 1 ) && ( ( sector_col == 0 ) || ( sector_col == MAP_MAX_NCOLS-1 ) ) ) )
-         {
-            place_gas_cloud( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
-         }
-      }
 
-   }
+    // Place wrecks randomly in the level.
+    int wrecks = get_wreck_count( get_level( ) );
 
-   place_map_entry_exit( );
+    while ( wrecks )
+    {
+        int sector_row = getRand( MAP_SEC_NROWS );
+        int sector_col = getRand( MAP_SEC_NCOLS );
 
-   return;
+        if ( !( ( sector_row == 1 ) && ( ( sector_col == 0 ) ) ) )
+        {
+            place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
+            wrecks--;
+        }
+    }
+
+    // Place wrecks randomly in the level.
+    for ( int sector_row = 0 ; sector_row < MAP_SEC_NROWS ; sector_row++ )
+    {
+        for ( int sector_col = 0 ; sector_col < MAP_SEC_NCOLS ; sector_col++ )
+        {
+            // Don't place anything in the first an last col sector in the middle row sector
+            // Place wrecks
+            if ( !( (sector_row == 1) && ( (sector_col == 0) || (sector_col == MAP_MAX_NCOLS-1) ) ) )
+            {
+               place_gas_cloud( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
+            }
+        }
+
+    }
+
+
+
+    place_map_entry_exit( );
+
+    return;
 }
 
 void init_map( void )

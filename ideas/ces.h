@@ -78,6 +78,8 @@ typedef enum
 #define NUMBER_OF_PLANETS     6
 #define NUMBER_OF_STARBASES   1
 
+#define NO_ENTITY            -1
+
 #define MAX_ENTITIES \
             ( NUMBER_OF_BORG + NUMBER_OF_WRECKS + NUMBER_OF_DRONES + \
               NUMBER_OF_PLANETS + NUMBER_OF_STARBASES )
@@ -101,6 +103,7 @@ typedef struct World
 
 void init_entities( );
 chtype get_entity_render( int entity );
+void   create_wreck_entity( int col, int row, int resources );
 
 #endif // __COMPONENT_H__
 

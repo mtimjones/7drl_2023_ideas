@@ -133,8 +133,6 @@ void init_map( void );
 #define COLOR_WRECK     6
 #define COLOR_PLANET    7
 
-#define NO_ENTITY      -1
-
 chtype get_cell( int col, int row );
 bool passable( int col, int row );
 bool valid_map_location( int col, int row );
@@ -211,6 +209,21 @@ void init_player( void );
 int get_player_col( void );
 int get_player_row( void );
 void player_move( int row, int col );
+
+//---------------------------------------------------------------
+// Levels API
+//---------------------------------------------------------------
+
+int  get_level( void );
+void inc_level( void );
+
+unsigned int get_wreck_count( int level );
+unsigned int get_wreck_resources( int level );
+unsigned int get_planet_count( int level );
+unsigned int get_planet_resources( int level );
+unsigned int get_gas_cloud_rays( int level );
+unsigned int get_gas_cloud_ray_len( int level );
+
 
 //---------------------------------------------------------------
 // Rand API
