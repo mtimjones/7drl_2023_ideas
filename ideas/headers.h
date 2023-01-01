@@ -133,13 +133,14 @@ void init_map( void );
 #define COLOR_WRECK     6
 #define COLOR_PLANET    7
 
-char get_cell( int col, int row );
+#define NO_ENTITY      -1
 
+chtype get_cell( int col, int row );
 bool passable( int col, int row );
-
 bool valid_map_location( int col, int row );
-
 bool is_map_empty( int col, int row );
+void set_cell_entity( int col, int row, int entity );
+void clear_cell_entity( int col, int row );
 
 #define MAX_STATES 8
 
@@ -185,7 +186,7 @@ typedef struct
    bool passable;
    // bool visible; // Computed dynamically
 
-   // entity_id_t entity; // handled dynamically with a rendering order.
+   int entity; // Entity here or -1 for none.
 
 } cell_t;
 

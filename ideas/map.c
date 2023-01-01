@@ -1,4 +1,5 @@
 #include "headers.h"
+#include "ces.h"
 
 cell_t map[ MAP_MAX_NCOLS ][ MAP_MAX_NROWS ];
 
@@ -16,11 +17,22 @@ void set_cell_passable( int col, int row, bool passable )
    map[ col ][ row ].passable = passable;
 }
 
+void set_cell_entity( int col, int row, int entity )
+{
+   map[ col ][ row ].entity = entity;
+}
+
+void clear_cell_entity( int col, int row )
+{
+   map[ col ][ row ].entity = NO_ENTITY;
+}
+
 static void set_cell_uninit( int col, int row )
 {
    map[ col ][ row ].type = type_uninit;
    map[ col ][ row ].location.col = col;
    map[ col ][ row ].location.row = row;
+   map[ col ][ row ].entity = NO_ENTITY;
    map[ col ][ row ].passable = true;
 }
 
@@ -55,15 +67,19 @@ static void set_cell_dynamic( int col, int row, int state_cnt, char *states, int
 bool passable( int col, int row )
 {
    if ( col < 0 || col > MAP_MAX_NCOLS-2 || row < 0 || row > MAP_MAX_NROWS-2 ) return false;
-   return map[ col ][ row ].passable;
+   return ( map[ col ][ row ].passable && map[ col ][ row ].entity == NO_ENTITY );
 }
 
-char get_cell( int col, int row )
+chtype get_cell( int col, int row )
 {
    if ( !valid_map_location( col, row ) )
    {
       // Void space (outside of the map).
       return '~';
+   }
+   else if ( map[ col ][ row ].entity != NO_ENTITY )
+   {
+      return get_entity_render( map[ col ][ row ].entity );
    }
    else if ( map[ col ][ row ].type == type_static )
    {

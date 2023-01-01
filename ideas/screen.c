@@ -262,8 +262,7 @@ void render_map( void )
 
    }
 
-   render_system( ); 
-
+   // replace this with new entity renderig soon.
    mvwaddch( mapwin, map_row_midpoint+1, map_col_midpoint+1, '@' | A_BOLD );
 
    return;

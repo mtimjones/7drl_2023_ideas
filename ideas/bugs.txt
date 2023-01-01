@@ -1,3 +1,5 @@
 1) Move while paused.
-2) render_system is not yet working properly (window vs. map coords).
+** 2) render_system is not yet working properly (window vs. map coords).
+3) random hang on start.
+4) 
 

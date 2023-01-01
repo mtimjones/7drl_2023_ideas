@@ -100,7 +100,7 @@ typedef struct World
 } World;
 
 void init_entities( );
-void render_system( );
+chtype get_entity_render( int entity );
 
 #endif // __COMPONENT_H__
 
