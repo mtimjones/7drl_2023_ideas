@@ -16,13 +16,13 @@ static void init_colors( void )
 
    start_color( );
 
-   init_pair( COLOR_ENERGY, COLOR_BLACK, COLOR_RED );
-   init_pair( COLOR_PLASMA, COLOR_BLACK, COLOR_BLUE );
-   init_pair( COLOR_KINETIC, COLOR_BLACK, COLOR_GREEN );
+   init_pair( COLOR_ENERGY, COLOR_RED, COLOR_BLACK );
+   init_pair( COLOR_PLASMA, COLOR_BLUE, COLOR_BLACK );
+   init_pair( COLOR_KINETIC, COLOR_GREEN, COLOR_BLACK );
    init_pair( COLOR_LABEL, COLOR_CYAN, COLOR_BLACK );
-   init_pair( COLOR_BORG, COLOR_BLACK, COLOR_WHITE );
+   init_pair( COLOR_BORG, COLOR_WHITE, COLOR_BLACK );
    init_pair( COLOR_WRECK, COLOR_YELLOW, COLOR_BLACK );
-   init_pair( COLOR_PLANET, COLOR_BLACK, COLOR_MAGENTA );
+   init_pair( COLOR_PLANET, COLOR_MAGENTA, COLOR_BLACK );
 
    return;
 }

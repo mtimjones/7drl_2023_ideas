@@ -139,28 +139,33 @@ chtype get_entity_render( int entity )
     return world.render[ entity ].cell | world.render[ entity ].attr;
 }
 
-#if 0
 void create_player_entity( )
 {
-    int col, row, entity;
+    int entity;
 
     entity = get_free_entity( );
 
     // Create the player entity
     world.id[ entity ] = entity;
     world.mask[ entity ] = COMPONENT_LOCATION | COMPONENT_USER_INPUT | COMPONENT_HEALTH |
-                           COMPONENT_ATTACK | COMPONENT_MOVEMENT | COMPONENT_TARGET |
-                           COMPONENT_RENDER;
+                           COMPONENT_ATTACK | COMPONENT_MOVEMENT |
+                           COMPONENT_RENDER | COMPONENT_PLAYER;
 
-    world.location[ entity ].col = 
-    world.location[ entity ].row =
+    world.location[ entity ].col = get_player_col( );
+    world.location[ entity ].row = get_player_row( );
 
-    world.health[ entity ].value =
+    world.xp[ entity ].level = 1;
 
+    world.health[ entity ].value = 5;
+    world.health[ entity ].max_health = 5;
+
+    world.render[ entity ].cell = '@';
     world.render[ entity ].attr = COLOR_PAIR( COLOR_BORG ) | A_BOLD;
 
+    set_cell_entity( world.location[ entity ].col, world.location[ entity ].row, entity );
 
-#endif
+    return;
+}
 
 void init_entities( void )
 {
@@ -171,6 +176,7 @@ void init_entities( void )
         destroy_entity( entity );
     }
 
+    create_player_entity( );
     create_sdrone_entity( 2, 1, 4, 1 );
 
     return;
@@ -178,6 +184,12 @@ void init_entities( void )
 
 bool get_player_inv( int entity, char *object, char *state, int *lvl, int *hp, int *max_hp )
 {
+    bool status = false;
+
+    *lvl = world.xp[ entity ].level;
+    *hp  = world.health[ entity ].value;
+    *max_hp = world.health[ entity ].max_health;
+
     // TODO: Add player, combat drone, etc.
     if ( world.mask[ entity ] & COMPONENT_SDRONE )
     {
@@ -192,14 +204,17 @@ bool get_player_inv( int entity, char *object, char *state, int *lvl, int *hp, i
             strcpy( state, "Docked    " );
         }
 
-        *lvl = world.xp[ entity ].level;
-        *hp  = world.health[ entity ].value;
-        *max_hp = world.health[ entity ].max_health;
+        status = true;
+    }
+    else if ( world.mask[ entity ] & COMPONENT_PLAYER )
+    {
+        strcpy( object, "Borg      " );
+        strcpy( state, "Operating " );
 
-        return true;
+        status = true;
     }
 
-    return false;
+    return status;
 }
 
 void attack_system( void  )
