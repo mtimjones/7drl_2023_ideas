@@ -5,6 +5,9 @@ WINDOW *mapwin, *invwin, *statswin, *actionswin, *contextwin, *logwin;
 
 #define win_redisplay( win ) { touchwin( win ); wrefresh( win ); }
 
+void render_map( void );
+void render_inv( void );
+
 char context[ CONTEXTWIN_COL_SIZE+1 ];
 
 static void init_colors( void )
@@ -58,7 +61,7 @@ void win_update( )
    wattron( invwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
    mvwprintw( invwin, 0, 2, " Inventory (dock) " );
    wattroff( invwin, A_BOLD | COLOR_PAIR(COLOR_LABEL) );
-   mvwprintw( invwin, 1, 2, "Object....  State.....  Sts Lvl  NRG " );
+   mvwprintw( invwin, 1, 2, "Object.... State..... Lvl HP Max " );
 
    statswin = newwin( STATSWIN_ROW_SIZE, STATSWIN_COL_SIZE,
                        STATSWIN_ROW_START, STATSWIN_COL_START );
@@ -135,6 +138,7 @@ void win_refresh( void )
    render_map( );
    win_redisplay( mapwin );
 
+   render_inv( );
    win_redisplay( invwin );
 
    if ( get_pause_state( ) )
@@ -267,3 +271,24 @@ void render_map( void )
 
    return;
 }
+
+void render_inv( void )
+{
+   char object[11];
+   char state [11];
+   int  level, hp, max_hp;
+
+   for ( int i = 0 ; i < 17 /* TODO */ ; i++ )
+   {
+      bool result = get_player_inv( i, object, state, &level, &hp, &max_hp );
+
+      if ( result ) 
+      {
+         mvwprintw( invwin, 2+i, 2, "%10s %10s %3d %2d %3d", object, state, level, hp, max_hp );
+
+      }
+   }
+
+   return;
+}
+

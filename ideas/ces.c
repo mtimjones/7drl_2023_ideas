@@ -61,8 +61,6 @@ void create_wreck_entity( int col, int row, int resources )
 {
     int entity;
 
-    add_message(" Added wreck at %d, %d", col, row );
-
     entity = get_free_entity( );
     
     // Create a wreck entity
@@ -78,6 +76,60 @@ void create_wreck_entity( int col, int row, int resources )
 
     world.render[ entity ].cell = '%';
     world.render[ entity ].attr = COLOR_PAIR( COLOR_WRECK );
+
+    return;
+}
+
+void create_cedrone_entity( int col, int row, int resources, int health, int speed, int attack, int xp )
+{
+   (void)col; (void)row; (void)resources; (void)health; (void)speed; (void)attack; (void)xp;
+}
+
+void set_entity_render( int entity )
+{
+    world.mask[ entity ] |= COMPONENT_RENDER;
+}
+
+void reset_entity_render( int entity )
+{
+    world.mask[ entity ] &= ~COMPONENT_RENDER;
+}
+
+void create_sdrone_entity( int health, int speed, int max_capacity, int scav_speed )
+{
+    int entity;
+
+    entity = get_free_entity( );
+    
+    // Create a wreck entity
+    world.id[ entity ] = entity;
+    world.mask[ entity ] = COMPONENT_SDRONE | COMPONENT_LOCATION | COMPONENT_HEALTH | COMPONENT_TARGET;
+
+    // COMPONENT_RENDER is added once the drone is undocked.
+
+    world.location[ entity ].col = 0;
+    world.location[ entity ].row = 0;
+
+    world.health[ entity ].value = health;
+    world.health[ entity ].max_health = health;
+
+    world.movement[ entity ].speed = speed;
+    world.movement[ entity ].type = TYPE_TARGET;
+    world.movement[ entity ].state = 0; // TODO
+
+    world.health[ entity ].value = health;
+    world.health[ entity ].max_health = health;
+
+    world.xp[ entity ].level = 1;
+
+    world.scavdrone[ entity ].capacity = 0;
+    world.scavdrone[ entity ].max_capacity = max_capacity;
+    world.scavdrone[ entity ].scav_speed = scav_speed;
+
+    set_cell_entity( world.location[ entity ].col, world.location[ entity ].row, entity );
+
+    world.render[ entity ].cell = 'S';
+    world.render[ entity ].attr = 0;
 
     return;
 }
@@ -119,7 +171,35 @@ void init_entities( void )
         destroy_entity( entity );
     }
 
+    create_sdrone_entity( 2, 1, 4, 1 );
+
     return;
+}
+
+bool get_player_inv( int entity, char *object, char *state, int *lvl, int *hp, int *max_hp )
+{
+    // TODO: Add player, combat drone, etc.
+    if ( world.mask[ entity ] & COMPONENT_SDRONE )
+    {
+        strcpy( object, "Scavenger " );
+
+        if ( world.mask[ entity ] & COMPONENT_RENDER )
+        {
+            strcpy( state, "Undocked  " );
+        }
+        else
+        {
+            strcpy( state, "Docked    " );
+        }
+
+        *lvl = world.xp[ entity ].level;
+        *hp  = world.health[ entity ].value;
+        *max_hp = world.health[ entity ].max_health;
+
+        return true;
+    }
+
+    return false;
 }
 
 void attack_system( void  )

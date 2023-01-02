@@ -12,6 +12,7 @@ typedef struct component_location
 typedef struct component_health
 {
     int value;
+    int max_health;
 } component_health_t;
 
 typedef struct component_attack
@@ -35,6 +36,8 @@ typedef struct component_movement
 typedef struct component_xp
 {
     int value;
+    int xp2nextlevel;
+    int level;
 } component_xp_t;
 
 typedef struct component_resources
@@ -50,24 +53,36 @@ typedef struct component_target
     int entity_id;
 } component_target_t;
 
-typedef struct render
+typedef struct component_render
 {
    char cell;
    int  attr;
 } component_render_t;
 
+typedef struct component_sdrone
+{
+   int capacity;
+   int max_capacity;
+   int scav_speed;
+} component_sdrone_t;
+
 typedef enum
 {
     COMPONENT_NONE       = 0,
-    COMPONENT_USER_INPUT = 1 << 1,
-    COMPONENT_LOCATION   = 1 << 2,
-    COMPONENT_HEALTH     = 1 << 3,
-    COMPONENT_ATTACK     = 1 << 4,
-    COMPONENT_MOVEMENT   = 1 << 5,
-    COMPONENT_XP         = 1 << 6,
-    COMPONENT_RESOURCES  = 1 << 7,
-    COMPONENT_TARGET     = 1 << 8,
-    COMPONENT_RENDER     = 1 << 9,
+    COMPONENT_USER_INPUT = 1 <<  1,
+    COMPONENT_LOCATION   = 1 <<  2,
+    COMPONENT_HEALTH     = 1 <<  3,
+    COMPONENT_ATTACK     = 1 <<  4, // Enemy Combat Drone Attack
+    COMPONENT_MOVEMENT   = 1 <<  5,
+    COMPONENT_XP         = 1 <<  6,
+    COMPONENT_RESOURCES  = 1 <<  7,
+    COMPONENT_TARGET     = 1 <<  8,
+    COMPONENT_RENDER     = 1 <<  9,
+    COMPONENT_PLAYER     = 1 << 10,
+    COMPONENT_CDRONE     = 1 << 11, // Combat Drone
+    COMPONENT_MDRONE     = 1 << 12, // Mining Drone
+    COMPONENT_SDRONE     = 1 << 13, // Scavenger Drone
+    COMPONENT_CEDRONE    = 1 << 14, // Combat Enemy Drone
     // ...
 
 } Component;
@@ -98,12 +113,14 @@ typedef struct World
     component_resources_t  resources [ MAX_ENTITIES ];
     component_target_t     target    [ MAX_ENTITIES ];
     component_render_t     render    [ MAX_ENTITIES ];
+    component_sdrone_t     scavdrone [ MAX_ENTITIES ];
 
 } World;
 
 void init_entities( );
 chtype get_entity_render( int entity );
 void   create_wreck_entity( int col, int row, int resources );
+bool   get_player_inv( int entity, char *object, char *state, int *level, int *hp, int *max_hp );
 
 #endif // __COMPONENT_H__
 
