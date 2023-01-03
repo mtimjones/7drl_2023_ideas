@@ -151,8 +151,8 @@ void create_player_entity( )
                            COMPONENT_ATTACK | COMPONENT_MOVEMENT |
                            COMPONENT_RENDER | COMPONENT_PLAYER;
 
-    world.location[ entity ].col = get_player_col( );
-    world.location[ entity ].row = get_player_row( );
+    world.location[ entity ].col = 24;
+    world.location[ entity ].row = 43;
 
     world.xp[ entity ].level = 1;
 
@@ -165,6 +165,26 @@ void create_player_entity( )
     set_cell_entity( world.location[ entity ].col, world.location[ entity ].row, entity );
 
     return;
+}
+
+int get_player_col( void )
+{
+    return world.location[ 0 ].col;
+}
+
+int get_player_row( void )
+{
+    return world.location[ 0 ].row;
+}
+
+void set_player_col( int col )
+{
+    world.location[ 0 ].col = col;
+}
+
+void set_player_row( int row )
+{
+    world.location[ 0 ].row = row;
 }
 
 void init_entities( void )

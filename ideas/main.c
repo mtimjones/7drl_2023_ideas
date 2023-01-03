@@ -14,8 +14,6 @@ int main( int argc, char *argv[] )
 
    init_map( );
 
-   init_player( );
-
    init_entities( );
 
    win_update( );

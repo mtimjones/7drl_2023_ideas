@@ -204,9 +204,10 @@ void inv_button_press( int col, int row, int state );
 // Player API
 //---------------------------------------------------------------
 
-void init_player( void );
 int get_player_col( void );
 int get_player_row( void );
+void set_player_col( int col );
+void set_player_row( int row );
 void player_move( int row, int col );
 
 //---------------------------------------------------------------

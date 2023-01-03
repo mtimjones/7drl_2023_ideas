@@ -1,30 +1,19 @@
 #include "headers.h"
 
-location_t player_loc;
-
-void init_player( void )
-{
-   player_loc.col = 24;
-   player_loc.row = 43;
-}
-
-int get_player_col( void )
-{
-   return player_loc.col;
-}
-
-int get_player_row( void )
-{
-   return player_loc.row;
-}
-
 void player_move( int rowd, int cold )
 {
+
+   location_t player_loc;
+
+   player_loc.col = get_player_col( );
+   player_loc.row = get_player_row( );
 
    if ( !passable( player_loc.col - cold, player_loc.row - rowd ) )
    {
       return;
    }
+
+   clear_cell_entity( player_loc.col, player_loc.row );
 
    player_loc.row -= rowd;
    player_loc.col -= cold;
@@ -45,6 +34,11 @@ void player_move( int rowd, int cold )
    {
       player_loc.col = MAP_MAX_NCOLS - 1;
    }
+
+   set_player_col( player_loc.col );
+   set_player_row( player_loc.row );
+
+   set_cell_entity( player_loc.col, player_loc.row, 0 );
 
    return;
 }

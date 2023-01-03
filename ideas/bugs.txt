@@ -1,5 +1,6 @@
 1) Move while paused.
 ** 2) render_system is not yet working properly (window vs. map coords).
 3) random hang on start.
-4) Need to merge player entity location with older location method.
+** 4) Need to merge player entity location with older location method.
+
 

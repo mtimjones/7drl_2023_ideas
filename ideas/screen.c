@@ -267,7 +267,7 @@ void render_map( void )
    }
 
    // replace this with new entity renderig soon.
-   mvwaddch( mapwin, map_row_midpoint+1, map_col_midpoint+1, '@' | A_BOLD );
+//   mvwaddch( mapwin, map_row_midpoint+1, map_col_midpoint+1, '@' | A_BOLD );
 
    return;
 }
