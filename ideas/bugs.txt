@@ -2,5 +2,6 @@
 ** 2) render_system is not yet working properly (window vs. map coords).
 3) random hang on start.
 ** 4) Need to merge player entity location with older location method.
-
+** 5) Another Borg appeared in the map...
+** 6) Wrecks are not showing up...
 

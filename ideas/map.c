@@ -125,7 +125,7 @@ static void place_wreck( int col, int row )
        col += getRand( MAPWIN_COL_SIZE );
        row += getRand( MAPWIN_ROW_SIZE );
     } 
-    while ( !map[ col ][ row ].type == type_uninit );
+    while ( ! ( map[ col ][ row ].type == type_uninit ) && ( map[ col ][ row ].entity == NO_ENTITY ) );
 
     create_wreck_entity( col, row, get_wreck_resources( get_level( ) ) );
 
@@ -229,11 +229,8 @@ static void init_map_assets( void )
         int sector_row = getRand( MAP_SEC_NROWS );
         int sector_col = getRand( MAP_SEC_NCOLS );
 
-        if ( !( ( sector_row == 1 ) && ( ( sector_col == 0 ) ) ) )
-        {
-            place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
-            wrecks--;
-        }
+        place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
+        wrecks--;
     }
 
     // Place wrecks randomly in the level.

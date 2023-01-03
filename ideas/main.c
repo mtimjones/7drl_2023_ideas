@@ -12,9 +12,10 @@ int main( int argc, char *argv[] )
 
    win_startup( );
 
-   init_map( );
-
+   // Must be before init_map() due to entity allocation (Borg is always 0).
    init_entities( );
+
+   init_map( );
 
    win_update( );
 

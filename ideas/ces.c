@@ -72,7 +72,7 @@ void create_wreck_entity( int col, int row, int resources )
     world.location[ entity ].col = col;
     world.location[ entity ].row = row;
 
-    set_cell_entity( world.location[ entity ].col, world.location[ entity ].row, entity );
+    set_cell_entity( col, row, entity );
 
     world.render[ entity ].cell = '%';
     world.render[ entity ].attr = COLOR_PAIR( COLOR_WRECK );
