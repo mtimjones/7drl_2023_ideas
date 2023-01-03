@@ -101,9 +101,10 @@ void create_sdrone_entity( int health, int speed, int max_capacity, int scav_spe
 
     entity = get_free_entity( );
     
-    // Create a wreck entity
+    // Create a scaveger drone entity
     world.id[ entity ] = entity;
-    world.mask[ entity ] = COMPONENT_SDRONE | COMPONENT_LOCATION | COMPONENT_HEALTH | COMPONENT_TARGET;
+    world.mask[ entity ] = COMPONENT_FRIENDLY | COMPONENT_SDRONE | COMPONENT_LOCATION | 
+                           COMPONENT_HEALTH   | COMPONENT_TARGET;
 
     // COMPONENT_RENDER is added once the drone is undocked.
 
@@ -136,7 +137,17 @@ void create_sdrone_entity( int health, int speed, int max_capacity, int scav_spe
 
 chtype get_entity_render( int entity )
 {
-    return world.render[ entity ].cell | world.render[ entity ].attr;
+    chtype ch;
+    if ( world.mask[ entity ] & COMPONENT_RENDER )
+    {
+        ch = world.render[ entity ].cell | world.render[ entity ].attr;
+    }
+    else
+    {
+        ch = ' ';
+    }
+
+    return ch;
 }
 
 void create_player_entity( )
@@ -228,7 +239,7 @@ bool get_player_inv( int entity, char *object, char *state, int *lvl, int *hp, i
     }
     else if ( world.mask[ entity ] & COMPONENT_PLAYER )
     {
-        strcpy( object, "Borg      " );
+        strcpy( object, "Borg [@]  " );
         strcpy( state, "Operating " );
 
         status = true;

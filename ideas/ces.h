@@ -69,20 +69,21 @@ typedef struct component_sdrone
 typedef enum
 {
     COMPONENT_NONE       = 0,
-    COMPONENT_USER_INPUT = 1 <<  1,
-    COMPONENT_LOCATION   = 1 <<  2,
-    COMPONENT_HEALTH     = 1 <<  3,
-    COMPONENT_ATTACK     = 1 <<  4, // Enemy Combat Drone Attack
-    COMPONENT_MOVEMENT   = 1 <<  5,
-    COMPONENT_XP         = 1 <<  6,
-    COMPONENT_RESOURCES  = 1 <<  7,
-    COMPONENT_TARGET     = 1 <<  8,
-    COMPONENT_RENDER     = 1 <<  9,
-    COMPONENT_PLAYER     = 1 << 10,
-    COMPONENT_CDRONE     = 1 << 11, // Combat Drone
-    COMPONENT_MDRONE     = 1 << 12, // Mining Drone
-    COMPONENT_SDRONE     = 1 << 13, // Scavenger Drone
-    COMPONENT_CEDRONE    = 1 << 14, // Combat Enemy Drone
+    COMPONENT_USER_INPUT = 1 <<  0,
+    COMPONENT_LOCATION   = 1 <<  1,
+    COMPONENT_HEALTH     = 1 <<  2,
+    COMPONENT_ATTACK     = 1 <<  3, // Enemy Combat Drone Attack
+    COMPONENT_MOVEMENT   = 1 <<  4,
+    COMPONENT_XP         = 1 <<  5,
+    COMPONENT_RESOURCES  = 1 <<  6,
+    COMPONENT_TARGET     = 1 <<  7,
+    COMPONENT_RENDER     = 1 <<  8,
+    COMPONENT_PLAYER     = 1 <<  9,
+    COMPONENT_FRIENDLY   = 1 << 10,
+    COMPONENT_ENEMY      = 1 << 11,
+    COMPONENT_CDRONE     = 1 << 12, // Combat Drone
+    COMPONENT_MDRONE     = 1 << 13, // Mining Drone
+    COMPONENT_SDRONE     = 1 << 14, // Scavenger Drone
     // ...
 
 } Component;
