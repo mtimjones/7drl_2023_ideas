@@ -275,7 +275,7 @@ void render_inv( void )
    char state [11];
    int  level, hp, max_hp;
 
-   for ( int i = 0 ; i < 17 /* TODO */ ; i++ )
+   for ( int i = 0 ; i < INVWIN_ROW_SIZE-2 ; i++ )
    {
       bool result = get_player_inv( i, object, state, &level, &hp, &max_hp );
 

@@ -3,6 +3,7 @@
 
 int main( int argc, char *argv[] )
 {
+   static int cur_level = 0;
    (void)argc;
    (void)argv;
 
@@ -10,12 +11,11 @@ int main( int argc, char *argv[] )
 
    init_msg_log( );
 
-   win_startup( );
+   init_map( );
 
-   // Must be before init_map() due to entity allocation (Borg is always 0).
    init_entities( );
 
-   init_map( );
+   win_startup( );
 
    win_update( );
 
@@ -25,6 +25,12 @@ int main( int argc, char *argv[] )
    while ( get_game_state( ) )
    {
       unsigned long long start = getTimestamp( );
+
+      if ( cur_level == get_level( ) )
+      {
+          cur_level++;
+          // Keep player and player drones, remove everything else, then init_entities();
+      }
 
       win_refresh( );
 

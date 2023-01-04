@@ -105,6 +105,9 @@ chtype get_cell( int col, int row )
    {
       return ' ';
    }
+   else if ( map[ col ][ row ].type == type_callback )
+   {
+   }
    else
    {
       assert(0);
@@ -248,7 +251,7 @@ static void init_map_assets( void )
 
     }
 
-
+    // Render player to fix a bug.
 
     place_map_entry_exit( );
 

@@ -154,7 +154,7 @@ void create_player_entity( )
 {
     int entity;
 
-    entity = get_free_entity( );
+    entity = 0; // get_free_entity( );
 
     // Create the player entity
     world.id[ entity ] = entity;
@@ -202,7 +202,8 @@ void init_entities( void )
 {
     int entity;
 
-    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
+    // Skip entity 0 for player.
+    for ( entity = 1 ; entity < MAX_ENTITIES ; entity++ )
     {
         destroy_entity( entity );
     }
