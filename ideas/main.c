@@ -21,7 +21,7 @@ int main( int argc, char *argv[] )
 
    start_game( );
 
-   // Game loop, runs at 10ms frames.
+   // Game loop, runs at 100ms frames.
    while ( get_game_state( ) )
    {
       unsigned long long start = getTimestamp( );

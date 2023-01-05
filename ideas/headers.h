@@ -132,17 +132,16 @@ void init_map( void );
 #define COLOR_WRECK     6
 #define COLOR_PLANET    7
 
-#define MAP_CALLBACK_EXIT     1
+//#define MAP_CALLBACK_EXIT     1
 
 chtype get_cell( int col, int row );
 bool passable( int col, int row );
 bool valid_map_location( int col, int row );
-bool is_map_empty( int col, int row );
+bool is_cell_empty( int col, int row );
 void set_cell_entity( int col, int row, int entity );
 void clear_cell_entity( int col, int row );
 
-typedef void ( *mcallback_t )( int callback_index );
-void set_cell_callback( int col, int row, mcallback_t callback );
+typedef void ( *mcallback_t )( void );
 
 #define MAX_STATES 8
 
@@ -170,7 +169,8 @@ typedef struct
 
 typedef struct
 {
-  mcallback_t callback;
+   char cell;
+   mcallback_t callback;
 } map_callback_t;
 
 typedef struct

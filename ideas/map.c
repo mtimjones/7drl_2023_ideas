@@ -27,6 +27,12 @@ void clear_cell_entity( int col, int row )
    map[ col ][ row ].entity = NO_ENTITY;
 }
 
+bool is_cell_empty( int col, int row )
+{
+   return valid_map_location( col, row ) && map[ col ][ row ].type == type_uninit &&
+          map[ col ][ row ].entity == NO_ENTITY;
+}
+
 static void set_cell_uninit( int col, int row )
 {
    map[ col ][ row ].type = type_uninit;
@@ -64,6 +70,25 @@ static void set_cell_dynamic( int col, int row, int state_cnt, char *states, int
    return;
 }
 
+static void set_cell_callback( int col, int row, char cell, mcallback_t callback )
+{
+   map[ col ][ row ].type = type_callback;
+   map[ col ][ row ].location.col = col;
+   map[ col ][ row ].location.row = row;
+   map[ col ][ row ].u.callback_map.cell     = cell;
+   map[ col ][ row ].u.callback_map.callback = callback;
+   map[ col ][ row ].passable = true;
+
+   return;
+}
+
+static void change_level( void )
+{
+   add_message( "Time to exit! %d/%d", get_player_col(), get_player_row() );
+
+   return;
+}
+
 bool passable( int col, int row )
 {
    if ( col < 0 || col > MAP_MAX_NCOLS-2 || row < 0 || row > MAP_MAX_NROWS-2 ) return false;
@@ -81,58 +106,48 @@ chtype get_cell( int col, int row )
    {
       return get_entity_render( map[ col ][ row ].entity );
    }
-   else if ( map[ col ][ row ].type == type_static )
+
+   switch ( map[ col ][ row ].type )
    {
-      return map[ col ][ row ].u.static_map.cell;
-   }
-   else if ( map[ col ][ row ].type == type_dynamic )
-   {
-      if ( map[ col ][ row ].u.dynamic_map.cur_delay < map[ col ][ row ].u.dynamic_map.delay )
-      {
-         map[ col ][ row ].u.dynamic_map.cur_delay++;
-      }
-      else
-      {
-         map[ col ][ row ].u.dynamic_map.cur_delay = 0;
-         if ( ++map[ col ][ row ].u.dynamic_map.state >= map[ col ][ row ].u.dynamic_map.max_state )
+      case type_uninit:
+         return ' ';
+         break;
+
+      case type_static:
+         return map[ col ][ row ].u.static_map.cell;
+         break;
+
+      case type_dynamic:
+         if ( map[ col ][ row ].u.dynamic_map.cur_delay < map[ col ][ row ].u.dynamic_map.delay )
          {
-            map[ col ][ row ].u.dynamic_map.state = 0;
+            map[ col ][ row ].u.dynamic_map.cur_delay++;
          }
-      }
-      return map[ col ][ row ].u.dynamic_map.cells[ map[ col ][ row ].u.dynamic_map.state ];
-   }
-   else if ( map[ col ][ row ].type == type_uninit )
-   {
-      return ' ';
-   }
-   else if ( map[ col ][ row ].type == type_callback )
-   {
-   }
-   else
-   {
-      assert(0);
+         else
+         {
+            map[ col ][ row ].u.dynamic_map.cur_delay = 0;
+            if ( ++map[ col ][ row ].u.dynamic_map.state >= map[ col ][ row ].u.dynamic_map.max_state )
+            {
+               map[ col ][ row ].u.dynamic_map.state = 0;
+            }
+         }
+         return map[ col ][ row ].u.dynamic_map.cells[ map[ col ][ row ].u.dynamic_map.state ];
+         break;
+
+      case type_callback:
+         if ( get_player_col( ) == col && get_player_row( ) == row )
+         {
+             (*map[ col ][ row ].u.callback_map.callback)( );
+             return map[ col ][ row ].u.callback_map.cell;
+         }
+         break;
+
+      default:
+         assert( 0 );
+         break;
    }
    
+   // Will not reach.
    return '!';
-}
-
-bool is_map_empty( int col, int row )
-{
-   return valid_map_location( col, row) && map[ col ][ row ].type == type_uninit;
-}
-
-static void place_wreck( int col, int row )
-{
-    do 
-    {
-       col += getRand( MAPWIN_COL_SIZE );
-       row += getRand( MAPWIN_ROW_SIZE );
-    } 
-    while ( ! ( map[ col ][ row ].type == type_uninit ) && ( map[ col ][ row ].entity == NO_ENTITY ) );
-
-    create_wreck_entity( col, row, get_wreck_resources( get_level( ) ) );
-
-    return;
 }
 
 static void place_gas_cloud( int col, int row )
@@ -202,20 +217,16 @@ static void place_map_entry_exit( void )
    // Ensure that there's an open path to the star gate.
    for ( int i = 0 ; i < 20 ; i++ ) set_cell_uninit( col-i, row );
 
+   // TODO: Put [Ex/it] above gate.
    for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
-   set_cell_dynamic( col,    row, 6, ">     ", 30, true );
-   set_cell_static(  col+1,  row, ' ', false );
-   set_cell_dynamic( col+2,  row, 6, " >    ", 30, false );
-   set_cell_static(  col+3,  row, ' ', false );
-   set_cell_dynamic( col+4,  row, 6, "  >   ", 30, false );
-   set_cell_static(  col+5,  row, ' ', false );
-   set_cell_dynamic( col+6,  row, 6, "   >  ", 30, false );
-   set_cell_static(  col+7,  row, ' ', false );
-   set_cell_dynamic( col+8,  row, 6, "    > ", 30, false );
-   set_cell_static(  col+9,  row, ' ', false );
-   set_cell_dynamic( col+10, row, 6, "     >", 30, false );
-   set_cell_static(  col+11, row, ' ', false );
-   set_cell_dynamic( col+12, row, 4, "|/-\\", 10, false );
+   set_cell_callback( col-1,  row, ' ', &change_level );
+   set_cell_dynamic(  col,    row, 6, ">     ", 30, true );
+   set_cell_dynamic(  col+2,  row, 6, " >    ", 30, false );
+   set_cell_dynamic(  col+4,  row, 6, "  >   ", 30, false );
+   set_cell_dynamic(  col+6,  row, 6, "   >  ", 30, false );
+   set_cell_dynamic(  col+8,  row, 6, "    > ", 30, false );
+   set_cell_dynamic(  col+10, row, 6, "     >", 30, false );
+   set_cell_dynamic(  col+12, row, 4, "|/-\\",  10, false );
    for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
 
    return;
@@ -223,20 +234,7 @@ static void place_map_entry_exit( void )
 
 static void init_map_assets( void )
 {
-
-    // Place wrecks randomly in the level.
-    int wrecks = get_wreck_count( get_level( ) );
-
-    while ( wrecks )
-    {
-        int sector_row = getRand( MAP_SEC_NROWS );
-        int sector_col = getRand( MAP_SEC_NCOLS );
-
-        place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
-        wrecks--;
-    }
-
-    // Place wrecks randomly in the level.
+    // Place gas-clouds randomly in the level.
     for ( int sector_row = 0 ; sector_row < MAP_SEC_NROWS ; sector_row++ )
     {
         for ( int sector_col = 0 ; sector_col < MAP_SEC_NCOLS ; sector_col++ )
@@ -251,14 +249,12 @@ static void init_map_assets( void )
 
     }
 
-    // Render player to fix a bug.
-
     place_map_entry_exit( );
 
     return;
 }
 
-void init_map( void )
+static void clear_map( void )
 {
    memset( map, 0, sizeof( map ) );
 
@@ -267,8 +263,16 @@ void init_map( void )
       for ( int col = 0 ; col < MAP_MAX_NCOLS ; col++ )
       {
          set_cell_uninit( col, row );
+         clear_cell_entity( col, row );
       }
    }
+
+   return;
+}
+
+void init_map( void )
+{
+   clear_map( );
 
    init_map_assets( );
 

@@ -26,7 +26,7 @@ int get_free_entity( void )
 {
     int entity;
 
-    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
+    for ( entity = 1 ; entity < MAX_ENTITIES ; entity++ )
     {
         if ( world.mask[ entity ] == COMPONENT_NONE ) break;
     }
@@ -48,7 +48,7 @@ void find_empty_space( int col_sec, int row_sec, int *col, int *row )
         *col = col_sec * MAPWIN_COL_SIZE + getRand( MAPWIN_COL_SIZE );
         *row = row_sec * MAPWIN_ROW_SIZE * getRand( MAPWIN_ROW_SIZE );
 
-        if ( is_map_empty( *col, *row ) && get_entity_at( *col, *row ) == NO_ENTITY )
+        if ( is_cell_empty( *col, *row ) )
         {
             break;
         }
@@ -198,18 +198,58 @@ void set_player_row( int row )
     world.location[ 0 ].row = row;
 }
 
+static void place_wreck( int col, int row )
+{
+    int coff, roff;
+    do
+    {
+        coff = getRand( MAPWIN_COL_SIZE );
+        roff = getRand( MAPWIN_ROW_SIZE );
+    }
+    while( !is_cell_empty( col+coff, row+roff ) );
+
+    create_wreck_entity( col+coff, row+roff, get_wreck_resources( get_level( ) ) );
+
+    return;
+}
+
+static void create_map_entities( void )
+{
+    int wrecks = get_wreck_count( get_level( ) );
+
+    while ( wrecks )
+    {
+        int sector_col = getRand( MAP_SEC_NCOLS );
+        int sector_row = getRand( MAP_SEC_NROWS );
+
+        place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
+        wrecks--;
+    }
+
+    return;
+}
+
+static void create_entities( void )
+{
+    // Player is first (entity 0).
+    create_player_entity( );
+    create_sdrone_entity( 2, 1, 4, 1 );
+
+    create_map_entities( );
+
+    return;
+}
+
 void init_entities( void )
 {
     int entity;
 
-    // Skip entity 0 for player.
-    for ( entity = 1 ; entity < MAX_ENTITIES ; entity++ )
+    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
     {
         destroy_entity( entity );
     }
 
-    create_player_entity( );
-    create_sdrone_entity( 2, 1, 4, 1 );
+    create_entities( );
 
     return;
 }
