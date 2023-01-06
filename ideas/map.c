@@ -161,7 +161,7 @@ static void place_gas_cloud( int col, int row )
    return;
 }
 
-void clean_up_gas_clouds( void )
+static void clean_up_gas_clouds( void )
 {
    int iterations = get_gas_smoothing_iters( get_level( ) );
 
@@ -171,17 +171,25 @@ void clean_up_gas_clouds( void )
       {
          for ( int col = 1 ; col < MAP_MAX_NCOLS-2 ; col++ )
          {
+            unsigned int count = 0;
+            for ( int r = -1 ; r < 2 ; r++ )
+            {
+               for ( int c = -1 ; c < 2 ; c++ )
+               {
+                  if ( get_cell( col+c, row+r ) == '#' ) count++;
+               }
+            }
+
             if ( get_cell( col, row ) == '#' )
             {
-               unsigned int count = 0;
-               for ( int r = -1 ; r < 2 ; r++ )
-               {
-                  for ( int c = -1 ; c < 2 ; c++ )
-                  {
-                     if ( get_cell( col+c, row+r ) == '#' ) count++;
-                  }
-               }
                if ( count <= get_gas_smoothing_param( get_level( ) ) ) set_cell_uninit( col, row );
+            }
+            else if ( get_cell( col, row ) == ' ' )
+            {
+               if ( count == 8 )
+               {
+                  set_cell_static( col, row, '#', false );
+               }
             }
          }
       }

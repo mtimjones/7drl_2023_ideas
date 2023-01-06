@@ -2,16 +2,6 @@
 
 static int level = 0;
 
-int get_level( void )
-{
-    return level;
-}
-
-void inc_level( void )
-{
-    level++;
-}
-
 typedef struct
 {
     unsigned int wrecks;
@@ -28,8 +18,19 @@ typedef struct
 
 const levels_t levels[] = {
     {  4, 5, 0, 0, 20, 80, 4, 10 }, // 0
+    {  3, 3, 1, 6, 30, 60, 3, 10 }, // 1
 };
 
+
+int get_level( void )
+{
+    return level;
+}
+
+void inc_level( void )
+{
+    level++;
+}
 
 unsigned int get_wreck_count( int level )
 {
