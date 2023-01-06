@@ -177,7 +177,7 @@ The currency of the game are 'resources' which are mined from planets, scavenged
 Implants can be randomly found in enemy wrecks or containers.  These increase the player stats (attack, armor, mining, stealth, scavenging).  These should be rare (one every two or three levels), but should encourage exploration and combat.
 
 ## Map Layout
-The map is laid out in FTL style where the player starts off on the left side and must reach the exit on the right side.  The map viewport is 64x25.  The entire sector map is 3 viewports deep (75) by 9 viewports wide (9x64).  The entire sector is loaded with gas clouds and then each viewport is loaded with entities (planets, wrecks, enemies).  No entities will exist in the first player viewport (middle row, first column).  THe last middle viewport will also have nothing but the exit gate.
+The map is laid out in FTL style where the player starts off on the left side and must reach the exit on the right side.  The map viewport is 64x25.  The entire sector map is 3 viewports deep (75) by 9 viewports wide (9x64).  The entire sector is loaded with gas clouds and then each viewport is loaded with entities (planets, wrecks, enemies).  No entities will exist in the first player viewport (middle row, first column).  The last middle viewport will also have nothing but the exit gate.
 
 ## Game Start
 The player begins with the Borg, a scavenger drone, a combat drone, and a small amount of resources.
@@ -186,23 +186,37 @@ The player begins with the Borg, a scavenger drone, a combat drone, and a small 
 Fight a starbase that contains a variety of drones.  Once approached (Borg or drones) will emit numerous drones in waves to attack the Borg and its drones.  Surviving these waves results in a win.
 
 ## Prototype Plan
-- [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat.*
-- [ ] Experiment with wave-function-collapse for sector procedural generation.
+- [X] Experiment with drone attribute balancing (monte carlo simulation). mc_combat
 - [X] Intro screen.
 - [X] Build a help screen.
 - [ ] Build a 'legend' pop-up to identify the objects in the Map.
 - [X] Reuse prior 7drl map UI.
-- [ ] Implement procedural map generation.
-- [ ] Implement CES for entity scheduling.
+- [X] Implement procedural map generation (random walk with CA-based smoothing).
+- [X] Implement CES for entity scheduling.
 - [X] Implement basic UI.
+- [X] Implement resource allocator for levels.
 - [ ] Create object for entities in space (with individual/random behavior).
-- [ ] Create random wrecks (no behavior).
+- [X] Create random wrecks (no behavior).
+- [ ] Allow wrecks to be bold with resources and not-bold when empty.
 - [ ] Create scavenger drone type (scavange behavior).
 - [X] Mouse-over context development.
 - [ ] Mouse select/deselect of drone.
 - [ ] Implement scavenging drone behavior
+- [ ] Implement mining drone behavior.
+- [ ] Implement the exit gate with map reinitialization for next level.
 - [ ] Implement redocking behavior.
+- [ ] Implement recycle command and behavior.
+- [ ] Implement heal command and behavior.
 - [X] Implement the messaging API for logging.
+- [ ] Implement the pause/unpause behavior.
+- [ ] Implement the target system with a-star (usable by player and enemies).
+- [ ] Implement the movement system.
+- [ ] Implement the FOV algorithm.
+- [ ] Implement combat drone behavior.
+- [ ] Implement the variances of combat drones (different armor, attack, resources, etc.).
+- [ ] Implement enemy combat drones.
+- [ ] Implement the academy (for upgrades).
+- [ ] Implement the end-game starbase (final boss fight).
 - [ ] End-game screen (stats, etc.).
 
 Stretch Goals
@@ -210,8 +224,8 @@ Stretch Goals
 - [ ] Mini-game for hacking (assimilating) a drone in space.
 - [ ] Create OnVerb methods (OnDock, OnAttack, OnDeath, OnRecycle, etc.) to implement component behaviors.
 - [ ] Explore building a menu system (for upgrades, other selections).
-- [ ] Implement the FOV algorithm.
 - [ ] Implement a support drone which heals other drones.
+- [ ] Experiment with wave-function-collapse for sector procedural generation.
 
 ## Ncurses Debugging
 
