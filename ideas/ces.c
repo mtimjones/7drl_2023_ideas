@@ -289,8 +289,14 @@ bool get_player_inv( int entity, char *object, char *state, int *lvl, int *hp, i
     return status;
 }
 
-void attack_system( void  )
+void target_system( void  )
 {
    // iterate enemie drones.
-   //   if a drone is within X distance to player, the attack (set target to player loc).
+   //   if a drone is within X distance to player, the attack (set target to player or drone loc).
+}
+
+void move_system( void )
+{
+   // given a target exists for the entity, a* to that target and move one step.
+
 }

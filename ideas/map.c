@@ -70,25 +70,6 @@ static void set_cell_dynamic( int col, int row, int state_cnt, char *states, int
    return;
 }
 
-static void set_cell_callback( int col, int row, char cell, mcallback_t callback )
-{
-   map[ col ][ row ].type = type_callback;
-   map[ col ][ row ].location.col = col;
-   map[ col ][ row ].location.row = row;
-   map[ col ][ row ].u.callback_map.cell     = cell;
-   map[ col ][ row ].u.callback_map.callback = callback;
-   map[ col ][ row ].passable = true;
-
-   return;
-}
-
-static void change_level( void )
-{
-   add_message( "Time to exit! %d/%d", get_player_col(), get_player_row() );
-
-   return;
-}
-
 bool passable( int col, int row )
 {
    if ( col < 0 || col > MAP_MAX_NCOLS-2 || row < 0 || row > MAP_MAX_NROWS-2 ) return false;
@@ -131,14 +112,6 @@ chtype get_cell( int col, int row )
             }
          }
          return map[ col ][ row ].u.dynamic_map.cells[ map[ col ][ row ].u.dynamic_map.state ];
-         break;
-
-      case type_callback:
-         if ( get_player_col( ) == col && get_player_row( ) == row )
-         {
-             (*map[ col ][ row ].u.callback_map.callback)( );
-             return map[ col ][ row ].u.callback_map.cell;
-         }
          break;
 
       default:
@@ -188,6 +161,35 @@ static void place_gas_cloud( int col, int row )
    return;
 }
 
+void clean_up_gas_clouds( void )
+{
+   int iterations = get_gas_smoothing_iters( get_level( ) );
+
+   while ( iterations-- )
+   {
+      for ( int row = 1 ; row < MAP_MAX_NROWS-2 ; row++ )
+      {
+         for ( int col = 1 ; col < MAP_MAX_NCOLS-2 ; col++ )
+         {
+            if ( get_cell( col, row ) == '#' )
+            {
+               unsigned int count = 0;
+               for ( int r = -1 ; r < 2 ; r++ )
+               {
+                  for ( int c = -1 ; c < 2 ; c++ )
+                  {
+                     if ( get_cell( col+c, row+r ) == '#' ) count++;
+                  }
+               }
+               if ( count <= get_gas_smoothing_param( get_level( ) ) ) set_cell_uninit( col, row );
+            }
+         }
+      }
+   }
+
+   return;
+}
+
 static void place_map_entry_exit( void )
 {
    int col = 10;
@@ -219,7 +221,6 @@ static void place_map_entry_exit( void )
 
    // TODO: Put [Ex/it] above gate.
    for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
-   set_cell_callback( col-1,  row, ' ', &change_level );
    set_cell_dynamic(  col,    row, 6, ">     ", 30, true );
    set_cell_dynamic(  col+2,  row, 6, " >    ", 30, false );
    set_cell_dynamic(  col+4,  row, 6, "  >   ", 30, false );
@@ -248,6 +249,8 @@ static void init_map_assets( void )
         }
 
     }
+
+    clean_up_gas_clouds( );
 
     place_map_entry_exit( );
 

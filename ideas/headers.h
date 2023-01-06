@@ -43,8 +43,6 @@ void clear_context( void );
 void emit_help( );
 void put_char( int col, int row, char cell, unsigned int attr );
 
-typedef void (*render_callback)( int col, int row, char cell, int attr );
-
 //---------------------------------------------------------------
 // User Input API
 //---------------------------------------------------------------
@@ -132,16 +130,12 @@ void init_map( void );
 #define COLOR_WRECK     6
 #define COLOR_PLANET    7
 
-//#define MAP_CALLBACK_EXIT     1
-
 chtype get_cell( int col, int row );
 bool passable( int col, int row );
 bool valid_map_location( int col, int row );
 bool is_cell_empty( int col, int row );
 void set_cell_entity( int col, int row, int entity );
 void clear_cell_entity( int col, int row );
-
-typedef void ( *mcallback_t )( void );
 
 #define MAX_STATES 8
 
@@ -150,7 +144,6 @@ typedef enum
    type_uninit,
    type_static,
    type_dynamic,
-   type_callback,
 } type_t;
 
 typedef struct
@@ -169,12 +162,6 @@ typedef struct
 
 typedef struct
 {
-   char cell;
-   mcallback_t callback;
-} map_callback_t;
-
-typedef struct
-{
    int col;
    int row;
 } location_t;
@@ -186,7 +173,6 @@ typedef struct
    union {
       map_static_t static_map;
       map_dynamic_t dynamic_map;
-      map_callback_t callback_map;
    } u;
 
    location_t location;
@@ -235,6 +221,8 @@ unsigned int get_planet_count( int level );
 unsigned int get_planet_resources( int level );
 unsigned int get_gas_cloud_rays( int level );
 unsigned int get_gas_cloud_ray_len( int level );
+unsigned int get_gas_smoothing_param( int level );
+unsigned int get_gas_smoothing_iters( int level );
 
 
 //---------------------------------------------------------------

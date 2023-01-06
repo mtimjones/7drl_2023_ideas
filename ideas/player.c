@@ -2,7 +2,6 @@
 
 void player_move( int rowd, int cold )
 {
-
    location_t player_loc;
 
    player_loc.col = get_player_col( );
