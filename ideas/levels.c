@@ -2,6 +2,9 @@
 
 static int level = 0;
 
+// levels defines the parameters used to set each level of the game (including 
+// settings for procedural generation).
+
 typedef struct
 {
     unsigned int wrecks;
@@ -13,8 +16,6 @@ typedef struct
     unsigned int gas_smoothing_param;
     unsigned int gas_smoothing_iters;
     unsigned int gas_smoothing_filler_param;
-
-
 } levels_t;
 
 const levels_t levels[] = {
@@ -22,6 +23,7 @@ const levels_t levels[] = {
     {  3, 3, 1, 6, 30, 60, 3, 10, 8 }, // 1
 };
 
+// Accessors for the level and max-level.
 
 int get_level( void )
 {
@@ -32,6 +34,13 @@ void inc_level( void )
 {
     level++;
 }
+
+int get_max_level( void )
+{
+    return sizeof(levels)/sizeof(levels_t) - 1;
+}
+
+// Accessors for the levels data.
 
 unsigned int get_wreck_count( int level )
 {

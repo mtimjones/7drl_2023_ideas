@@ -67,6 +67,12 @@ typedef struct component_sdrone
    int scav_speed;
 } component_sdrone_t;
 
+typedef struct entity_callbacks
+{
+   void (*on_attack)( void ); // Needs params...   When this entity is attacked...
+   void (*on_death)( void );  // When this entity dies.
+} entity_callbacks_t;
+
 typedef enum
 {
     COMPONENT_NONE       = 0,
@@ -116,6 +122,7 @@ typedef struct World
     component_target_t     target    [ MAX_ENTITIES ];
     component_render_t     render    [ MAX_ENTITIES ];
     component_sdrone_t     scavdrone [ MAX_ENTITIES ];
+    entity_callbacks_t     callbacks [ MAX_ENTITIES ];
 
 } World;
 

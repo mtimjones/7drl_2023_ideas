@@ -1,6 +1,8 @@
 #include "headers.h"
 
-void player_move( int rowd, int cold )
+// Migrate this into systems for general use...
+
+void player_move( int cold, int rowd )
 {
    location_t player_loc;
 

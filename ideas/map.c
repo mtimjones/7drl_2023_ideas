@@ -7,9 +7,9 @@ location_t deltas[4] = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
 bool valid_map_location( int col, int row )
 {
-   bool not_valid = ( col < 0 || row < 0 || col >= MAP_MAX_NCOLS || row >= MAP_MAX_NROWS ) ;
+   bool valid = ( col >= 0 && row >= 0 && col < MAP_MAX_NCOLS && row < MAP_MAX_NROWS ) ;
 
-   return !not_valid;
+   return valid;
 }
 
 void set_cell_passable( int col, int row, bool passable )
@@ -203,40 +203,47 @@ static void place_map_entry_exit( void )
    int col = 10;
    int row = ( MAP_MAX_NROWS >> 1 );
 
-   // Ensure that there's an open path to the star gate.
-   for ( int i = 0 ; i < 20 ; i++ ) set_cell_uninit( col+i, row );
+   // Generate the entry gate for all but the first level.
+   if ( get_level( ) > 0 )
+   {
+      // Ensure that there's an open path to the star gate.
+      for ( int i = 0 ; i < 20 ; i++ ) set_cell_uninit( col+i, row );
 
-   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
-   set_cell_dynamic( col+1,  row, 4, "|/-\\", 50, false );
-   set_cell_dynamic( col+3,  row, 6, ">     ", 30, true );
-   set_cell_static(  col+4,  row, ' ', false );
-   set_cell_dynamic( col+5,  row, 6, " >    ", 30, false );
-   set_cell_static(  col+6,  row, ' ', false );
-   set_cell_dynamic( col+7,  row, 6, "  >   ", 30, false );
-   set_cell_static(  col+8,  row, ' ', false );
-   set_cell_dynamic( col+9,  row, 6, "   >  ", 30, false );
-   set_cell_static(  col+10, row, ' ', false );
-   set_cell_dynamic( col+11, row, 6, "    > ", 30, false );
-   set_cell_static(  col+12, row, ' ', false );
-   set_cell_dynamic( col+13, row, 6, "     >", 30, false );
-   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
+      for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
+      set_cell_dynamic( col+1,  row, 4, "|/-\\", 50, false );
+      set_cell_dynamic( col+3,  row, 6, ">     ", 30, true );
+      set_cell_static(  col+4,  row, ' ', false );
+      set_cell_dynamic( col+5,  row, 6, " >    ", 30, false );
+      set_cell_static(  col+6,  row, ' ', false );
+      set_cell_dynamic( col+7,  row, 6, "  >   ", 30, false );
+      set_cell_static(  col+8,  row, ' ', false );
+      set_cell_dynamic( col+9,  row, 6, "   >  ", 30, false );
+      set_cell_static(  col+10, row, ' ', false );
+      set_cell_dynamic( col+11, row, 6, "    > ", 30, false );
+      set_cell_static(  col+12, row, ' ', false );
+      set_cell_dynamic( col+13, row, 6, "     >", 30, false );
+      for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
+   }
 
-   col = MAP_MAX_NCOLS - 20;
-   row = ( MAP_MAX_NROWS >> 1 );
+   if ( get_level( ) != get_max_level( ) )
+   {
+      col = MAP_MAX_NCOLS - 20;
+      row = ( MAP_MAX_NROWS >> 1 );
 
-   // Ensure that there's an open path to the star gate.
-   for ( int i = 0 ; i < 20 ; i++ ) set_cell_uninit( col-i, row );
+      // Ensure that there's an open path to the star gate.
+      for ( int i = 0 ; i < 20 ; i++ ) set_cell_uninit( col-i, row );
 
-   // TODO: Put [Ex/it] above gate.
-   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
-   set_cell_dynamic(  col,    row, 6, ">     ", 30, true );
-   set_cell_dynamic(  col+2,  row, 6, " >    ", 30, false );
-   set_cell_dynamic(  col+4,  row, 6, "  >   ", 30, false );
-   set_cell_dynamic(  col+6,  row, 6, "   >  ", 30, false );
-   set_cell_dynamic(  col+8,  row, 6, "    > ", 30, false );
-   set_cell_dynamic(  col+10, row, 6, "     >", 30, false );
-   set_cell_dynamic(  col+12, row, 4, "|/-\\",  10, false );
-   for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
+      // TODO: Put [Ex/it] above gate.
+      for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row-1, '=', false );
+      set_cell_dynamic(  col,    row, 6, ">     ", 30, true );
+      set_cell_dynamic(  col+2,  row, 6, " >    ", 30, false );
+      set_cell_dynamic(  col+4,  row, 6, "  >   ", 30, false );
+      set_cell_dynamic(  col+6,  row, 6, "   >  ", 30, false );
+      set_cell_dynamic(  col+8,  row, 6, "    > ", 30, false );
+      set_cell_dynamic(  col+10, row, 6, "     >", 30, false );
+      set_cell_dynamic(  col+12, row, 4, "|/-\\",  10, false );
+      for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
+   }
 
    return;
 }
@@ -287,6 +294,7 @@ void init_map( void )
 
    init_map_assets( );
 
+#if 0
    set_cell_dynamic( 10, 10, 4, "^>v<", 87, false );
    set_cell_dynamic( 10, 12, 4, "O0o.", 74, false );
 
@@ -297,6 +305,7 @@ void init_map( void )
    set_cell_dynamic( col+2, row, 8, "anger!  ", 20, false );
    set_cell_dynamic( col+3, row, 8, "nger!   ", 20, false );
    set_cell_static(  col+4, row, ']', false );
+#endif
 
 }
 

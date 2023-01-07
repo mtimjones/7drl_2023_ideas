@@ -124,16 +124,16 @@ void handle_user_input( void )
             pause_toggle( );
             break;
          case 'w':
-            player_move(  1,  0 );
-            break;
-         case 'a':
             player_move(  0,  1 );
             break;
+         case 'a':
+            player_move(  1,  0 );
+            break;
          case 's':
-            player_move( -1,  0 );
+            player_move(  0, -1 );
             break;
          case 'd':
-            player_move(  0, -1 );
+            player_move( -1,  0 );
             break;
          case 27: // Esc
             break;

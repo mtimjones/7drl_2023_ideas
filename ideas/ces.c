@@ -229,6 +229,12 @@ static void create_map_entities( void )
     return;
 }
 
+// Remove all entities that are not player and friendly.
+void cleanup_entities( void )
+{
+
+}
+
 static void create_entities( void )
 {
     // Player is first (entity 0).

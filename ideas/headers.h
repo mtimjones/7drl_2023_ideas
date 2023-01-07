@@ -28,7 +28,7 @@ void increment_gametime( void );
 unsigned int get_gametime( void );
 
 //---------------------------------------------------------------
-// Window API
+// Screen API
 //---------------------------------------------------------------
 
 void win_startup( );
@@ -190,6 +190,7 @@ typedef struct
 //---------------------------------------------------------------
 
 int get_entity_at( int col, int row );
+void cleanup_entities( void );
 
 //---------------------------------------------------------------
 // Select API
@@ -206,7 +207,7 @@ int get_player_col( void );
 int get_player_row( void );
 void set_player_col( int col );
 void set_player_row( int row );
-void player_move( int row, int col );
+void player_move( int col, int row );
 
 //---------------------------------------------------------------
 // Levels API
@@ -214,6 +215,7 @@ void player_move( int row, int col );
 
 int  get_level( void );
 void inc_level( void );
+int  get_max_level( void );
 
 unsigned int get_wreck_count( int level );
 unsigned int get_wreck_resources( int level );

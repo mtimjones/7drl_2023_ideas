@@ -155,6 +155,7 @@ void win_refresh( void )
    mvwprintw( statswin, 3, 17, "Mouse  %3d, %3d", get_mouse_col( ), get_mouse_row( ) );
    mvwprintw( statswin, 4, 17, "Player %3d, %3d", get_player_col( ), get_player_row( ) );
 
+   mvwprintw( statswin, 4, 2, "Level : %4d ", get_level( ) );
    mvwprintw( statswin, 5, 2, "Time  : %4d ", ( get_gametime( ) / 50 ) );
 
    wrefresh( statswin );
