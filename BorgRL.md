@@ -226,6 +226,7 @@ Stretch Goals
 - [ ] Explore building a menu system (for upgrades, other selections).
 - [ ] Implement a support drone which heals other drones.
 - [ ] Experiment with wave-function-collapse for sector procedural generation.
+- [ ] Consider a bomb-drone, for larger enemies (single-use).
 
 ## Ncurses Debugging
 
