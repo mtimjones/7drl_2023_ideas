@@ -18,6 +18,7 @@ typedef struct component_health
 typedef struct component_attack
 {
     int value;
+    int armor;
 } component_attack_t;
 
 typedef enum

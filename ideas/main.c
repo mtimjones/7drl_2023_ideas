@@ -26,7 +26,7 @@ int main( int argc, char *argv[] )
    {
       unsigned long long start = getTimestamp( );
 
-      if ( cur_level == get_level( ) )
+      if ( cur_level != get_level( ) )
       {
           cur_level++;
           // Keep player and player drones, remove everything else, then init_entities();

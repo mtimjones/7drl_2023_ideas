@@ -186,7 +186,7 @@ static void clean_up_gas_clouds( void )
             }
             else if ( get_cell( col, row ) == ' ' )
             {
-               if ( count == 8 )
+               if ( count >= get_gas_smoothing_filler_param( get_level( ) ) )
                {
                   set_cell_static( col, row, '#', false );
                }

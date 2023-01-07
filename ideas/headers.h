@@ -222,6 +222,7 @@ unsigned int get_planet_resources( int level );
 unsigned int get_gas_cloud_rays( int level );
 unsigned int get_gas_cloud_ray_len( int level );
 unsigned int get_gas_smoothing_param( int level );
+unsigned int get_gas_smoothing_filler_param( int level );
 unsigned int get_gas_smoothing_iters( int level );
 
 

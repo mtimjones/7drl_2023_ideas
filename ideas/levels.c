@@ -12,13 +12,14 @@ typedef struct
     unsigned int gas_cloud_ray_len;
     unsigned int gas_smoothing_param;
     unsigned int gas_smoothing_iters;
+    unsigned int gas_smoothing_filler_param;
 
 
 } levels_t;
 
 const levels_t levels[] = {
-    {  4, 5, 0, 0, 20, 80, 4, 10 }, // 0
-    {  3, 3, 1, 6, 30, 60, 3, 10 }, // 1
+    {  4, 5, 0, 0, 20, 80, 4, 10, 7 }, // 0
+    {  3, 3, 1, 6, 30, 60, 3, 10, 8 }, // 1
 };
 
 
@@ -65,6 +66,11 @@ unsigned int get_gas_cloud_ray_len( int level )
 unsigned int get_gas_smoothing_param( int level )
 {
     return levels[ level ].gas_smoothing_param;
+}
+
+unsigned int get_gas_smoothing_filler_param( int level )
+{
+    return levels[ level ].gas_smoothing_filler_param;
 }
 
 unsigned int get_gas_smoothing_iters( int level )
