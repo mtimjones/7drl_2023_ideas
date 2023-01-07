@@ -72,7 +72,7 @@ static void set_cell_dynamic( int col, int row, int state_cnt, char *states, int
 
 bool passable( int col, int row )
 {
-   if ( col < 0 || col > MAP_MAX_NCOLS-2 || row < 0 || row > MAP_MAX_NROWS-2 ) return false;
+   if ( col < 0 || col > MAP_MAX_NCOLS-1 || row < 0 || row > MAP_MAX_NROWS-1 ) return false;
    return ( map[ col ][ row ].passable && map[ col ][ row ].entity == NO_ENTITY );
 }
 
