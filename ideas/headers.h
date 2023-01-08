@@ -136,6 +136,7 @@ bool valid_map_location( int col, int row );
 bool is_cell_empty( int col, int row );
 void set_cell_entity( int col, int row, int entity );
 void clear_cell_entity( int col, int row );
+void get_exit_location( int *col, int *row );
 
 #define MAX_STATES 8
 
@@ -208,6 +209,9 @@ int get_player_row( void );
 void set_player_col( int col );
 void set_player_row( int row );
 void player_move( int col, int row );
+
+#define PLAYER_COL_START     24
+#define PLAYER_ROW_START     43
 
 //---------------------------------------------------------------
 // Levels API

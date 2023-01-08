@@ -248,6 +248,14 @@ static void place_map_entry_exit( void )
    return;
 }
 
+void get_exit_location( int *col, int *row )
+{
+    *col = MAP_MAX_NCOLS - 20;
+    *row = MAP_MAX_NROWS >> 1;
+
+    return;
+}
+
 static void init_map_assets( void )
 {
     // Place gas-clouds randomly in the level.
@@ -256,7 +264,6 @@ static void init_map_assets( void )
         for ( int sector_col = 0 ; sector_col < MAP_SEC_NCOLS ; sector_col++ )
         {
             // Don't place anything in the first an last col sector in the middle row sector
-            // Place wrecks
             if ( !( (sector_row == 1) && ( (sector_col == 0) || (sector_col == MAP_MAX_NCOLS-1) ) ) )
             {
                place_gas_cloud( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );

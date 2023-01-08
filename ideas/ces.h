@@ -67,10 +67,12 @@ typedef struct component_sdrone
    int scav_speed;
 } component_sdrone_t;
 
+typedef void (*on_verb_callback)( int dest_entity, int source_entity );
+
 typedef struct entity_callbacks
 {
-   void (*on_attack)( void ); // Needs params...   When this entity is attacked...
-   void (*on_death)( void );  // When this entity dies.
+   on_verb_callback on_attack; // source_entity attacks dest_entity.
+   on_verb_callback on_death;  // dest_entity killed by source_entity.
 } entity_callbacks_t;
 
 typedef enum

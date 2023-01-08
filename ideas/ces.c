@@ -57,11 +57,47 @@ void find_empty_space( int col_sec, int row_sec, int *col, int *row )
     return;
 }
 
+void next_level( int dest_entity, int source_entity )
+{
+   ( void )dest_entity;
+   if ( source_entity == 0 )
+   {
+      clear_cell_entity( world.location[ source_entity ].col, world.location[ source_entity ].row );
+      set_player_col( PLAYER_COL_START );
+      set_player_row( PLAYER_ROW_START );
+      set_cell_entity( world.location[ source_entity ].col, world.location[ source_entity ].row, source_entity );
+
+      inc_level( );
+
+      add_message( "You've entered the next sector." );
+   }
+
+   return;
+}
+
+void create_exit_entity( void )
+{
+    int entity = get_free_entity( );
+    int col, row;
+
+    get_exit_location( &col, &row );
+
+    // Create the exit entity with an on_attack callback.
+    world.id[ entity ] = entity;
+    world.mask[ entity ] = COMPONENT_LOCATION;
+    world.location[ entity].col = col;
+    world.location[ entity].row = row;
+
+    set_cell_entity( col, row, entity );
+
+    world.callbacks[ entity ].on_attack = &next_level;
+
+    return;
+}
+
 void create_wreck_entity( int col, int row, int resources )
 {
-    int entity;
-
-    entity = get_free_entity( );
+    int entity = get_free_entity( );
     
     // Create a wreck entity
     world.id[ entity ] = entity;
@@ -162,8 +198,8 @@ void create_player_entity( )
                            COMPONENT_ATTACK | COMPONENT_MOVEMENT |
                            COMPONENT_RENDER | COMPONENT_PLAYER;
 
-    world.location[ entity ].col = 24;
-    world.location[ entity ].row = 43;
+    world.location[ entity ].col = PLAYER_COL_START;
+    world.location[ entity ].row = PLAYER_ROW_START;
 
     world.xp[ entity ].level = 1;
 
@@ -232,7 +268,24 @@ static void create_map_entities( void )
 // Remove all entities that are not player and friendly.
 void cleanup_entities( void )
 {
+    // Skip offset 0 which is the player (Borg)
+    for ( int entity = 1 ; entity < MAX_ENTITIES ; entity++ )
+    {
+        if ( world.mask[ entity ] & COMPONENT_FRIENDLY )
+        {
+            if ( world.mask[ entity ] & COMPONENT_RENDER )
+            {
+                // Only save drones that are docked (RENDER means undocked...).
+                destroy_entity( entity );
+            }
+        }
+        else
+        {
+            destroy_entity( entity );
+        }
+    }
 
+    return;
 }
 
 static void create_entities( void )
@@ -242,6 +295,11 @@ static void create_entities( void )
     create_sdrone_entity( 2, 1, 4, 1 );
 
     create_map_entities( );
+
+    if ( get_level( ) < get_max_level( ) )
+    {
+        create_exit_entity( );
+    }
 
     return;
 }
@@ -293,6 +351,63 @@ bool get_player_inv( int entity, char *object, char *state, int *lvl, int *hp, i
     }
 
     return status;
+}
+
+
+// Migrate this into systems for general use...
+void player_move( int cold, int rowd )
+{
+   location_t player_loc;
+
+   player_loc.col = get_player_col( );
+   player_loc.row = get_player_row( );
+
+   // First, check to see if an entity is in the new location.
+   int entity = get_entity_at( player_loc.col - cold, player_loc.row - rowd );
+
+   if ( entity != NO_ENTITY )
+   {
+      if ( world.callbacks[ entity ].on_attack != ( on_verb_callback) 0 )
+      {
+         (world.callbacks[ entity ].on_attack)( entity, 0 );
+      }
+
+      return;
+   }
+
+   if ( !passable( player_loc.col - cold, player_loc.row - rowd ) )
+   {
+      return;
+   }
+
+   clear_cell_entity( player_loc.col, player_loc.row );
+
+   player_loc.row -= rowd;
+   player_loc.col -= cold;
+
+   if ( player_loc.row < 0 )
+   {
+      player_loc.row = 0;
+   }
+   else if ( player_loc.col < 0 )
+   {
+      player_loc.col = 0;
+   }
+   else if ( player_loc.row >= MAP_MAX_NROWS )
+   {
+      player_loc.row = MAP_MAX_NROWS - 1;
+   }
+   else if ( player_loc.col >= MAP_MAX_NCOLS )
+   {
+      player_loc.col = MAP_MAX_NCOLS - 1;
+   }
+
+   set_player_col( player_loc.col );
+   set_player_row( player_loc.row );
+
+   set_cell_entity( player_loc.col, player_loc.row, 0 );
+
+   return;
 }
 
 void target_system( void  )
