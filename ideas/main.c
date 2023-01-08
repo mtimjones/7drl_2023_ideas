@@ -29,9 +29,6 @@ int main( int argc, char *argv[] )
       if ( cur_level != get_level( ) )
       {
           cur_level = get_level( );
-          init_map( );
-          cleanup_entities( );
-          // Keep player and player drones, remove everything else, then init_entities();
       }
 
       win_refresh( );

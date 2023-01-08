@@ -67,14 +67,15 @@ void next_level( int dest_entity, int source_entity )
 
       cleanup_entities( );
 
+      inc_level( );
+      init_map( );
+
       create_map_entities( );
 
       clear_cell_entity( world.location[ source_entity ].col, world.location[ source_entity ].row );
       set_player_col( PLAYER_COL_START );
       set_player_row( PLAYER_ROW_START );
       set_cell_entity( world.location[ source_entity ].col, world.location[ source_entity ].row, source_entity );
-
-      inc_level( );
 
       add_message( "You've entered the next sector." );
    }
@@ -258,6 +259,7 @@ static void place_wreck( int col, int row )
 
 void create_map_entities( void )
 {
+    // Create wrecks in the environment.
     int wrecks = get_wreck_count( get_level( ) );
 
     while ( wrecks )
@@ -267,6 +269,14 @@ void create_map_entities( void )
 
         place_wreck( sector_col * MAPWIN_COL_SIZE, sector_row * MAPWIN_ROW_SIZE );
         wrecks--;
+    }
+
+    // Other entity creation.
+
+    // Create map exit entity.
+    if ( get_level( ) < get_max_level( ) )
+    {
+        create_exit_entity( );
     }
 
     return;
@@ -305,11 +315,6 @@ static void create_entities( void )
     }
 
     create_map_entities( );
-
-    if ( get_level( ) <= get_max_level( ) )
-    {
-        create_exit_entity( );
-    }
 
     return;
 }
