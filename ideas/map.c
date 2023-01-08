@@ -225,7 +225,7 @@ static void place_map_entry_exit( void )
       for ( int i = 0 ; i < 14 ; i++ ) set_cell_static( col+i, row+1, '=', false );
    }
 
-   if ( get_level( ) != get_max_level( ) )
+   if ( get_level( ) <= get_max_level( ) )
    {
       col = MAP_MAX_NCOLS - 20;
       row = ( MAP_MAX_NROWS >> 1 );

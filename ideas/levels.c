@@ -21,6 +21,7 @@ typedef struct
 const levels_t levels[] = {
     {  4, 5, 0, 0, 20, 80, 4, 10, 7 }, // 0
     {  3, 3, 1, 6, 30, 60, 3, 10, 8 }, // 1
+    {  6, 4, 8, 6, 10, 40, 3, 10, 6 }, // 2
 };
 
 // Accessors for the level and max-level.

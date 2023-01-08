@@ -62,6 +62,13 @@ void next_level( int dest_entity, int source_entity )
    ( void )dest_entity;
    if ( source_entity == 0 )
    {
+      void cleanup_entities( void );
+      void create_map_entities( void );
+
+      cleanup_entities( );
+
+      create_map_entities( );
+
       clear_cell_entity( world.location[ source_entity ].col, world.location[ source_entity ].row );
       set_player_col( PLAYER_COL_START );
       set_player_row( PLAYER_ROW_START );
@@ -249,7 +256,7 @@ static void place_wreck( int col, int row )
     return;
 }
 
-static void create_map_entities( void )
+void create_map_entities( void )
 {
     int wrecks = get_wreck_count( get_level( ) );
 
@@ -290,13 +297,16 @@ void cleanup_entities( void )
 
 static void create_entities( void )
 {
-    // Player is first (entity 0).
-    create_player_entity( );
-    create_sdrone_entity( 2, 1, 4, 1 );
+    if ( get_level( ) == 0 )
+    {
+        // Player is first (entity 0).
+        create_player_entity( );
+        create_sdrone_entity( 2, 1, 4, 1 );
+    }
 
     create_map_entities( );
 
-    if ( get_level( ) < get_max_level( ) )
+    if ( get_level( ) <= get_max_level( ) )
     {
         create_exit_entity( );
     }
