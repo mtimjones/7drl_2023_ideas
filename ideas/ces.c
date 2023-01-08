@@ -77,7 +77,14 @@ void next_level( int dest_entity, int source_entity )
       set_player_row( PLAYER_ROW_START );
       set_cell_entity( world.location[ source_entity ].col, world.location[ source_entity ].row, source_entity );
 
-      add_message( "You've entered the next sector." );
+      if ( get_level( ) < get_max_level( ) )
+      {
+          add_message( "You've entered the next sector." );
+      }
+      else
+      {
+          add_message( "Welcome to the final level." );
+      }
    }
 
    return;

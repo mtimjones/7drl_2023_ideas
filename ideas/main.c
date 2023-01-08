@@ -3,7 +3,7 @@
 
 int main( int argc, char *argv[] )
 {
-   static int cur_level = 0;
+//   static int cur_level = 0;
    (void)argc;
    (void)argv;
 
@@ -21,21 +21,22 @@ int main( int argc, char *argv[] )
 
    start_game( );
 
-   // Game loop, runs at 100ms frames.
+   // Game loop, runs at 20ms frames.
    while ( get_game_state( ) )
    {
       unsigned long long start = getTimestamp( );
 
+#if 0
+      // Does this serve a purpose any longer?
       if ( cur_level != get_level( ) )
       {
           cur_level = get_level( );
       }
+#endif
 
       win_refresh( );
 
       handle_user_input( );
-
-      while( getTimestamp( ) < ( start + MS_PER_FRAME ) );
 
       if ( get_pause_state( ) == 0 )
       {
@@ -44,6 +45,7 @@ int main( int argc, char *argv[] )
          // Invoke systems
       }
 
+      while( getTimestamp( ) < ( start + MS_PER_FRAME ) );
    }
 
    win_shutdown( );
