@@ -9,12 +9,16 @@ int main( int argc, char *argv[] )
 
    seedRand( );
 
+printf("init_msg_log\n");
    init_msg_log( );
 
+printf("init_map\n");
    init_map( );
 
+printf("init_entities\n");
    init_entities( );
 
+printf("win_startup\n");
    win_startup( );
 
    win_update( );

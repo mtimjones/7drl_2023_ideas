@@ -126,8 +126,8 @@ chtype get_cell( int col, int row )
 static void place_gas_cloud( int col, int row )
 {
    int c, r, l;
-   int num_rays = 20;
-   const int ray_len  = 80;
+   int num_rays = get_gas_cloud_rays( get_level( ) );
+   const int ray_len  = get_gas_cloud_ray_len( get_level( ) );
 
    do 
    {
@@ -151,8 +151,8 @@ static void place_gas_cloud( int col, int row )
          {
             c += cd; r += rd;
             set_cell_static( c, r, '#', false );
-            l--;
          }
+         l--;
 
       }
 
@@ -258,6 +258,7 @@ void get_exit_location( int *col, int *row )
 
 static void init_map_assets( void )
 {
+printf("place gas clouds\n");
     // Place gas-clouds randomly in the level.
     for ( int sector_row = 0 ; sector_row < MAP_SEC_NROWS ; sector_row++ )
     {
@@ -272,8 +273,10 @@ static void init_map_assets( void )
 
     }
 
+printf("clean_up_gas_clouds\n");
     clean_up_gas_clouds( );
 
+printf("place_map_entry_exit\n");
     place_map_entry_exit( );
 
     return;
@@ -297,8 +300,10 @@ static void clear_map( void )
 
 void init_map( void )
 {
+printf("clear_map\n");
    clear_map( );
 
+printf("init_map_assets\n");
    init_map_assets( );
 
 #if 0
